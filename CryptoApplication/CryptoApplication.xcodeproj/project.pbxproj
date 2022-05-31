@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B812A2762846AD3A004751E8 /* assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812A2752846AD3A004751E8 /* assets.swift */; };
+		B812A2782846AF35004751E8 /* AssetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812A2772846AF35004751E8 /* AssetView.swift */; };
+		B812A27A2846B410004751E8 /* AssetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812A2792846B410004751E8 /* AssetViewCell.swift */; };
 		B8380D62283C738D00C45FA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8380D61283C738D00C45FA6 /* AppDelegate.swift */; };
 		B8380D64283C738D00C45FA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8380D63283C738D00C45FA6 /* SceneDelegate.swift */; };
 		B8380D66283C738D00C45FA6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8380D65283C738D00C45FA6 /* ViewController.swift */; };
@@ -37,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		B812A2752846AD3A004751E8 /* assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = assets.swift; sourceTree = "<group>"; };
+		B812A2772846AF35004751E8 /* AssetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetView.swift; sourceTree = "<group>"; };
+		B812A2792846B410004751E8 /* AssetViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetViewCell.swift; sourceTree = "<group>"; };
 		B8380D5E283C738D00C45FA6 /* CryptoApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8380D61283C738D00C45FA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B8380D63283C738D00C45FA6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +83,8 @@
 		B8380D55283C738C00C45FA6 = {
 			isa = PBXGroup;
 			children = (
+				B812A2792846B410004751E8 /* AssetViewCell.swift */,
+				B812A2772846AF35004751E8 /* AssetView.swift */,
 				B812A2752846AD3A004751E8 /* assets.swift */,
 				B8380D60283C738D00C45FA6 /* CryptoApplication */,
 				B8380D77283C738E00C45FA6 /* CryptoApplicationTests */,
@@ -258,9 +264,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8380D66283C738D00C45FA6 /* ViewController.swift in Sources */,
+				B812A27A2846B410004751E8 /* AssetViewCell.swift in Sources */,
 				B8380D62283C738D00C45FA6 /* AppDelegate.swift in Sources */,
 				B812A2762846AD3A004751E8 /* assets.swift in Sources */,
 				B8380D64283C738D00C45FA6 /* SceneDelegate.swift in Sources */,
+				B812A2782846AF35004751E8 /* AssetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
