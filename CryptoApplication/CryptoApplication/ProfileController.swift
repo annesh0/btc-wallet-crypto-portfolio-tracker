@@ -19,6 +19,8 @@ class ProfileController: UIViewController {
         self.navigationItem.title = "Edit Profile Picture"
         //title = "Edit Profile Picture"
         view.backgroundColor = .white
+        title = "Edit Profile Picture"
+        self.parent?.title = "Title Here"
         
         
         saveButton.setTitle("Save", for: .normal)
