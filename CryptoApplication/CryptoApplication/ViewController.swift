@@ -9,107 +9,87 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var profilePic = UIButton()
     var nameLabel = UILabel()
-    var shoppingImageView = UIImageView()
-    var itemTextField = UITextField()
-    var quantityTextField = UITextField()
-    var listTextView = UITextView()
-    var addButton = UIButton()
+    var aboutHeaderLabel = UILabel()
+    var aboutLabel = UILabel()
+    var editProfileButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
-        nameLabel.text = "Shopping List"
-        nameLabel.textColor = .darkGray
+        title = "My Profile"
+        
+        profilePic.setImage(UIImage(named:"anon"), for: .normal)
+        profilePic.layer.borderWidth = 1
+        profilePic.layer.borderColor = UIColor.systemGray.cgColor
+        profilePic.layer.cornerRadius = 10
+        profilePic.translatesAutoresizingMaskIntoConstraints = false
+        profilePic.addTarget(self, action: #selector(onProfilePicPress), for: .touchUpInside)
+        view.addSubview(profilePic)
+        
+        editProfileButton.setTitle("Button", for: .normal)
+        editProfileButton.setTitleColor(.systemBlue, for: .normal)
+        editProfileButton.addTarget(self, action: #selector(onEditProfileButtonPress), for: .touchUpInside)
+        editProfileButton.layer.borderWidth = 1
+        editProfileButton.layer.borderColor = UIColor.systemBlue.cgColor
+        editProfileButton.layer.cornerRadius = 10
+        editProfileButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(editProfileButton)
+        
+        nameLabel.textColor = .black
         nameLabel.font = .systemFont(ofSize: 20, weight: .bold)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(nameLabel)
         
-        shoppingImageView.image = UIImage(named: "cartImage")
-        shoppingImageView.contentMode = .scaleAspectFill
-        shoppingImageView.clipsToBounds = true
-        shoppingImageView.layer.cornerRadius = 5
-        shoppingImageView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(shoppingImageView)
+        aboutLabel.textColor = .black
+        aboutLabel.font = .systemFont(ofSize: 20)
+        aboutLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(aboutLabel)
         
-        itemTextField.placeholder = "Item"
-        itemTextField.textColor = .black
-        itemTextField.font = .systemFont(ofSize: 15)
-        itemTextField.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(itemTextField)
         
-        quantityTextField.placeholder = "Quantity"
-        quantityTextField.textColor = .black
-        quantityTextField.font = .systemFont(ofSize: 15)
-        quantityTextField.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(quantityTextField)
-        
-        addButton.setTitle(" Add ", for: .normal)
-        addButton.setTitleColor(.systemBlue, for: .normal)
-        addButton.layer.borderWidth = 1
-        addButton.layer.borderColor = UIColor.systemBlue.cgColor
-        addButton.layer.cornerRadius = 10
-        addButton.translatesAutoresizingMaskIntoConstraints = false
-        addButton.addTarget(self, action: #selector(onAddButtonPress), for: .touchUpInside)
-        view.addSubview(addButton )
-        
-        listTextView.textColor = .black
-        listTextView.font = .systemFont(ofSize: 15)
-        listTextView.translatesAutoresizingMaskIntoConstraints = false
-        listTextView.backgroundColor = .lightGray
-        listTextView.text = ""
-        listTextView.isScrollEnabled = false
-        view.addSubview(listTextView)
         
         setupConstraints()
         
     }
     
     func setupConstraints() {
+        
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: shoppingImageView.bottomAnchor, constant: 5),
-            nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            profilePic.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 15 ),
+            profilePic.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            profilePic.widthAnchor.constraint(equalToConstant: 100),
+            profilePic.heightAnchor.constraint(equalToConstant: 100)
+        ])
+        
+        
+        NSLayoutConstraint.activate([
+            editProfileButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -10),
+            editProfileButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            shoppingImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -10),
-            shoppingImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            shoppingImageView.widthAnchor.constraint(equalToConstant: 200),
-            shoppingImageView.heightAnchor.constraint(equalToConstant: 200)
+            nameLabel.topAnchor.constraint(equalTo: profilePic.bottomAnchor, constant: 15),
+            nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            itemTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor,constant: 20),
-            itemTextField.centerXAnchor.constraint(equalTo: nameLabel.centerXAnchor)
+            aboutLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 15),
+            aboutLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
-        
-        NSLayoutConstraint.activate([
-            quantityTextField.topAnchor.constraint(equalTo: itemTextField.bottomAnchor,constant: 10),
-            quantityTextField.centerXAnchor.constraint(equalTo: nameLabel.centerXAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
-            addButton.topAnchor.constraint(equalTo: quantityTextField.bottomAnchor,constant: 10),
-            addButton.centerXAnchor.constraint(equalTo: quantityTextField.centerXAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
-            listTextView.topAnchor.constraint(equalTo: addButton.bottomAnchor, constant: 20),
-            listTextView.centerXAnchor.constraint(equalTo: addButton.centerXAnchor),
-            listTextView.heightAnchor.constraint(equalToConstant: 200),
-            listTextView.widthAnchor.constraint(equalToConstant: 200)
-        ])
-
     }
     
-    @objc func onAddButtonPress() {
-        if(itemTextField.text != nil && quantityTextField.text != nil) {
-            
-            listTextView.text += itemTextField.text! + " " + quantityTextField.text! + "\n"
-            itemTextField.text = ""
-            quantityTextField.text = ""
-        }
+    @objc func onEditProfileButtonPress() {
+        let editor = EditorController()
+        editor.parentController = self
+        navigationController?.pushViewController(editor, animated: true)
+    }
+    
+    @objc func onProfilePicPress() {
+        let profile = ProfileController()
+        profile.parentController = self
+        present(profile, animated: true, completion: nil)
     }
 
 
