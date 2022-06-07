@@ -94,6 +94,7 @@ class EditCoinValueController: UIViewController {
                 self.inputField.text = newAmount
                 self.save()
             })
+            alert.addAction(UIAlertAction(title: "Cancel", style: .default) { _ in return})
             present(alert, animated: true, completion: nil)
     }
 

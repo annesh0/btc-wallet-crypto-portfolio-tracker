@@ -46,6 +46,19 @@ class AddCoinController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    func showAlert(coin: Coin) {
+        let alert = UIAlertController(title: "Are you sure?", message: "Are you sure you want to remove \(coin.name) from your assets? Doing so will erase our saved data on the amount of this asset you own.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Confirm", style: .default) { _ in
+                coin.isChosen = !coin.isChosen
+                self.parentController!.updateMyCoins()
+                self.tableView.reloadData()
+                self.parentController!.tableView.reloadData()
+                self.parentController!.updateNetWorth()
+            })
+            alert.addAction(UIAlertAction(title: "Cancel", style: .default) { _ in return})
+            present(alert, animated: true, completion: nil)
+    }
+    
 }
 
 extension AddCoinController: UITableViewDataSource {
@@ -73,10 +86,15 @@ extension AddCoinController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let coin = parentController!.allCoins[indexPath.row]
-        coin.isChosen = !coin.isChosen
-        parentController!.updateMyCoins()
-        tableView.reloadData()
-        parentController!.tableView.reloadData()
-        parentController!.updateNetWorth()
+        if coin.isChosen{
+            self.showAlert(coin: coin)
+        }
+        else{
+            coin.isChosen = !coin.isChosen
+            parentController!.updateMyCoins()
+            tableView.reloadData()
+            parentController!.tableView.reloadData()
+            parentController!.updateNetWorth()
+        }
     }
 }
