@@ -22,6 +22,8 @@
 		B8380D79283C738E00C45FA6 /* CryptoApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8380D78283C738E00C45FA6 /* CryptoApplicationTests.swift */; };
 		B8380D83283C738E00C45FA6 /* CryptoApplicationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8380D82283C738E00C45FA6 /* CryptoApplicationUITests.swift */; };
 		B8380D85283C738E00C45FA6 /* CryptoApplicationUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8380D84283C738E00C45FA6 /* CryptoApplicationUITestsLaunchTests.swift */; };
+		B8A4CEA6284F03F7005BF392 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A4CEA5284F03F7005BF392 /* NetworkManager.swift */; };
+		B8A4CEA8284F064E005BF392 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A4CEA7284F064E005BF392 /* Post.swift */; };
 		D343C1D32F018A3B3A595AC0 /* Pods_CryptoApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 543412E35F3F278CD8BC2CF1 /* Pods_CryptoApplication.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +68,8 @@
 		B8380D7E283C738E00C45FA6 /* CryptoApplicationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoApplicationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8380D82283C738E00C45FA6 /* CryptoApplicationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoApplicationUITests.swift; sourceTree = "<group>"; };
 		B8380D84283C738E00C45FA6 /* CryptoApplicationUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoApplicationUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B8A4CEA5284F03F7005BF392 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		B8A4CEA7284F064E005BF392 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		ED14B1481DBB4D9074B870EB /* Pods-CryptoApplication-CryptoApplicationUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoApplication-CryptoApplicationUITests.debug.xcconfig"; path = "Target Support Files/Pods-CryptoApplication-CryptoApplicationUITests/Pods-CryptoApplication-CryptoApplicationUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EFFCA93CF910FF4EAB935904 /* Pods-CryptoApplication.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoApplication.debug.xcconfig"; path = "Target Support Files/Pods-CryptoApplication/Pods-CryptoApplication.debug.xcconfig"; sourceTree = "<group>"; };
 		FEC83EB9EA91B6F3644B56B1 /* Pods_CryptoApplication_CryptoApplicationUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoApplication_CryptoApplicationUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,7 +123,6 @@
 				8B2853FA98BE6602D6FD4798 /* Pods-CryptoApplicationTests.debug.xcconfig */,
 				67094C5600ED48EA02F36B7B /* Pods-CryptoApplicationTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -159,6 +162,8 @@
 				B8380D6F283C738E00C45FA6 /* Info.plist */,
 				B812A27B284DAA2B004751E8 /* EditorController.swift */,
 				B812A27D284DAECD004751E8 /* ProfileController.swift */,
+				B8A4CEA5284F03F7005BF392 /* NetworkManager.swift */,
+				B8A4CEA7284F064E005BF392 /* Post.swift */,
 			);
 			path = CryptoApplication;
 			sourceTree = "<group>";
@@ -418,6 +423,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8A4CEA6284F03F7005BF392 /* NetworkManager.swift in Sources */,
 				B8380D66283C738D00C45FA6 /* ViewController.swift in Sources */,
 				B812A27A2846B410004751E8 /* AssetViewCell.swift in Sources */,
 				B8380D62283C738D00C45FA6 /* AppDelegate.swift in Sources */,
@@ -426,6 +432,7 @@
 				B8380D64283C738D00C45FA6 /* SceneDelegate.swift in Sources */,
 				B812A2782846AF35004751E8 /* AssetView.swift in Sources */,
 				B812A27E284DAECD004751E8 /* ProfileController.swift in Sources */,
+				B8A4CEA8284F064E005BF392 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
