@@ -17,8 +17,8 @@ class EditCoinController: UIViewController {
         title = "Edit Assets"
         view.backgroundColor = .white
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.dataSource = self//.parentController!
-        tableView.delegate = self//.parentController!
+        tableView.dataSource = self.parentController!
+        tableView.delegate = self
         tableView.register(CoinTableViewCell.self, forCellReuseIdentifier: parentController!.reuseIdentifier)
         view.addSubview(tableView)
         assetsLabel.text = "Assets"
@@ -44,10 +44,6 @@ class EditCoinController: UIViewController {
     
     @objc func save() {
         navigationController?.popViewController(animated: true)
-    }
-    
-    func updateTable() {
-        
     }
     
 }
@@ -80,5 +76,6 @@ extension EditCoinController: UITableViewDelegate {
         let presenter = EditCoinValueController()
         presenter.parentCoinCell = coin
         presenter.ParentController = self
-        present(UINavigationController(rootViewController: presenter), animated: true, completion: nil)    }
+        present(UINavigationController(rootViewController: presenter), animated: true, completion: nil)
+    }
 }

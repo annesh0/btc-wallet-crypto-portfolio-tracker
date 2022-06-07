@@ -63,7 +63,7 @@ class ViewController: UIViewController {
         
         let bitcoin = Coin(name: "Bitcoin", symbol: "BIT")
         let dogecoin = Coin(name: "Dogecoin", symbol: "DOG")
-        myCoins = [bitcoin, dogecoin]
+        allCoins = [bitcoin, dogecoin]
         // Initialize tableView
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
@@ -125,22 +125,26 @@ class ViewController: UIViewController {
     
     @objc func presentAddScreen(){
         let presenter = AddCoinController()
-        //presenter.parentController = self
+        presenter.parentController = self
         present(presenter, animated: true, completion: nil)
     }
     
     func updateMyCoins(){
         tableView.beginUpdates()
+        if myCoins.count > 0 {
+            for i in 0...myCoins.count-1{
+                    tableView.deleteRows(at: [IndexPath(row: i, section: 0)], with: .automatic)
+            }
+        }
+        myCoins = []
         for coin in allCoins {
             if coin.isChosen{
                 myCoins.append(coin)
-                tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
             }
         }
-        for i in 0...myCoins.count-1{
-            if !myCoins[i].isChosen{
-                myCoins.remove(at: i)
-                tableView.deleteRows(at: [IndexPath(row: i, section: 0)], with: .automatic)
+        if myCoins.count > 0 {
+            for i in 0...myCoins.count-1{
+                    tableView.insertRows(at: [IndexPath(row: i, section: 0)], with: .automatic)
             }
         }
         tableView.endUpdates()
