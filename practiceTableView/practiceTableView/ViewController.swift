@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     var myCoins: [Coin] = []
     var padding = UITextView()
     var netWorthLabel = UILabel()
+    var netWorth = 0.0
     var netChangeLabel = UILabel()
     var assetsLabel = UILabel()
     var editAssestsButton = UIButton()
@@ -33,7 +34,7 @@ class ViewController: UIViewController {
         padding.backgroundColor = .lightGray
         padding.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(padding)
-        netWorthLabel.text = "$XX,XXX.XX"
+        netWorthLabel.text = "$\(self.getCurrencyForm(amount: self.netWorth))"
         netWorthLabel.font = .systemFont(ofSize: 35, weight: .bold)
         netWorthLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(netWorthLabel)
@@ -148,6 +149,22 @@ class ViewController: UIViewController {
             }
         }
         tableView.endUpdates()
+    }
+    
+    func getCurrencyForm(amount: Double) -> String {
+        let formatter = NumberFormatter()
+        formatter.locale = Locale.current
+        formatter.currencySymbol = ""
+        formatter.numberStyle = .currency
+        return formatter.string(from: amount as NSNumber)!
+    }
+    
+    func updateNetWorth(){
+        netWorth = 0.0
+        for coin in myCoins {
+            netWorth = netWorth + coin.amountUSD
+        }
+        netWorthLabel.text = "$\(self.getCurrencyForm(amount: self.netWorth))"
     }
 }
 

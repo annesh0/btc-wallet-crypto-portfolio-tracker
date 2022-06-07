@@ -77,5 +77,6 @@ extension AddCoinController: UITableViewDelegate {
         parentController!.updateMyCoins()
         tableView.reloadData()
         parentController!.tableView.reloadData()
+        parentController!.updateNetWorth()
     }
 }
