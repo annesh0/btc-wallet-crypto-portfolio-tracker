@@ -1,3 +1,4 @@
+/*
 //
 //  NetworkManager.swift
 //  CryptoApplication
@@ -33,3 +34,5 @@ class NetworkManager {
         }
     }
 }
+
+*/

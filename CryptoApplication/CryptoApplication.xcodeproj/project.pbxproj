@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		607F56571DA474086C8F9105 /* Pods_CryptoApplication_CryptoApplicationUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEC83EB9EA91B6F3644B56B1 /* Pods_CryptoApplication_CryptoApplicationUITests.framework */; };
 		74EB6E24A1164A6B01A7C7FF /* Pods_CryptoApplicationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 667CE86793F325C09ABFA3B4 /* Pods_CryptoApplicationTests.framework */; };
+		B80FF229285141660041D4AF /* EditCoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80FF228285141660041D4AF /* EditCoinController.swift */; };
+		B80FF22B285141810041D4AF /* EditCoinValueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80FF22A285141810041D4AF /* EditCoinValueController.swift */; };
+		B80FF22D285141960041D4AF /* AddCoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80FF22C285141960041D4AF /* AddCoinController.swift */; };
+		B80FF22F285141AB0041D4AF /* SingleCoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80FF22E285141AB0041D4AF /* SingleCoinViewController.swift */; };
+		B80FF231285141D90041D4AF /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80FF230285141D90041D4AF /* Coin.swift */; };
+		B80FF2352851420A0041D4AF /* CoinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80FF2342851420A0041D4AF /* CoinTableViewCell.swift */; };
+		B80FF237285142220041D4AF /* AddCoinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80FF236285142220041D4AF /* AddCoinTableViewCell.swift */; };
 		B812A2762846AD3A004751E8 /* assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812A2752846AD3A004751E8 /* assets.swift */; };
 		B812A2782846AF35004751E8 /* AssetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812A2772846AF35004751E8 /* AssetView.swift */; };
 		B812A27A2846B410004751E8 /* AssetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812A2792846B410004751E8 /* AssetViewCell.swift */; };
@@ -51,6 +58,13 @@
 		667CE86793F325C09ABFA3B4 /* Pods_CryptoApplicationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoApplicationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67094C5600ED48EA02F36B7B /* Pods-CryptoApplicationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoApplicationTests.release.xcconfig"; path = "Target Support Files/Pods-CryptoApplicationTests/Pods-CryptoApplicationTests.release.xcconfig"; sourceTree = "<group>"; };
 		8B2853FA98BE6602D6FD4798 /* Pods-CryptoApplicationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoApplicationTests.debug.xcconfig"; path = "Target Support Files/Pods-CryptoApplicationTests/Pods-CryptoApplicationTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B80FF228285141660041D4AF /* EditCoinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCoinController.swift; sourceTree = "<group>"; };
+		B80FF22A285141810041D4AF /* EditCoinValueController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCoinValueController.swift; sourceTree = "<group>"; };
+		B80FF22C285141960041D4AF /* AddCoinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoinController.swift; sourceTree = "<group>"; };
+		B80FF22E285141AB0041D4AF /* SingleCoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCoinViewController.swift; sourceTree = "<group>"; };
+		B80FF230285141D90041D4AF /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
+		B80FF2342851420A0041D4AF /* CoinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTableViewCell.swift; sourceTree = "<group>"; };
+		B80FF236285142220041D4AF /* AddCoinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoinTableViewCell.swift; sourceTree = "<group>"; };
 		B812A2752846AD3A004751E8 /* assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = assets.swift; sourceTree = "<group>"; };
 		B812A2772846AF35004751E8 /* AssetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetView.swift; sourceTree = "<group>"; };
 		B812A2792846B410004751E8 /* AssetViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetViewCell.swift; sourceTree = "<group>"; };
@@ -164,6 +178,13 @@
 				B812A27D284DAECD004751E8 /* ProfileController.swift */,
 				B8A4CEA5284F03F7005BF392 /* NetworkManager.swift */,
 				B8A4CEA7284F064E005BF392 /* Post.swift */,
+				B80FF228285141660041D4AF /* EditCoinController.swift */,
+				B80FF22A285141810041D4AF /* EditCoinValueController.swift */,
+				B80FF22C285141960041D4AF /* AddCoinController.swift */,
+				B80FF22E285141AB0041D4AF /* SingleCoinViewController.swift */,
+				B80FF230285141D90041D4AF /* Coin.swift */,
+				B80FF2342851420A0041D4AF /* CoinTableViewCell.swift */,
+				B80FF236285142220041D4AF /* AddCoinTableViewCell.swift */,
 			);
 			path = CryptoApplication;
 			sourceTree = "<group>";
@@ -426,13 +447,20 @@
 				B8A4CEA6284F03F7005BF392 /* NetworkManager.swift in Sources */,
 				B8380D66283C738D00C45FA6 /* ViewController.swift in Sources */,
 				B812A27A2846B410004751E8 /* AssetViewCell.swift in Sources */,
+				B80FF231285141D90041D4AF /* Coin.swift in Sources */,
+				B80FF237285142220041D4AF /* AddCoinTableViewCell.swift in Sources */,
 				B8380D62283C738D00C45FA6 /* AppDelegate.swift in Sources */,
+				B80FF22B285141810041D4AF /* EditCoinValueController.swift in Sources */,
+				B80FF22D285141960041D4AF /* AddCoinController.swift in Sources */,
 				B812A27C284DAA2B004751E8 /* EditorController.swift in Sources */,
 				B812A2762846AD3A004751E8 /* assets.swift in Sources */,
 				B8380D64283C738D00C45FA6 /* SceneDelegate.swift in Sources */,
+				B80FF22F285141AB0041D4AF /* SingleCoinViewController.swift in Sources */,
 				B812A2782846AF35004751E8 /* AssetView.swift in Sources */,
 				B812A27E284DAECD004751E8 /* ProfileController.swift in Sources */,
 				B8A4CEA8284F064E005BF392 /* Post.swift in Sources */,
+				B80FF2352851420A0041D4AF /* CoinTableViewCell.swift in Sources */,
+				B80FF229285141660041D4AF /* EditCoinController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

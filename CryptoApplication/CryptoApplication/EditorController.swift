@@ -1,3 +1,4 @@
+/*
 //
 //  EditorController.swift
 //  CryptoApplication
@@ -80,3 +81,4 @@ class EditorController: UIViewController {
     
     
 }
+ */

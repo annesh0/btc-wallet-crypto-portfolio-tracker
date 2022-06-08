@@ -1,3 +1,4 @@
+/*
 //
 //  ProfileController.swift
 //  CryptoApplication
@@ -90,3 +91,5 @@ class ProfileController: UIViewController {
         //save()
     }
 }
+
+*/

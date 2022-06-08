@@ -1,3 +1,4 @@
+/*
 //
 //  Post.swift
 //  networking
@@ -15,3 +16,4 @@ struct Post : Decodable {
     let poster: String
     let timeStamp: String
 }
+*/
