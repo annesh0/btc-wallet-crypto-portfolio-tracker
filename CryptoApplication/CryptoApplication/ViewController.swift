@@ -62,8 +62,8 @@ class ViewController: UIViewController {
         view.addSubview(addAssestsButton)
         view.backgroundColor = .white
         
-        let bitcoin = Coin(name: "Bitcoin", symbol: "BIT")
-        let dogecoin = Coin(name: "Dogecoin", symbol: "DOG")
+        let bitcoin = Coin(name: "Bitcoin", symbol: "BTC")
+        let dogecoin = Coin(name: "Dogecoin", symbol: "DOGE")
         allCoins = [bitcoin, dogecoin]
         // Initialize tableView
         tableView.translatesAutoresizingMaskIntoConstraints = false
