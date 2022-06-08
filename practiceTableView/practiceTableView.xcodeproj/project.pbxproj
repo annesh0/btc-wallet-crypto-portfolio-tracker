@@ -21,6 +21,7 @@
 		FC12F67B284F37890092BD24 /* EditCoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC12F67A284F37890092BD24 /* EditCoinController.swift */; };
 		FC12F67D284FCBB00092BD24 /* EditCoinValueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC12F67C284FCBB00092BD24 /* EditCoinValueController.swift */; };
 		FC12F67F284FF82C0092BD24 /* AddCoinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC12F67E284FF82C0092BD24 /* AddCoinTableViewCell.swift */; };
+		FC12F681285029E00092BD24 /* SingleCoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC12F680285029E00092BD24 /* SingleCoinViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		FC12F67A284F37890092BD24 /* EditCoinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCoinController.swift; sourceTree = "<group>"; };
 		FC12F67C284FCBB00092BD24 /* EditCoinValueController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCoinValueController.swift; sourceTree = "<group>"; };
 		FC12F67E284FF82C0092BD24 /* AddCoinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoinTableViewCell.swift; sourceTree = "<group>"; };
+		FC12F680285029E00092BD24 /* SingleCoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCoinViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				FC12F67A284F37890092BD24 /* EditCoinController.swift */,
 				FC12F67C284FCBB00092BD24 /* EditCoinValueController.swift */,
 				FC12F678284F355A0092BD24 /* AddCoinController.swift */,
+				FC12F680285029E00092BD24 /* SingleCoinViewController.swift */,
 				FC12F674284F05EF0092BD24 /* Coin.swift */,
 				FC12F676284F109F0092BD24 /* CoinTableViewCell.swift */,
 				FC12F67E284FF82C0092BD24 /* AddCoinTableViewCell.swift */,
@@ -277,6 +280,7 @@
 				FC12F645284EF26C0092BD24 /* ViewController.swift in Sources */,
 				FC12F679284F355A0092BD24 /* AddCoinController.swift in Sources */,
 				FC12F67B284F37890092BD24 /* EditCoinController.swift in Sources */,
+				FC12F681285029E00092BD24 /* SingleCoinViewController.swift in Sources */,
 				FC12F641284EF26C0092BD24 /* AppDelegate.swift in Sources */,
 				FC12F643284EF26C0092BD24 /* SceneDelegate.swift in Sources */,
 				FC12F67F284FF82C0092BD24 /* AddCoinTableViewCell.swift in Sources */,

@@ -14,7 +14,7 @@ class AddCoinController: UIViewController {
     weak var parentController: ViewController?
     
     override func viewDidLoad() {
-        title = "Edit Assets"
+        title = "Add/Remove Assets"
         view.backgroundColor = .white
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self

@@ -127,7 +127,7 @@ class ViewController: UIViewController {
     @objc func presentAddScreen(){
         let presenter = AddCoinController()
         presenter.parentController = self
-        present(presenter, animated: true, completion: nil)
+        present(UINavigationController(rootViewController: presenter), animated: true, completion: nil)
     }
     
     func updateMyCoins(){
@@ -192,7 +192,11 @@ extension ViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let coinView = SingleCoinViewController()
+        let coin = myCoins[indexPath.row]
+        coinView.parentController = self
+        coinView.parentCoin = coin
+        navigationController?.pushViewController(coinView, animated: true)
     }
 }
 
