@@ -54,7 +54,7 @@ class CoinTableViewCell: UITableViewCell {
 
     func setupConstraints() {
         let padding: CGFloat = 15
-        let labelHeight: CGFloat = 20
+        let labelHeight: CGFloat = 22
 
         NSLayoutConstraint.activate([
             nameLabel.leadingAnchor.constraint(equalTo: logoImage.trailingAnchor, constant: padding),
