@@ -77,7 +77,7 @@ class ViewController: UIViewController {
         let bitcoinCash = Coin(name:"Bitcoin Cash",symbol: "BCH")
         let monero = Coin(name:"monero",symbol: "XMR")
         let uniswap = Coin(name:"Uniswap",symbol: "UNI")
-        let shibainu = Coin(name:"Shiba Inu",symbol: "shib")
+        let shibainu = Coin(name:"Shiba Inu",symbol: "SHIB")
         allCoins = [bitcoin, dogecoin, ethereum, litecoin, cardano, tether, solano, binance, usdCoin, algorand, polkadot, bitcoinCash, monero, uniswap, shibainu]
         // Initialize tableView
         tableView.translatesAutoresizingMaskIntoConstraints = false
