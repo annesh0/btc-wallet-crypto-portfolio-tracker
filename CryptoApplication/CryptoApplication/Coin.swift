@@ -11,17 +11,22 @@ import UIKit
 class Coin {
     var name: String
     var symbol: String
-    var image: UIImage
+    var logoImage: UIImage
     var amountUSD = 0.0
     var amountCoin = 0.0
     var percentChnage = 0.0
     var conversionRate = 1.0
     var isChosen: Bool
+    var dayImage: UIImage?
+    var weekImage: UIImage?
+    var monthImage: UIImage?
+    var yearImage: UIImage?
+    var fiveYearImage: UIImage?
 
     init(name: String, symbol: String) {
         self.name = name
         self.symbol = symbol
-        self.image = UIImage(named: name)!
+        self.logoImage = UIImage(named: name)!
         isChosen = false
     }
     

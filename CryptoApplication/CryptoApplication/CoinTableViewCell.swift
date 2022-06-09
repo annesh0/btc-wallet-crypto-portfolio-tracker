@@ -49,7 +49,7 @@ class CoinTableViewCell: UITableViewCell {
         amountCoinLabel.text = coin.getCurrencyForm(amount: coin.amountCoin) + " " + coin.symbol
         amountUSDLabel.text = "$" + coin.getCurrencyForm(amount: coin.amountUSD)
         changeLabel.text = coin.getRoundedPercentage(amount: coin.percentChnage)
-        logoImage.image = coin.image
+        logoImage.image = coin.logoImage
     }
 
     func setupConstraints() {

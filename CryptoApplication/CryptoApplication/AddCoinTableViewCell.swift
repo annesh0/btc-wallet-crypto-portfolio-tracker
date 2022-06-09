@@ -34,7 +34,7 @@ class AddCoinTableViewCell: UITableViewCell {
         else {
             nameLabel.text = "Add \(coin.name)?"
         }
-        logoImage.image = coin.image
+        logoImage.image = coin.logoImage
     }
 
     func setupConstraints() {
