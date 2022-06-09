@@ -1,4 +1,4 @@
-/*
+
 //
 //  NetworkManager.swift
 //  CryptoApplication
@@ -10,8 +10,7 @@ import Alamofire
 import Foundation
 
 class NetworkManager {
-    static let host = "https://ios-course-message-board.herokuapp.com"
-    
+    /*
     static func getAllPosts(completion: @escaping ([Post]) -> Void) {
         let endpoint = "\(host)/posts/all/"
         //let params: [String:String] = [
@@ -33,6 +32,24 @@ class NetworkManager {
             }
         }
     }
+     */
+    static func getAllCoinValues(completion: @escaping ([AllData]) -> Void) {
+        let endpoint = "https://rest.coinapi.io/v1/exchangerate/USD?apikey=2538BC37-2458-49AC-82A8-772B98788B29&invert=true&output_format=cs"
+        AF.request(endpoint, method: .get).validate().responseData { response in
+            //process response
+            switch(response.result) {
+            case .success(let data):
+                let jsonDecoder = JSONDecoder()
+                if let userResponse = try? jsonDecoder.decode([AllData].self, from: data) {
+                    completion(userResponse)
+                } else {
+                    print("Failed")
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }
 
-*/
+

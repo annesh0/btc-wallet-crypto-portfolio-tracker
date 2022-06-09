@@ -23,6 +23,7 @@ class ViewController: UIViewController {
     var assetsLabel = UILabel()
     var editAssestsButton = UIButton()
     var addAssestsButton = UIButton()
+    var allData: [AllData] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +65,20 @@ class ViewController: UIViewController {
         
         let bitcoin = Coin(name: "Bitcoin", symbol: "BTC")
         let dogecoin = Coin(name: "Dogecoin", symbol: "DOGE")
-        allCoins = [bitcoin, dogecoin]
+        let ethereum = Coin(name: "Ethereum", symbol: "ETH")
+        let litecoin = Coin(name:"Litecoin",symbol: "LTC")
+        let cardano = Coin(name:"Cardano",symbol: "ADA")
+        let tether = Coin(name:"USDTether",symbol: "USDT")
+        let solano = Coin(name:"Solano",symbol: "SOL")
+        let binance = Coin(name:"Binance Coin",symbol: "BNB")
+        let usdCoin = Coin(name:"USDCoin",symbol: "USDC")
+        let algorand = Coin(name:"Algorand",symbol: "ALGO")
+        let polkadot = Coin(name:"Polkadot",symbol: "DOT")
+        let bitcoinCash = Coin(name:"Bitcoin Cash",symbol: "BCH")
+        let monero = Coin(name:"monero",symbol: "XMR")
+        let uniswap = Coin(name:"Uniswap",symbol: "UNI")
+        let shibainu = Coin(name:"Shiba Inu",symbol: "shib")
+        allCoins = [bitcoin, dogecoin, ethereum, litecoin, cardano, tether, solano, binance, usdCoin, algorand, polkadot, bitcoinCash, monero, uniswap, shibainu]
         // Initialize tableView
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
@@ -166,6 +180,36 @@ class ViewController: UIViewController {
         }
         netWorthLabel.text = "$\(self.getCurrencyForm(amount: self.netWorth))"
     }
+    
+    func getCoinData() {
+        NetworkManager.getAllCoinValues { data in
+            self.allData = data
+            
+            self.assignValues()
+            //@todo: Call reload changes here
+            DispatchQueue.main.async {
+                  self.tableView.reloadData()
+            }
+        }
+    }
+    
+    func assignValues() {
+        let rateData = self.allData[0].rates
+        let symbolNames = allCoins.map { $0.symbol }
+        var filteredData = rateData.filter{symbolNames.contains($0.assetName)}
+        allCoins = allCoins.sorted {
+            return $0.symbol < $1.symbol
+        }
+        filteredData = filteredData.sorted {
+            return $0.assetName < $1.assetName
+        }
+        var index = 0
+        for coin in allCoins {
+            coin.conversionRate = filteredData[index].exchangeRate
+            index += 1
+        }
+        
+    }
 }
 
 extension ViewController: UITableViewDataSource {
@@ -199,4 +243,6 @@ extension ViewController: UITableViewDelegate {
         navigationController?.pushViewController(coinView, animated: true)
     }
 }
+
+
 

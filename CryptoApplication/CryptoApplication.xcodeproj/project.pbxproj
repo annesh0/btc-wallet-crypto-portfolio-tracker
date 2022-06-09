@@ -16,6 +16,7 @@
 		B80FF231285141D90041D4AF /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80FF230285141D90041D4AF /* Coin.swift */; };
 		B80FF2352851420A0041D4AF /* CoinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80FF2342851420A0041D4AF /* CoinTableViewCell.swift */; };
 		B80FF237285142220041D4AF /* AddCoinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80FF236285142220041D4AF /* AddCoinTableViewCell.swift */; };
+		B80FF2392851F0C10041D4AF /* Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80FF2382851F0C10041D4AF /* Json.swift */; };
 		B812A2762846AD3A004751E8 /* assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812A2752846AD3A004751E8 /* assets.swift */; };
 		B812A2782846AF35004751E8 /* AssetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812A2772846AF35004751E8 /* AssetView.swift */; };
 		B812A27A2846B410004751E8 /* AssetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812A2792846B410004751E8 /* AssetViewCell.swift */; };
@@ -30,7 +31,6 @@
 		B8380D83283C738E00C45FA6 /* CryptoApplicationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8380D82283C738E00C45FA6 /* CryptoApplicationUITests.swift */; };
 		B8380D85283C738E00C45FA6 /* CryptoApplicationUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8380D84283C738E00C45FA6 /* CryptoApplicationUITestsLaunchTests.swift */; };
 		B8A4CEA6284F03F7005BF392 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A4CEA5284F03F7005BF392 /* NetworkManager.swift */; };
-		B8A4CEA8284F064E005BF392 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A4CEA7284F064E005BF392 /* Post.swift */; };
 		D343C1D32F018A3B3A595AC0 /* Pods_CryptoApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 543412E35F3F278CD8BC2CF1 /* Pods_CryptoApplication.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +65,7 @@
 		B80FF230285141D90041D4AF /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		B80FF2342851420A0041D4AF /* CoinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTableViewCell.swift; sourceTree = "<group>"; };
 		B80FF236285142220041D4AF /* AddCoinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoinTableViewCell.swift; sourceTree = "<group>"; };
+		B80FF2382851F0C10041D4AF /* Json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Json.swift; sourceTree = "<group>"; };
 		B812A2752846AD3A004751E8 /* assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = assets.swift; sourceTree = "<group>"; };
 		B812A2772846AF35004751E8 /* AssetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetView.swift; sourceTree = "<group>"; };
 		B812A2792846B410004751E8 /* AssetViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetViewCell.swift; sourceTree = "<group>"; };
@@ -83,7 +84,6 @@
 		B8380D82283C738E00C45FA6 /* CryptoApplicationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoApplicationUITests.swift; sourceTree = "<group>"; };
 		B8380D84283C738E00C45FA6 /* CryptoApplicationUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoApplicationUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B8A4CEA5284F03F7005BF392 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		B8A4CEA7284F064E005BF392 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		ED14B1481DBB4D9074B870EB /* Pods-CryptoApplication-CryptoApplicationUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoApplication-CryptoApplicationUITests.debug.xcconfig"; path = "Target Support Files/Pods-CryptoApplication-CryptoApplicationUITests/Pods-CryptoApplication-CryptoApplicationUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EFFCA93CF910FF4EAB935904 /* Pods-CryptoApplication.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoApplication.debug.xcconfig"; path = "Target Support Files/Pods-CryptoApplication/Pods-CryptoApplication.debug.xcconfig"; sourceTree = "<group>"; };
 		FEC83EB9EA91B6F3644B56B1 /* Pods_CryptoApplication_CryptoApplicationUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoApplication_CryptoApplicationUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -177,7 +177,6 @@
 				B812A27B284DAA2B004751E8 /* EditorController.swift */,
 				B812A27D284DAECD004751E8 /* ProfileController.swift */,
 				B8A4CEA5284F03F7005BF392 /* NetworkManager.swift */,
-				B8A4CEA7284F064E005BF392 /* Post.swift */,
 				B80FF228285141660041D4AF /* EditCoinController.swift */,
 				B80FF22A285141810041D4AF /* EditCoinValueController.swift */,
 				B80FF22C285141960041D4AF /* AddCoinController.swift */,
@@ -185,6 +184,7 @@
 				B80FF230285141D90041D4AF /* Coin.swift */,
 				B80FF2342851420A0041D4AF /* CoinTableViewCell.swift */,
 				B80FF236285142220041D4AF /* AddCoinTableViewCell.swift */,
+				B80FF2382851F0C10041D4AF /* Json.swift */,
 			);
 			path = CryptoApplication;
 			sourceTree = "<group>";
@@ -453,12 +453,12 @@
 				B80FF22B285141810041D4AF /* EditCoinValueController.swift in Sources */,
 				B80FF22D285141960041D4AF /* AddCoinController.swift in Sources */,
 				B812A27C284DAA2B004751E8 /* EditorController.swift in Sources */,
+				B80FF2392851F0C10041D4AF /* Json.swift in Sources */,
 				B812A2762846AD3A004751E8 /* assets.swift in Sources */,
 				B8380D64283C738D00C45FA6 /* SceneDelegate.swift in Sources */,
 				B80FF22F285141AB0041D4AF /* SingleCoinViewController.swift in Sources */,
 				B812A2782846AF35004751E8 /* AssetView.swift in Sources */,
 				B812A27E284DAECD004751E8 /* ProfileController.swift in Sources */,
-				B8A4CEA8284F064E005BF392 /* Post.swift in Sources */,
 				B80FF2352851420A0041D4AF /* CoinTableViewCell.swift in Sources */,
 				B80FF229285141660041D4AF /* EditCoinController.swift in Sources */,
 			);
