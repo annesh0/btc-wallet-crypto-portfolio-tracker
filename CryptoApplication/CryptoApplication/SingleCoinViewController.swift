@@ -159,24 +159,24 @@ class SingleCoinViewController: UIViewController{
     @objc func buttonPress2() {
         resetButtons()
         weekButton.backgroundColor = .lightGray
-//        graphImage.image = parentCoin!.weekImage
+        graphImage.image = parentCoin!.weekImage
     }
     
     @objc func buttonPress3() {
         resetButtons()
         monthButton.backgroundColor = .lightGray
-//        graphImage.image = parentCoin!.monthImage
+        graphImage.image = parentCoin!.monthImage
     }
     
     @objc func buttonPress4() {
         resetButtons()
         yearButton.backgroundColor = .lightGray
-//        graphImage.image = parentCoin!.yearImage
+        graphImage.image = parentCoin!.yearImage
     }
     
     @objc func buttonPress5() {
         resetButtons()
         fiveYearButton.backgroundColor = .lightGray
-//        graphImage.image = parentCoin!.fiveYearImage
+        graphImage.image = parentCoin!.fiveYearImage
     }
 }
