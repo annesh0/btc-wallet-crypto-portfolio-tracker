@@ -87,7 +87,7 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate([
             padding.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             padding.topAnchor.constraint(equalTo: view.topAnchor),
-            padding.widthAnchor.constraint(equalToConstant: 500),
+            padding.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             padding.heightAnchor.constraint(equalToConstant: 200)
         ])
         

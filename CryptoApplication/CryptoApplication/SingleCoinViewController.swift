@@ -153,7 +153,7 @@ class SingleCoinViewController: UIViewController{
     @objc func buttonPress1() {
         resetButtons()
         dayButton.backgroundColor = .lightGray
-//        graphImage.image = parentCoin!.dayImage
+        graphImage.image = parentCoin!.dayImage
     }
     
     @objc func buttonPress2() {
