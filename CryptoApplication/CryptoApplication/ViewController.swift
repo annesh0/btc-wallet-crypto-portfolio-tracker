@@ -86,6 +86,8 @@ class ViewController: UIViewController {
         tableView.register(CoinTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
 
+        updateMyCoins()
+        
         setupConstraints()
     }
 
