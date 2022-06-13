@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7E776B3A-3F48-43F1-8DFF-AE6DADD8BD27"
+            uuid = "02F80C04-3B55-4344-A393-B2E6AD5CA7CF"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CryptoApplication/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
-            landmarkName = "assignValues()"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "getCoinData()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

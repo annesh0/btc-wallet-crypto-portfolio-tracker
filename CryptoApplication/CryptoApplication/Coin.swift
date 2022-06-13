@@ -12,10 +12,10 @@ class Coin {
     var name: String
     var symbol: String
     var logoImage: UIImage?
-    var amountUSD = 0.0
-    var amountCoin = 0.0
-    var percentChnage = 0.0
-    var conversionRate = 1.0
+    var amountUSD: NSDecimalNumber
+    var amountCoin: NSDecimalNumber
+    var percentChnage: NSDecimalNumber
+    var conversionRate: NSDecimalNumber
     var isChosen: Bool
     var dayImage: UIImage?
     var weekImage: UIImage?
@@ -27,6 +27,10 @@ class Coin {
         self.name = name
         self.symbol = symbol
         self.logoImage = UIImage(named: name)
+        self.conversionRate = 1.0
+        self.amountUSD = 0.0
+        self.amountCoin = 0.0
+        self.percentChnage = 0.0
         isChosen = false
     }
     

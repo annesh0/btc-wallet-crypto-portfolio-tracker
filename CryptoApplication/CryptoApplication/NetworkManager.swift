@@ -33,15 +33,17 @@ class NetworkManager {
         }
     }
      */
-    static func getAllCoinValues(completion: @escaping ([AllData]) -> Void) {
-        let endpoint = "https://rest.coinapi.io/v1/exchangerate/USD?apikey=2538BC37-2458-49AC-82A8-772B98788B29&invert=true&output_format=cs"
+    typealias APIResponse = ((_ response: Any?, _ error: Error?) -> Void)
+    
+    static func getAllCoinValues(completion: @escaping APIResponse) {
+        let endpoint = "https://rest.coinapi.io/v1/exchangerate/USD?apikey=2538BC37-2458-49AC-82A8-772B98788B29&invert=true"
         AF.request(endpoint, method: .get).validate().responseData { response in
             //process response
             switch(response.result) {
             case .success(let data):
-                let jsonDecoder = JSONDecoder()
-                if let userResponse = try? jsonDecoder.decode([AllData].self, from: data) {
-                    completion(userResponse)
+                //let jsonDecoder = JSONDecoder()
+                if let userResponse = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) {
+                    completion(userResponse, nil)
                 } else {
                     print("Failed")
                 }

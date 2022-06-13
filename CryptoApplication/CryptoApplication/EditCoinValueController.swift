@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Foundation
 
 class EditCoinValueController: UIViewController {
     
@@ -69,13 +70,14 @@ class EditCoinValueController: UIViewController {
     }
     
     @objc func save() {
-        if (Double(inputField.text!) == nil)
+        if (inputField.text == nil)
         {
             showAlert()
         }
         else {
-            parentCoinCell!.amountCoin = Double(inputField.text!)!
-            parentCoinCell!.amountUSD = parentCoinCell!.conversionRate * parentCoinCell!.amountCoin
+            
+            parentCoinCell!.amountCoin = NSDecimalNumber(string: inputField.text!)
+            parentCoinCell!.amountUSD = parentCoinCell!.conversionRate.multiplying(by: parentCoinCell!.amountCoin)
             ParentController!.tableView.reloadData()
             ParentController!.parentController!.tableView.reloadData()
             ParentController!.parentController!.updateNetWorth()

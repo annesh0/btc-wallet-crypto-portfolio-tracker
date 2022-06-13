@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Foundation
+
 class SingleCoinViewController: UIViewController{
     
     var logoImage = UIImageView()
@@ -34,12 +36,12 @@ class SingleCoinViewController: UIViewController{
 
         amountCoinAndChangeLabel.font = .systemFont(ofSize: 18, weight: .bold)
         amountCoinAndChangeLabel.textColor = .lightGray
-        amountCoinAndChangeLabel.text = "\(parentCoin!.getCurrencyForm(amount: parentCoin!.amountCoin))  \(parentCoin!.symbol)   \(parentCoin!.getRoundedPercentage(amount: parentCoin!.percentChnage))"
+        amountCoinAndChangeLabel.text = "\(parentCoin!.getCurrencyForm(amount: Double(truncating: parentCoin!.amountCoin)))  \(parentCoin!.symbol)   \(parentCoin!.getRoundedPercentage(amount: Double(truncating: parentCoin!.percentChnage)))"
         amountCoinAndChangeLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(amountCoinAndChangeLabel)
         
         amountUSDLabel.font = .systemFont(ofSize: 28, weight: .bold)
-        amountUSDLabel.text = "$\(parentCoin!.getCurrencyForm(amount: parentCoin!.amountUSD))"
+        amountUSDLabel.text = "$\(parentCoin!.getCurrencyForm(amount: Double(truncating: parentCoin!.amountUSD)))"
         amountUSDLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(amountUSDLabel)
         

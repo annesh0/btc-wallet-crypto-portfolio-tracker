@@ -4,15 +4,16 @@
 //
 //  Created by Annesh Ghosh Dastidar on 6/9/22.
 //
+import Foundation
 
-struct AllData : Decodable {
+struct AllData {
     //match lines of json response
     let asset_id_base: String
-    let rates: [Rate]
+    let rates: [String: Rate] = [:]
 }
 
-struct Rate : Decodable {
+struct Rate {
     let time: String
     let assetName: String
-    let exchangeRate: Double
+    let exchangeRate: Decimal
 }

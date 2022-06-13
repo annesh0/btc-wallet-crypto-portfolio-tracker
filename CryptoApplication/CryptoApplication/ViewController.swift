@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController {
 
@@ -23,7 +24,7 @@ class ViewController: UIViewController {
     var assetsLabel = UILabel()
     var editAssestsButton = UIButton()
     var addAssestsButton = UIButton()
-    var allData: [AllData] = []
+    var allData: AllData?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +88,8 @@ class ViewController: UIViewController {
         view.addSubview(tableView)
 
         updateMyCoins()
+        
+        getCoinData()
         
         setupConstraints()
     }
@@ -178,16 +181,22 @@ class ViewController: UIViewController {
     func updateNetWorth(){
         netWorth = 0.0
         for coin in myCoins {
-            netWorth = netWorth + coin.amountUSD
+            netWorth = netWorth + Double(truncating: coin.amountUSD)
         }
         netWorthLabel.text = "$\(self.getCurrencyForm(amount: self.netWorth))"
     }
     
     func getCoinData() {
-        NetworkManager.getAllCoinValues { data in
-            self.allData = data
-            
-            self.assignValues()
+        NetworkManager.getAllCoinValues { (data,error) in
+            //print(data!)
+            var a: [String:Any] = [:]
+            a = data as! [String : Any]
+            print(a["asset_id_base"]!)
+            var ratesArr: [[String:Any]] = []
+            ratesArr = a["rates"] as! [[String : Any]]
+            print(ratesArr[0]["asset_id_quote"]!)
+            self.assignValues(ratesInfo: ratesArr)
+            print(self.allCoins[0].conversionRate)
             //@todo: Call reload changes here
             DispatchQueue.main.async {
                   self.tableView.reloadData()
@@ -195,10 +204,47 @@ class ViewController: UIViewController {
         }
     }
     
-    func assignValues() {
-        let rateData = self.allData[0].rates
+    func assignValues(ratesInfo: [[String:Any]]) {
+        for rateInfo in ratesInfo {
+            switch rateInfo["asset_id_quote"] as! String {
+            case self.allCoins[0].symbol:
+                self.allCoins[0].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+            case self.allCoins[1].symbol:
+                self.allCoins[1].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+            case self.allCoins[2].symbol:
+                self.allCoins[2].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+            case self.allCoins[3].symbol:
+                self.allCoins[3].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+            case self.allCoins[4].symbol:
+                self.allCoins[4].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+            case self.allCoins[5].symbol:
+                self.allCoins[5].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+            case self.allCoins[6].symbol:
+                self.allCoins[6].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+            case self.allCoins[7].symbol:
+                self.allCoins[7].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+            case self.allCoins[8].symbol:
+                self.allCoins[8].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+            case self.allCoins[9].symbol:
+                self.allCoins[9].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+            case self.allCoins[10].symbol:
+                self.allCoins[10].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+            case self.allCoins[11].symbol:
+                self.allCoins[11].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+            case self.allCoins[12].symbol:
+                self.allCoins[12].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+            case self.allCoins[13].symbol:
+                self.allCoins[13].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+            case self.allCoins[14].symbol:
+                self.allCoins[14].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+            default:
+                continue
+            }
+        }
+        /*
+        let rateData = self.allData?.rates
         let symbolNames = allCoins.map { $0.symbol }
-        var filteredData = rateData.filter{symbolNames.contains($0.assetName)}
+        var filteredData = rateData!.filter{symbolNames.contains($0.assetName)}
         allCoins = allCoins.sorted {
             return $0.symbol < $1.symbol
         }
@@ -207,11 +253,14 @@ class ViewController: UIViewController {
         }
         var index = 0
         for coin in allCoins {
-            coin.conversionRate = filteredData[index].exchangeRate
+            //coin.conversionRate = filteredData[index].exchangeRate
             index += 1
         }
+         */
         
     }
+     
+     
 }
 
 extension ViewController: UITableViewDataSource {
