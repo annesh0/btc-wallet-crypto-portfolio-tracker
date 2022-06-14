@@ -18,13 +18,19 @@ def failure_response(message, code=404):
 # your routes here
 @app.route("/hi")
 def apptest():
-    return str(db.currentTime <= time.time() - 60)
+    return str(db.currentTime <= time.time() - 1800)
 
 @app.route("/data")
 def test():
-    # if currentTime <= time.time() - 60:
     db.updateVariables()
     return success_response(db.response.json())
+
+@app.route("/calls")
+def callsRemaining():
+    url = 'https://www.coinapi.io/api/subscriptions/usage/rest/history'
+    headers = {'X-CoinAPI-Key' : '2538BC37-2458-49AC-82A8-772B98788B29'}
+    call = requests.get(url, headers=headers)
+    return success_response(call.json())
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=4000, debug=True)
