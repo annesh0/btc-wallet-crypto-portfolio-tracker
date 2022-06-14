@@ -11,6 +11,8 @@ import Foundation
 class ViewController: UIViewController {
 
     var tableView = UITableView()
+    
+    let refreshControl = UIRefreshControl()
 
     let reuseIdentifier = "coinCellReuse"
     let cellHeight: CGFloat = 50
@@ -89,6 +91,9 @@ class ViewController: UIViewController {
         view.addSubview(tableView)
 
         updateMyCoins()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        tableView.addSubview(refreshControl)
         
         //getCoinData()
         
@@ -191,6 +196,12 @@ class ViewController: UIViewController {
         netWorthLabel.text = "$\(self.getCurrencyForm(amount: self.netWorth))"
     }
     
+    @objc func refresh(){
+        //getCoinData()
+        updateNetWorth()
+        refreshControl.endRefreshing()
+    }
+    
     func getCoinData() {
         NetworkManager.getAllCoinValues { (data,error) in
             //print(data!)
@@ -264,7 +275,6 @@ class ViewController: UIViewController {
          */
         
     }
-     
      
 }
 
