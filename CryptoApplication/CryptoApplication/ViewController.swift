@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     var netWorthLabel = UILabel()
     var netWorth = 0.0
     var netChangeLabel = UILabel()
+    var netChnage = 0.0
     var assetsLabel = UILabel()
     var editAssestsButton = UIButton()
     var addAssestsButton = UIButton()
@@ -40,7 +41,7 @@ class ViewController: UIViewController {
         netWorthLabel.font = .systemFont(ofSize: 35, weight: .bold)
         netWorthLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(netWorthLabel)
-        netChangeLabel.text = "+XX.X%"
+        netChangeLabel.text = getRoundedPercentage(amount: netChnage)
         netChangeLabel.font = .systemFont(ofSize: 15, weight: .regular)
         netChangeLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(netChangeLabel)
@@ -89,7 +90,7 @@ class ViewController: UIViewController {
 
         updateMyCoins()
         
-        getCoinData()
+        //getCoinData()
         
         setupConstraints()
     }
@@ -176,6 +177,10 @@ class ViewController: UIViewController {
         formatter.currencySymbol = ""
         formatter.numberStyle = .currency
         return formatter.string(from: amount as NSNumber)!
+    }
+    
+    func getRoundedPercentage(amount: Double) -> String{
+        return "\(round(amount * 10)/10.0)%"
     }
     
     func updateNetWorth(){
