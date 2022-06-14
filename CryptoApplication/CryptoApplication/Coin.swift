@@ -17,6 +17,7 @@ class Coin {
     var percentChnage: NSDecimalNumber
     var conversionRate: NSDecimalNumber
     var isChosen: Bool
+    var savableCoin: codableCoin
     var dayImage: UIImage?
     var weekImage: UIImage?
     var monthImage: UIImage?
@@ -31,7 +32,8 @@ class Coin {
         self.amountUSD = 0.0
         self.amountCoin = 0.0
         self.percentChnage = 0.0
-        isChosen = false
+        self.isChosen = false
+        self.savableCoin = codableCoin(amountCoin: amountCoin, isChosen: isChosen)
     }
     
     func getCurrencyForm(amount: Double) -> String {
@@ -41,8 +43,19 @@ class Coin {
         formatter.numberStyle = .currency
         return formatter.string(from: amount as NSNumber)!
     }
-    
+
     func getRoundedPercentage(amount: Double) -> String{
         return "\(round(amount * 10)/10.0)%"
+    }
+    
+    func updateSavableCoin(){
+        self.savableCoin.amountCoin = Double(truncating: self.amountCoin)
+        self.savableCoin.isChosen = self.isChosen
+    }
+    
+    func getSavedData(){
+        self.amountCoin = NSDecimalNumber.init(value: self.savableCoin.amountCoin)
+        self.isChosen = self.savableCoin.isChosen
+        self.amountUSD = self.amountCoin.multiplying(by: self.conversionRate)
     }
 }

@@ -19,6 +19,10 @@ class ViewController: UIViewController {
 
     var allCoins: [Coin] = []
     var myCoins: [Coin] = []
+    
+    var persistenceManager = PersistenceManager.shared
+    var savedCoins = codableCoins()
+    
     var padding = UITextView()
     var netWorthLabel = UILabel()
     var netWorth = 0.0
@@ -83,19 +87,35 @@ class ViewController: UIViewController {
         let uniswap = Coin(name:"Uniswap",symbol: "UNI")
         let shibainu = Coin(name:"Shiba Inu",symbol: "SHIB")
         allCoins = [bitcoin, dogecoin, ethereum, litecoin, cardano, tether, solano, binance, usdCoin, algorand, polkadot, bitcoinCash, monero, uniswap, shibainu]
+        
+        if let loaded = persistenceManager.load(){
+            savedCoins = loaded
+            var i = 0
+            for coin in allCoins {
+                coin.savableCoin = savedCoins.items[i]
+                i = i + 1
+                coin.getSavedData()
+            }
+        }
+        else{
+            saveCoinCells()
+        }
         // Initialize tableView
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(CoinTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
-
-        updateMyCoins()
+        
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.addSubview(refreshControl)
         
         //getCoinData()
+        
+        updateMyCoins()
+        
+        updateNetWorth()
         
         setupConstraints()
     }
@@ -189,11 +209,21 @@ class ViewController: UIViewController {
     }
     
     func updateNetWorth(){
+        saveCoinCells()
         netWorth = 0.0
         for coin in myCoins {
             netWorth = netWorth + Double(truncating: coin.amountUSD)
         }
         netWorthLabel.text = "$\(self.getCurrencyForm(amount: self.netWorth))"
+    }
+    
+    func saveCoinCells(){
+        savedCoins.items = []
+        for coin in allCoins {
+            coin.updateSavableCoin()
+            savedCoins.items.append(coin.savableCoin)
+        }
+        persistenceManager.save(coins: savedCoins)
     }
     
     @objc func refresh(){
