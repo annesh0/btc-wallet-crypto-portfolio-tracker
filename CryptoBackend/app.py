@@ -18,7 +18,7 @@ def failure_response(message, code=404):
 # your routes here
 @app.route("/hi")
 def apptest():
-    return str(db.currentTime <= time.time() - 1800)
+    return str(db.currentTime <= time.time() - 3600)
 
 @app.route("/data")
 def test():
