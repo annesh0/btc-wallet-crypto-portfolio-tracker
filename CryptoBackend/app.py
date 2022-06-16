@@ -1,6 +1,7 @@
 from db import db
 from flask import Flask
 import json
+import os
 import requests
 import time
 from flask import request
@@ -16,7 +17,7 @@ def failure_response(message, code=404):
     return json.dumps({"error": message}), code
 
 # your routes here
-@app.route("/hi")
+@app.route("/")
 def apptest():
     return str(db.currentTime <= time.time() - 3600)
 
@@ -33,6 +34,5 @@ def callsRemaining():
     return success_response(call.json())
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=4000, debug=True)
-
-
+    port = os.environ.get("PORT", 4000)
+    app.run(host="0.0.0.0", port= port)

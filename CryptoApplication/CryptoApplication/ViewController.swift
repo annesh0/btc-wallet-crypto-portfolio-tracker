@@ -87,7 +87,7 @@ class ViewController: UIViewController {
         let uniswap = Coin(name:"Uniswap",symbol: "UNI")
         let shibainu = Coin(name:"Shiba Inu",symbol: "SHIB")
         allCoins = [bitcoin, dogecoin, ethereum, litecoin, cardano, tether, solano, binance, usdCoin, algorand, polkadot, bitcoinCash, monero, uniswap, shibainu]
-        
+                
         if let loaded = persistenceManager.load(){
             savedCoins = loaded
             var i = 0
@@ -95,6 +95,7 @@ class ViewController: UIViewController {
                 coin.savableCoin = savedCoins.items[i]
                 i = i + 1
                 coin.getSavedData()
+                coin.amountUSD = coin.amountCoin.multiplying(by: coin.conversionRate)
             }
         }
         else{
@@ -110,8 +111,8 @@ class ViewController: UIViewController {
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.addSubview(refreshControl)
-        
-        //getCoinData()
+                
+        getCoinData()
         
         updateMyCoins()
         
@@ -212,9 +213,11 @@ class ViewController: UIViewController {
         saveCoinCells()
         netWorth = 0.0
         for coin in myCoins {
+            coin.amountUSD = coin.conversionRate.multiplying(by: coin.amountCoin)
             netWorth = netWorth + Double(truncating: coin.amountUSD)
         }
         netWorthLabel.text = "$\(self.getCurrencyForm(amount: self.netWorth))"
+        tableView.reloadData()
     }
     
     func saveCoinCells(){
@@ -227,7 +230,7 @@ class ViewController: UIViewController {
     }
     
     @objc func refresh(){
-        //getCoinData()
+        getCoinData()
         updateNetWorth()
         refreshControl.endRefreshing()
     }

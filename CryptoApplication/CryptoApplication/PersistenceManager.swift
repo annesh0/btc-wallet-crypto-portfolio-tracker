@@ -13,12 +13,12 @@ class PersistenceManager {
     func documentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentsDirectory = paths[0]
-        print(documentsDirectory)
+        //print(documentsDirectory)
         return documentsDirectory
     }
     
     func save(coins: codableCoins){
-        print("I was called 1")
+        //print("I was called 1")
         let path = documentsDirectory().appendingPathComponent("coins.plist")
         let plistEncoder = PropertyListEncoder()
         plistEncoder.outputFormat = .xml
@@ -27,11 +27,11 @@ class PersistenceManager {
     }
     
     func load() -> codableCoins?{
-        print("I was called 2")
+        //print("I was called 2")
         let path = documentsDirectory().appendingPathComponent("coins.plist")
         let plistDecoder = PropertyListDecoder()
         if let data = try? Data(contentsOf: path){
-            print("I was called 3")
+            //print("I was called 3")
             let decoded = try! plistDecoder.decode(codableCoins.self, from: data)
             return decoded
         }
