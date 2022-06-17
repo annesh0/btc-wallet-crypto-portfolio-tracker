@@ -31,12 +31,19 @@ class ViewController: UIViewController {
     var assetsLabel = UILabel()
     var editAssestsButton = UIButton()
     var addAssestsButton = UIButton()
+    
+    var walletButton = UIButton()
+    var portfolioButton = UIButton()
+    var newsButton = UIButton()
+    var borderBuffer = UITextView()
+    
     var allData: AllData?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         title = "Portfolio"
+        view.backgroundColor = .white
+
         padding.isEditable = false
         padding.isSelectable = false
         padding.isScrollEnabled = false
@@ -67,7 +74,32 @@ class ViewController: UIViewController {
         addAssestsButton.layer.cornerRadius = 1000
         addAssestsButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(addAssestsButton)
-        view.backgroundColor = .white
+        walletButton.backgroundColor = .white
+        walletButton.layer.borderColor = UIColor.lightGray.cgColor
+        walletButton.layer.borderWidth = 0.5
+        walletButton.layer.cornerRadius = 0
+        walletButton.addTarget(self, action: #selector(walletButtonPress), for: .touchUpInside)
+        walletButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(walletButton)
+        portfolioButton.backgroundColor = .lightGray
+        portfolioButton.layer.borderColor = UIColor.lightGray.cgColor
+        portfolioButton.layer.borderWidth = 0.5
+        portfolioButton.layer.cornerRadius = 0
+        portfolioButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(portfolioButton)
+        newsButton.backgroundColor = .white
+        newsButton.layer.borderColor = UIColor.lightGray.cgColor
+        newsButton.layer.borderWidth = 0.5
+        newsButton.layer.cornerRadius = 0
+        newsButton.translatesAutoresizingMaskIntoConstraints = false
+        newsButton.addTarget(self, action: #selector(newsButtonPress), for: .touchUpInside)
+        view.addSubview(newsButton)
+        borderBuffer.isEditable = false
+        borderBuffer.isSelectable = false
+        borderBuffer.isScrollEnabled = false
+        borderBuffer.backgroundColor = .lightGray
+        borderBuffer.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(borderBuffer)
         
         let bitcoin = Coin(name: "Bitcoin", symbol: "BTC")
         let dogecoin = Coin(name: "Dogecoin", symbol: "DOGE")
@@ -162,6 +194,34 @@ class ViewController: UIViewController {
             addAssestsButton.heightAnchor.constraint(equalToConstant: 50),
             addAssestsButton.widthAnchor.constraint(equalToConstant: 50)
         ])
+        
+        NSLayoutConstraint.activate([
+            walletButton.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            walletButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            walletButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1),
+            walletButton.trailingAnchor.constraint(equalTo: portfolioButton.leadingAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            portfolioButton.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            portfolioButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            portfolioButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1),
+            portfolioButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.0/3.0)
+        ])
+        
+        NSLayoutConstraint.activate([
+            newsButton.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            newsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            newsButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1),
+            newsButton.leadingAnchor.constraint(equalTo: portfolioButton.trailingAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            borderBuffer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            borderBuffer.bottomAnchor.constraint(equalTo: portfolioButton.topAnchor),
+            borderBuffer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            borderBuffer.heightAnchor.constraint(equalToConstant: 0.5)
+        ])
     }
     
     @objc func pushEditScreen(){
@@ -174,6 +234,16 @@ class ViewController: UIViewController {
         let presenter = AddCoinController()
         presenter.parentController = self
         present(UINavigationController(rootViewController: presenter), animated: true, completion: nil)
+    }
+    
+    @objc func newsButtonPress(){
+        let root = NewsViewController()
+        self.view.window?.rootViewController = UINavigationController(rootViewController: root)
+    }
+    
+    @objc func walletButtonPress(){
+        let root = WalletViewController()
+        self.view.window?.rootViewController = UINavigationController(rootViewController: root)
     }
     
     func updateMyCoins(){
@@ -346,6 +416,3 @@ extension ViewController: UITableViewDelegate {
         navigationController?.pushViewController(coinView, animated: true)
     }
 }
-
-
-

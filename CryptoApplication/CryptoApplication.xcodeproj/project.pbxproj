@@ -34,6 +34,10 @@
 		D343C1D32F018A3B3A595AC0 /* Pods_CryptoApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 543412E35F3F278CD8BC2CF1 /* Pods_CryptoApplication.framework */; };
 		FC32832B2858D33D003B23DA /* CodableCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC32832A2858D33D003B23DA /* CodableCoin.swift */; };
 		FC32832D2858D992003B23DA /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC32832C2858D992003B23DA /* PersistenceManager.swift */; };
+		FCDE9CA0285C473900EC8778 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDE9C9F285C473900EC8778 /* NewsViewController.swift */; };
+		FCDE9CA2285C476100EC8778 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDE9CA1285C476100EC8778 /* WalletViewController.swift */; };
+		FCDE9CA4285C655800EC8778 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDE9CA3285C655800EC8778 /* Article.swift */; };
+		FCDE9CA6285C65C700EC8778 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDE9CA5285C65C700EC8778 /* ArticleTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +94,10 @@
 		EFFCA93CF910FF4EAB935904 /* Pods-CryptoApplication.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoApplication.debug.xcconfig"; path = "Target Support Files/Pods-CryptoApplication/Pods-CryptoApplication.debug.xcconfig"; sourceTree = "<group>"; };
 		FC32832A2858D33D003B23DA /* CodableCoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableCoin.swift; sourceTree = "<group>"; };
 		FC32832C2858D992003B23DA /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		FCDE9C9F285C473900EC8778 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		FCDE9CA1285C476100EC8778 /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
+		FCDE9CA3285C655800EC8778 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		FCDE9CA5285C65C700EC8778 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		FEC83EB9EA91B6F3644B56B1 /* Pods_CryptoApplication_CryptoApplicationUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoApplication_CryptoApplicationUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -175,6 +183,8 @@
 				B8380D61283C738D00C45FA6 /* AppDelegate.swift */,
 				B8380D63283C738D00C45FA6 /* SceneDelegate.swift */,
 				B8380D65283C738D00C45FA6 /* ViewController.swift */,
+				FCDE9C9F285C473900EC8778 /* NewsViewController.swift */,
+				FCDE9CA1285C476100EC8778 /* WalletViewController.swift */,
 				B8380D6A283C738E00C45FA6 /* Assets.xcassets */,
 				B8380D6C283C738E00C45FA6 /* LaunchScreen.storyboard */,
 				B8380D6F283C738E00C45FA6 /* Info.plist */,
@@ -186,10 +196,12 @@
 				B80FF22C285141960041D4AF /* AddCoinController.swift */,
 				B80FF22E285141AB0041D4AF /* SingleCoinViewController.swift */,
 				B80FF230285141D90041D4AF /* Coin.swift */,
+				FCDE9CA3285C655800EC8778 /* Article.swift */,
 				FC32832C2858D992003B23DA /* PersistenceManager.swift */,
 				FC32832A2858D33D003B23DA /* CodableCoin.swift */,
 				B80FF2342851420A0041D4AF /* CoinTableViewCell.swift */,
 				B80FF236285142220041D4AF /* AddCoinTableViewCell.swift */,
+				FCDE9CA5285C65C700EC8778 /* ArticleTableViewCell.swift */,
 				B80FF2382851F0C10041D4AF /* Json.swift */,
 			);
 			path = CryptoApplication;
@@ -450,12 +462,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCDE9CA4285C655800EC8778 /* Article.swift in Sources */,
 				B8A4CEA6284F03F7005BF392 /* NetworkManager.swift in Sources */,
 				B8380D66283C738D00C45FA6 /* ViewController.swift in Sources */,
+				FCDE9CA2285C476100EC8778 /* WalletViewController.swift in Sources */,
 				B812A27A2846B410004751E8 /* AssetViewCell.swift in Sources */,
+				FCDE9CA0285C473900EC8778 /* NewsViewController.swift in Sources */,
 				B80FF231285141D90041D4AF /* Coin.swift in Sources */,
 				B80FF237285142220041D4AF /* AddCoinTableViewCell.swift in Sources */,
 				B8380D62283C738D00C45FA6 /* AppDelegate.swift in Sources */,
+				FCDE9CA6285C65C700EC8778 /* ArticleTableViewCell.swift in Sources */,
 				B80FF22B285141810041D4AF /* EditCoinValueController.swift in Sources */,
 				B80FF22D285141960041D4AF /* AddCoinController.swift in Sources */,
 				B812A27C284DAA2B004751E8 /* EditorController.swift in Sources */,
