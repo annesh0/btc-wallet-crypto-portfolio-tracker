@@ -119,7 +119,7 @@ class ViewController: UIViewController {
         updateNetWorth()
         
         setupConstraints()
-        
+        print("this is btc cr: \(bitcoin.conversionRate)")
     }
 
     func setupConstraints() {
@@ -241,12 +241,12 @@ class ViewController: UIViewController {
             //print(data!)
             var a: [String:Any] = [:]
             a = data as! [String : Any]
-            print(a["asset_id_base"]!)
+            //print(a["asset_id_base"]!)
             var ratesArr: [[String:Any]] = []
             ratesArr = a["rates"] as! [[String : Any]]
-            print(ratesArr[0]["asset_id_quote"]!)
+            //print(ratesArr[0]["asset_id_quote"]!)
             self.assignValues(ratesInfo: ratesArr)
-            print(self.allCoins[0].conversionRate)
+            //print(self.allCoins[0].conversionRate)
             //@todo: Call reload changes here
             DispatchQueue.main.async {
                   self.tableView.reloadData()
