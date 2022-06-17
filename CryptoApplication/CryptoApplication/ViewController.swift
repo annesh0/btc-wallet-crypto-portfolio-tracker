@@ -62,11 +62,9 @@ class ViewController: UIViewController {
         editAssestsButton.layer.cornerRadius = 10
         editAssestsButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(editAssestsButton)
-        addAssestsButton.setTitle("  Add  ", for: .normal)
+        addAssestsButton.setBackgroundImage(UIImage(named: "plus_button"), for: .normal)
         addAssestsButton.addTarget(self, action: #selector(presentAddScreen), for: .touchUpInside)
-        addAssestsButton.setTitleColor(.white, for: .normal)
-        addAssestsButton.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
-        addAssestsButton.layer.cornerRadius = 15
+        addAssestsButton.layer.cornerRadius = 1000
         addAssestsButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(addAssestsButton)
         view.backgroundColor = .white
@@ -160,7 +158,9 @@ class ViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             addAssestsButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 15),
-            addAssestsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            addAssestsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            addAssestsButton.heightAnchor.constraint(equalToConstant: 50),
+            addAssestsButton.widthAnchor.constraint(equalToConstant: 50)
         ])
     }
     
