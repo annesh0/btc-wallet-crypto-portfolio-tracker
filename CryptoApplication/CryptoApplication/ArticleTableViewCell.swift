@@ -10,16 +10,34 @@ import UIKit
 
 class ArticleTableViewCell: UITableViewCell {
 
-    var titleLabel = UILabel()
+    var titleLabel = UITextView()
     var dateLabel = UILabel()
+    var publishLabel = UILabel()
     var articleImage = UIImageView()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        titleLabel.font = .systemFont(ofSize: 22, weight: .bold)
+        titleLabel.font = .systemFont(ofSize: 16, weight: .bold)
+        titleLabel.textColor = .black
+        titleLabel.isEditable = false
+        titleLabel.isSelectable = false
+        titleLabel.isScrollEnabled = true
+        titleLabel.isUserInteractionEnabled = false
+        titleLabel.textContainer.maximumNumberOfLines = 3
+        titleLabel.textContainer.lineBreakMode = .byTruncatingTail
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(titleLabel)
+        
+        publishLabel.font = .systemFont(ofSize: 12, weight: .regular)
+        publishLabel.translatesAutoresizingMaskIntoConstraints = false
+        publishLabel.textColor = .lightGray
+        contentView.addSubview(publishLabel)
+        
+        dateLabel.font = .systemFont(ofSize: 12, weight: .regular)
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        dateLabel.textColor = .lightGray
+        contentView.addSubview(dateLabel)
 
         articleImage.contentMode = .scaleAspectFit
         articleImage.translatesAutoresizingMaskIntoConstraints = false
@@ -31,6 +49,7 @@ class ArticleTableViewCell: UITableViewCell {
     func configure(article: Article) {
         articleImage.image = article.articleImage
         titleLabel.text = article.articleTitle
+        publishLabel.text = "From: " + article.publisher!
         dateLabel.text = article.articleDate
     }
 
@@ -40,13 +59,26 @@ class ArticleTableViewCell: UITableViewCell {
 
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: articleImage.trailingAnchor, constant: padding),
-            titleLabel.centerYAnchor.constraint(equalTo: articleImage.centerYAnchor),
-            titleLabel.heightAnchor.constraint(equalToConstant: labelHeight)
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            titleLabel.heightAnchor.constraint(equalToConstant: 65)
         ])
         
         NSLayoutConstraint.activate([
-            articleImage.heightAnchor.constraint(equalToConstant: 75),
-            articleImage.widthAnchor.constraint(equalToConstant: 75),
+            publishLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor, constant: 5),
+            publishLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
+            publishLabel.heightAnchor.constraint(equalToConstant: labelHeight)
+        ])
+        
+        NSLayoutConstraint.activate([
+            dateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            dateLabel.topAnchor.constraint(equalTo: publishLabel.topAnchor),
+            dateLabel.heightAnchor.constraint(equalToConstant: labelHeight)
+        ])
+        
+        NSLayoutConstraint.activate([
+            articleImage.heightAnchor.constraint(equalToConstant: 100),
+            articleImage.widthAnchor.constraint(equalToConstant: 100),
             articleImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             articleImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding)
         ])

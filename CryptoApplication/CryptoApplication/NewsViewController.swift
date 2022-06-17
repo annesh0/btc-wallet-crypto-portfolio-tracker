@@ -15,7 +15,7 @@ class NewsViewController: UIViewController {
     let refreshControl = UIRefreshControl()
     var tableView = UITableView()
     let reuseIdentifier = "newsCellReuse"
-    var articles: [Article] = []
+    var articles: [Article] = [Article()]    
     
     var titleLabel = UILabel()
     var newsLabel = UILabel()
@@ -72,7 +72,7 @@ class NewsViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(CoinTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(ArticleTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
         refreshControl.attributedTitle = NSAttributedString(string: "")
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
@@ -163,6 +163,7 @@ extension NewsViewController: UITableViewDataSource {
                 cell.selectionStyle = .none
                 return cell
         } else {
+            print("this happened")
             return UITableViewCell()
         }
     }
@@ -174,6 +175,6 @@ extension NewsViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        print(articles[indexPath.row].url!)
     }
 }

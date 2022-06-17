@@ -9,13 +9,11 @@ import Foundation
 import UIKit
 
 class Article {
-    var articleTitle: String?
-    var articleImage: UIImage?
-    var articleDate: String?
+    var articleTitle: String? = "defaultdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    var articleImage: UIImage? = UIImage(named: "anon")
+    var articleDate: String? = "January 1st, 2022"
+    var url: String? = "deafult"
+    var publisher: String? = "Publisher"
     
-    init(title: String, image: UIImage, date: String){
-        self.articleTitle = title
-        self.articleImage = image
-        self.articleDate = date
-    }
+    init(){}
 }
