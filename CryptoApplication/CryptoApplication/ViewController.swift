@@ -113,7 +113,7 @@ class ViewController: UIViewController {
         tableView.addSubview(refreshControl)
                 
         getCoinData()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.updateMyCoins()
             self.updateNetWorth()
         }
