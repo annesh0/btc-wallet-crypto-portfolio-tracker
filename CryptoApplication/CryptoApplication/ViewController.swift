@@ -95,7 +95,7 @@ class ViewController: UIViewController {
                 coin.savableCoin = savedCoins.items[i]
                 i = i + 1
                 coin.getSavedData()
-                coin.amountUSD = coin.amountCoin.multiplying(by: coin.conversionRate)
+                coin.amountUSD = coin.amountCoin * coin.conversionRate
             }
         }
         else{
@@ -119,6 +119,7 @@ class ViewController: UIViewController {
         updateNetWorth()
         
         setupConstraints()
+        
     }
 
     func setupConstraints() {
@@ -213,8 +214,8 @@ class ViewController: UIViewController {
         saveCoinCells()
         netWorth = 0.0
         for coin in myCoins {
-            coin.amountUSD = coin.conversionRate.multiplying(by: coin.amountCoin)
-            netWorth = netWorth + Double(truncating: coin.amountUSD)
+            coin.amountUSD = coin.conversionRate * coin.amountCoin
+            netWorth = netWorth + coin.amountUSD
         }
         netWorthLabel.text = "$\(self.getCurrencyForm(amount: self.netWorth))"
         tableView.reloadData()
@@ -257,35 +258,35 @@ class ViewController: UIViewController {
         for rateInfo in ratesInfo {
             switch rateInfo["asset_id_quote"] as! String {
             case self.allCoins[0].symbol:
-                self.allCoins[0].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+                self.allCoins[0].conversionRate = rateInfo["rate"] as! Double
             case self.allCoins[1].symbol:
-                self.allCoins[1].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+                self.allCoins[1].conversionRate = rateInfo["rate"] as! Double
             case self.allCoins[2].symbol:
-                self.allCoins[2].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+                self.allCoins[2].conversionRate = rateInfo["rate"] as! Double
             case self.allCoins[3].symbol:
-                self.allCoins[3].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+                self.allCoins[3].conversionRate = rateInfo["rate"] as! Double
             case self.allCoins[4].symbol:
-                self.allCoins[4].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+                self.allCoins[4].conversionRate = rateInfo["rate"] as! Double
             case self.allCoins[5].symbol:
-                self.allCoins[5].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+                self.allCoins[5].conversionRate = rateInfo["rate"] as! Double
             case self.allCoins[6].symbol:
-                self.allCoins[6].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+                self.allCoins[6].conversionRate = rateInfo["rate"] as! Double
             case self.allCoins[7].symbol:
-                self.allCoins[7].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+                self.allCoins[7].conversionRate = rateInfo["rate"] as! Double
             case self.allCoins[8].symbol:
-                self.allCoins[8].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+                self.allCoins[8].conversionRate = rateInfo["rate"] as! Double
             case self.allCoins[9].symbol:
-                self.allCoins[9].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+                self.allCoins[9].conversionRate = rateInfo["rate"] as! Double
             case self.allCoins[10].symbol:
-                self.allCoins[10].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+                self.allCoins[10].conversionRate = rateInfo["rate"] as! Double
             case self.allCoins[11].symbol:
-                self.allCoins[11].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+                self.allCoins[11].conversionRate = rateInfo["rate"] as! Double
             case self.allCoins[12].symbol:
-                self.allCoins[12].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+                self.allCoins[12].conversionRate = rateInfo["rate"] as! Double
             case self.allCoins[13].symbol:
-                self.allCoins[13].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+                self.allCoins[13].conversionRate = rateInfo["rate"] as! Double
             case self.allCoins[14].symbol:
-                self.allCoins[14].conversionRate = rateInfo["rate"] as! NSDecimalNumber
+                self.allCoins[14].conversionRate = rateInfo["rate"] as! Double
             default:
                 continue
             }

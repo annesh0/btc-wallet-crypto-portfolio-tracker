@@ -46,9 +46,9 @@ class CoinTableViewCell: UITableViewCell {
 
     func configure(coin: Coin) {
         nameLabel.text = coin.name
-        amountCoinLabel.text = coin.getCurrencyForm(amount: Double(truncating: coin.amountCoin)) + " " + coin.symbol
-        amountUSDLabel.text = "$" + coin.getCurrencyForm(amount: Double(truncating: coin.amountUSD))
-        changeLabel.text = coin.getRoundedPercentage(amount: Double(truncating: coin.percentChnage))
+        amountCoinLabel.text = coin.getCurrencyForm(amount: coin.amountCoin) + " " + coin.symbol
+        amountUSDLabel.text = "$" + coin.getCurrencyForm(amount: coin.amountUSD)
+        changeLabel.text = coin.getRoundedPercentage(amount: coin.percentChnage)
         logoImage.image = coin.logoImage
     }
 

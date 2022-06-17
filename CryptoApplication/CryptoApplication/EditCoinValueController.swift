@@ -70,18 +70,17 @@ class EditCoinValueController: UIViewController {
     }
     
     @objc func save() {
-        if (inputField.text == nil)
-        {
-            showAlert()
-        }
-        else {
-            
-            parentCoinCell!.amountCoin = NSDecimalNumber(string: inputField.text!)
-            parentCoinCell!.amountUSD = parentCoinCell!.conversionRate.multiplying(by: parentCoinCell!.amountCoin)
+        
+        if let value = Double(inputField.text!){
+            parentCoinCell!.amountCoin = value
+            parentCoinCell!.amountUSD = parentCoinCell!.conversionRate * parentCoinCell!.amountCoin
             ParentController!.tableView.reloadData()
             ParentController!.parentController!.tableView.reloadData()
             ParentController!.parentController!.updateNetWorth()
             dismiss(animated: true, completion: nil)
+        }
+        else{
+            showAlert()
         }
     }
     

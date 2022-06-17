@@ -12,10 +12,10 @@ class Coin {
     var name: String
     var symbol: String
     var logoImage: UIImage?
-    var amountUSD: NSDecimalNumber
-    var amountCoin: NSDecimalNumber
-    var percentChnage: NSDecimalNumber
-    var conversionRate: NSDecimalNumber
+    var amountUSD: Double
+    var amountCoin: Double
+    var percentChnage: Double
+    var conversionRate: Double
     var isChosen: Bool
     var savableCoin: codableCoin
     var dayImage: UIImage?
@@ -49,13 +49,13 @@ class Coin {
     }
     
     func updateSavableCoin(){
-        self.savableCoin.amountCoin = Double(truncating: self.amountCoin)
+        self.savableCoin.amountCoin = self.amountCoin
         self.savableCoin.isChosen = self.isChosen
     }
     
     func getSavedData(){
-        self.amountCoin = NSDecimalNumber.init(value: self.savableCoin.amountCoin)
+        self.amountCoin =  self.savableCoin.amountCoin
         self.isChosen = self.savableCoin.isChosen
-        self.amountUSD = self.amountCoin.multiplying(by: self.conversionRate)
+        self.amountUSD = self.amountCoin * self.conversionRate
     }
 }

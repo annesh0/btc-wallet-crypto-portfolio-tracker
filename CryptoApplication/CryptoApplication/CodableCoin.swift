@@ -10,8 +10,8 @@ import Foundation
 struct codableCoin: Codable {
     var amountCoin: Double
     var isChosen: Bool
-    init(amountCoin: NSDecimalNumber, isChosen: Bool){
-        self.amountCoin = Double(truncating: amountCoin)
+    init(amountCoin: Double, isChosen: Bool){
+        self.amountCoin = amountCoin
         self.isChosen = isChosen
     }
 }
