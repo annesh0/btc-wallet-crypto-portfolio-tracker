@@ -113,13 +113,11 @@ class ViewController: UIViewController {
         tableView.addSubview(refreshControl)
                 
         getCoinData()
-        
-        updateMyCoins()
-        
-        updateNetWorth()
-        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            self.updateMyCoins()
+            self.updateNetWorth()
+        }
         setupConstraints()
-        print("this is btc cr: \(bitcoin.conversionRate)")
     }
 
     func setupConstraints() {
@@ -249,7 +247,7 @@ class ViewController: UIViewController {
             //print(self.allCoins[0].conversionRate)
             //@todo: Call reload changes here
             DispatchQueue.main.async {
-                  self.tableView.reloadData()
+                self.tableView.reloadData()
             }
         }
     }
