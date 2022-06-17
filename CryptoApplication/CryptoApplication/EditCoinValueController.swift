@@ -76,7 +76,7 @@ class EditCoinValueController: UIViewController {
             parentCoinCell!.amountUSD = parentCoinCell!.conversionRate * parentCoinCell!.amountCoin
             ParentController!.tableView.reloadData()
             ParentController!.parentController!.tableView.reloadData()
-            ParentController!.parentController!.updateNetWorth()
+            ParentController!.parentController!.updateNetWorthAndNetChange()
             dismiss(animated: true, completion: nil)
         }
         else{

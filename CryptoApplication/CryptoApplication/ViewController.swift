@@ -83,7 +83,7 @@ class ViewController: UIViewController {
         let algorand = Coin(name:"Algorand",symbol: "ALGO")
         let polkadot = Coin(name:"Polkadot",symbol: "DOT")
         let bitcoinCash = Coin(name:"Bitcoin Cash",symbol: "BCH")
-        let monero = Coin(name:"monero",symbol: "XMR")
+        let monero = Coin(name:"Monero",symbol: "XMR")
         let uniswap = Coin(name:"Uniswap",symbol: "UNI")
         let shibainu = Coin(name:"Shiba Inu",symbol: "SHIB")
         allCoins = [bitcoin, dogecoin, ethereum, litecoin, cardano, tether, solano, binance, usdCoin, algorand, polkadot, bitcoinCash, monero, uniswap, shibainu]
@@ -116,7 +116,7 @@ class ViewController: UIViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.updateMyCoins()
-            self.updateNetWorth()
+            self.updateNetWorthAndNetChange()
         }
         setupConstraints()
     }
@@ -209,14 +209,18 @@ class ViewController: UIViewController {
         return "\(round(amount * 10)/10.0)%"
     }
     
-    func updateNetWorth(){
+    func updateNetWorthAndNetChange(){
         saveCoinCells()
         netWorth = 0.0
+        var oldWorth = 0.0
         for coin in myCoins {
             coin.amountUSD = coin.conversionRate * coin.amountCoin
             netWorth = netWorth + coin.amountUSD
+            oldWorth = oldWorth + coin.amountUSD/(1 + coin.percentChnage)
         }
         netWorthLabel.text = "$\(self.getCurrencyForm(amount: self.netWorth))"
+        netChnage = (netWorth/oldWorth) - 1
+        netChangeLabel.text = self.getRoundedPercentage(amount: netChnage)
         tableView.reloadData()
     }
     
@@ -231,7 +235,7 @@ class ViewController: UIViewController {
     
     @objc func refresh(){
         getCoinData()
-        updateNetWorth()
+        updateNetWorthAndNetChange()
         refreshControl.endRefreshing()
     }
     

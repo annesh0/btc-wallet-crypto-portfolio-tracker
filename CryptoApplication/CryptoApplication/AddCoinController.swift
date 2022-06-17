@@ -53,7 +53,7 @@ class AddCoinController: UIViewController {
         self.parentController!.updateMyCoins()
         self.tableView.reloadData()
         self.parentController!.tableView.reloadData()
-        self.parentController!.updateNetWorth()
+        self.parentController!.updateNetWorthAndNetChange()
     }
     
     func showAlert(coin: Coin) {
