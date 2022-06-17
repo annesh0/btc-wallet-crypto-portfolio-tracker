@@ -108,11 +108,12 @@ class ViewController: UIViewController {
         tableView.register(CoinTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
         
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.attributedTitle = NSAttributedString(string: "")
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.addSubview(refreshControl)
                 
         getCoinData()
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.updateMyCoins()
             self.updateNetWorth()
