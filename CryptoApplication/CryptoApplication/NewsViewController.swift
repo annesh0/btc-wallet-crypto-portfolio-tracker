@@ -24,11 +24,20 @@ class NewsViewController: UIViewController {
     var portfolioButton = UIButton()
     var newsButton = UIButton()
     var borderBuffer = UITextView()
+    let isoFormatter = ISO8601DateFormatter()
+    let realDate: DateFormatter = {
+        let df = DateFormatter()
+        df.dateFormat = "mm/dd/yyyy"
+        df.locale = Locale(identifier: "en_US_POSIX")
+        return df
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "News"
         view.backgroundColor = .white
+        isoFormatter.formatOptions = [.withInternetDateTime]
+        
         padding.isEditable = false
         padding.isSelectable = false
         padding.isScrollEnabled = false
@@ -105,7 +114,7 @@ class NewsViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.topAnchor.constraint(equalTo: newsLabel.bottomAnchor, constant: 15),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100)
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -85)
         ])
         
         NSLayoutConstraint.activate([
@@ -173,7 +182,11 @@ class NewsViewController: UIViewController {
         for i in 0...limit-1{
             articles.append(Article())
             articles[i].articleTitle = data[i]["title"] as! String?
-            articles[i].articleDate = data[i]["publishedAt"] as! String?
+            if let publishedAtString = data[i]["publishedAt"] as! String? {
+                if let date = isoFormatter.date(from: publishedAtString){
+                    articles[i].articleDate = realDate.string(from: date)
+                }
+            }
             let articleURL = data[i]["url"] as! String
             articles[i].url = URL(string: articleURL)
             let imageURL = data[i]["urlToImage"] as! String?
