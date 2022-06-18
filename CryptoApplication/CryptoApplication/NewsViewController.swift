@@ -15,7 +15,7 @@ class NewsViewController: UIViewController {
     let refreshControl = UIRefreshControl()
     var tableView = UITableView()
     let reuseIdentifier = "newsCellReuse"
-    var articles: [Article] = [Article()]    
+    var articles: [Article] = []
     
     var titleLabel = UILabel()
     var newsLabel = UILabel()
@@ -77,6 +77,9 @@ class NewsViewController: UIViewController {
         refreshControl.attributedTitle = NSAttributedString(string: "")
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.addSubview(refreshControl)
+        
+        getArticleData()
+        
         setupConstraints()
     }
 
@@ -145,7 +148,44 @@ class NewsViewController: UIViewController {
     }
     
     @objc func refresh(){
+        getArticleData()
         refreshControl.endRefreshing()
+    }
+    
+    func getArticleData() {
+        NetworkManager.getNewsArticles{ (data,error) in
+            var articles: [String:Any] = [:]
+            articles = data as! [String : Any]
+            self.getArticles(articleDictionary: articles)
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    func getArticles(articleDictionary: [String:Any]){
+        articles = []
+        let data = articleDictionary["articles"] as! [[String:Any]]
+        var limit = 20
+        if data.count < 20{
+            limit = data.count
+        }
+        for i in 0...limit-1{
+            articles.append(Article())
+            articles[i].articleTitle = data[i]["title"] as! String?
+            articles[i].articleDate = data[i]["publishedAt"] as! String?
+            let articleURL = data[i]["url"] as! String
+            articles[i].url = URL(string: articleURL)
+            let imageURL = data[i]["urlToImage"] as! String?
+            if imageURL == nil {  } else{
+                let data = try? Data(contentsOf: URL(string: imageURL!)!)
+                if let imageData = data{
+                    articles[i].articleImage = UIImage(data: imageData)
+                }
+            }
+            let source = data[i]["source"] as! [String: String]
+            articles[i].publisher = source["name"]
+        }
     }
 
 }
@@ -175,6 +215,8 @@ extension NewsViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(articles[indexPath.row].url!)
+        if let thisURL = articles[indexPath.row].url{
+            UIApplication.shared.open(thisURL)
+        }
     }
 }

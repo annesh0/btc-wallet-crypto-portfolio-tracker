@@ -52,6 +52,24 @@ class NetworkManager {
             }
         }
     }
+    
+    static func getNewsArticles(completion: @escaping APIResponse){
+        let endpoint = "https://annesh-dylan-crypto-app.herokuapp.com/news"
+        AF.request(endpoint, method: .get).validate().responseData { response in
+            //process response
+            switch(response.result) {
+            case .success(let data):
+                //let jsonDecoder = JSONDecoder()
+                if let userResponse = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) {
+                    completion(userResponse, nil)
+                } else {
+                    print("Failed")
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }
 
 

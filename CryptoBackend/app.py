@@ -19,12 +19,17 @@ def failure_response(message, code=404):
 # your routes here
 @app.route("/")
 def apptest():
-    return str(db.currentTime <= time.time() - 3600)
+    return str(db.exchangeRatesTimeBlock <= time.time() - 3600)
 
 @app.route("/data")
-def test():
-    db.updateVariables()
-    return success_response(db.response.json())
+def getExchangeRates():
+    db.updateExchangeRates()
+    return success_response(db.exchangeRatesResponse.json())
+
+@app.route("/news")
+def getCryptoArticles():
+    db.updateNewsArticles()
+    return success_response(db.cryptoArticlesResponse.json())
 
 @app.route("/calls")
 def callsRemaining():
