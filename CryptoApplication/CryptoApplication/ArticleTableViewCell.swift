@@ -79,7 +79,7 @@ class ArticleTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             dateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            dateLabel.topAnchor.constraint(equalTo: publishLabel.topAnchor),
+            dateLabel.centerYAnchor.constraint(equalTo: publishLabel.centerYAnchor, constant: 4),
             dateLabel.heightAnchor.constraint(equalToConstant: labelHeight),
         ])
         

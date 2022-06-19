@@ -36,7 +36,7 @@ class NewsViewController: UIViewController {
         super.viewDidLoad()
         title = "News"
         view.backgroundColor = .white
-        isoFormatter.formatOptions = [.withInternetDateTime]
+        isoFormatter.formatOptions = [.withDay, .withMonth, .withYear, .withDashSeparatorInDate]
         
         padding.isEditable = false
         padding.isSelectable = false
@@ -179,25 +179,40 @@ class NewsViewController: UIViewController {
         if data.count < 20{
             limit = data.count
         }
+        var counter = 0
         for i in 0...limit-1{
-            articles.append(Article())
-            articles[i].articleTitle = data[i]["title"] as! String?
-            if let publishedAtString = data[i]["publishedAt"] as! String? {
-                if let date = isoFormatter.date(from: publishedAtString){
-                    articles[i].articleDate = realDate.string(from: date)
+            var canContinue = true
+            for article in articles{
+                if article.articleTitle == data[i]["title"] as! String?{
+                    canContinue = false
+                    counter += 1
+                    if limit < data.count{
+                        limit += 1
+                    }
                 }
             }
-            let articleURL = data[i]["url"] as! String
-            articles[i].url = URL(string: articleURL)
-            let imageURL = data[i]["urlToImage"] as! String?
-            if imageURL == nil {  } else{
-                let data = try? Data(contentsOf: URL(string: imageURL!)!)
-                if let imageData = data{
-                    articles[i].articleImage = UIImage(data: imageData)
+            if canContinue{
+                articles.append(Article())
+                articles[i - counter].articleTitle = data[i]["title"] as! String?
+                if let publishedAtString = data[i]["publishedAt"] as! String? {
+                    if let date = isoFormatter.date(from: publishedAtString){
+                        print("this is date item for article \(i - counter)")
+                        print(date)
+                        articles[i - counter].articleDate = realDate.string(from: date)
+                    }
                 }
+                let articleURL = data[i]["url"] as! String
+                articles[i - counter].url = URL(string: articleURL)
+                let imageURL = data[i]["urlToImage"] as! String?
+                if imageURL == nil {  } else{
+                    let data = try? Data(contentsOf: URL(string: imageURL!)!)
+                    if let imageData = data{
+                        articles[i - counter].articleImage = UIImage(data: imageData)
+                    }
+                }
+                let source = data[i]["source"] as! [String: String]
+                articles[i - counter].publisher = source["name"]
             }
-            let source = data[i]["source"] as! [String: String]
-            articles[i].publisher = source["name"]
         }
     }
 
