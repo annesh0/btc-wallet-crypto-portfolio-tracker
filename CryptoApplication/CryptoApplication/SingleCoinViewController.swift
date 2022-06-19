@@ -101,8 +101,7 @@ class SingleCoinViewController: UIViewController{
     
     struct ContentView : View {
         var body: some View {
-            let prices = [1.0,2.0]
-            LineChartView(lineChartController: LineChartController(prices: prices))
+            LineChartView(lineChartController: LineChartController(prices: SingleCoinViewController.getMonthlyData()))
             .frame(width: 150)
             VStack {
                 Text("Test")
@@ -110,6 +109,24 @@ class SingleCoinViewController: UIViewController{
 
             }
         }
+    }
+    
+    static func getMonthlyData() -> [Double] {
+        var prices: [Double] = []
+        NetworkManager.getMonthlyBTCPrice { (data,error) in
+            //print(data!)
+            //print(a["asset_id_base"]!)
+            //var prices: [Double] = []
+            var allData: [[String:Any]] = []
+            allData = data as! [[String:Any]]
+            for entry in allData {
+                prices.append(Double(truncating: entry["rate_open"]! as! NSDecimalNumber))
+            }
+            DispatchQueue.main.async {
+                
+            }
+        }
+        return prices
     }
 
     var child = UIHostingController(rootView: ContentView())
