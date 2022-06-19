@@ -325,6 +325,22 @@ class ViewController: UIViewController {
                 self.tableView.reloadData()
             }
         }
+        
+        NetworkManager.getOldCoinValues { (data,error) in
+            //print(data!)
+            var a: [String:Any] = [:]
+            a = data as! [String : Any]
+            //print(a["asset_id_base"]!)
+            var ratesArr: [[String:Any]] = []
+            ratesArr = a["rates"] as! [[String : Any]]
+            //print(ratesArr[0]["asset_id_quote"]!)
+            self.assignOldValues(ratesInfo: ratesArr)
+            //print(self.allCoins[0].conversionRate)
+            //@todo: Call reload changes here
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     func assignValues(ratesInfo: [[String:Any]]) {
@@ -364,23 +380,45 @@ class ViewController: UIViewController {
                 continue
             }
         }
-        /*
-        let rateData = self.allData?.rates
-        let symbolNames = allCoins.map { $0.symbol }
-        var filteredData = rateData!.filter{symbolNames.contains($0.assetName)}
-        allCoins = allCoins.sorted {
-            return $0.symbol < $1.symbol
-        }
-        filteredData = filteredData.sorted {
-            return $0.assetName < $1.assetName
-        }
-        var index = 0
-        for coin in allCoins {
-            //coin.conversionRate = filteredData[index].exchangeRate
-            index += 1
-        }
-         */
+    }
         
+    func assignOldValues(ratesInfo: [[String:Any]]) {
+        for rateInfo in ratesInfo {
+            switch rateInfo["asset_id_quote"] as! String {
+            case self.allCoins[0].symbol:
+                self.allCoins[0].previousConversionRate = rateInfo["rate"] as! Double
+            case self.allCoins[1].symbol:
+                self.allCoins[1].previousConversionRate = rateInfo["rate"] as! Double
+            case self.allCoins[2].symbol:
+                self.allCoins[2].previousConversionRate = rateInfo["rate"] as! Double
+            case self.allCoins[3].symbol:
+                self.allCoins[3].previousConversionRate = rateInfo["rate"] as! Double
+            case self.allCoins[4].symbol:
+                self.allCoins[4].previousConversionRate = rateInfo["rate"] as! Double
+            case self.allCoins[5].symbol:
+                self.allCoins[5].previousConversionRate = rateInfo["rate"] as! Double
+            case self.allCoins[6].symbol:
+                self.allCoins[6].previousConversionRate = rateInfo["rate"] as! Double
+            case self.allCoins[7].symbol:
+                self.allCoins[7].previousConversionRate = rateInfo["rate"] as! Double
+            case self.allCoins[8].symbol:
+                self.allCoins[8].previousConversionRate = rateInfo["rate"] as! Double
+            case self.allCoins[9].symbol:
+                self.allCoins[9].previousConversionRate = rateInfo["rate"] as! Double
+            case self.allCoins[10].symbol:
+                self.allCoins[10].previousConversionRate = rateInfo["rate"] as! Double
+            case self.allCoins[11].symbol:
+                self.allCoins[11].previousConversionRate = rateInfo["rate"] as! Double
+            case self.allCoins[12].symbol:
+                self.allCoins[12].previousConversionRate = rateInfo["rate"] as! Double
+            case self.allCoins[13].symbol:
+                self.allCoins[13].previousConversionRate = rateInfo["rate"] as! Double
+            case self.allCoins[14].symbol:
+                self.allCoins[14].previousConversionRate = rateInfo["rate"] as! Double
+            default:
+                continue
+            }
+        }
     }
      
 }

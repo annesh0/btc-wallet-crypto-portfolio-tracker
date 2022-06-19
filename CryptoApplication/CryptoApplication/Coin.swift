@@ -16,6 +16,7 @@ class Coin {
     var amountCoin: Double
     var percentChnage: Double
     var conversionRate: Double
+    var previousConversionRate: Double
     var isChosen: Bool
     var savableCoin: codableCoin
     var dayImage: UIImage?
@@ -29,6 +30,7 @@ class Coin {
         self.symbol = symbol
         self.logoImage = UIImage(named: name)
         self.conversionRate = 1.0
+        self.previousConversionRate = 1.0
         self.amountUSD = 0.0
         self.amountCoin = 0.0
         self.percentChnage = 0.0
