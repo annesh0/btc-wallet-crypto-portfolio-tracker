@@ -27,7 +27,7 @@ class NewsViewController: UIViewController {
     let isoFormatter = ISO8601DateFormatter()
     let realDate: DateFormatter = {
         let df = DateFormatter()
-        df.dateFormat = "mm/dd/yyyy"
+        df.dateFormat = "MM/dd/yyyy"
         df.locale = Locale(identifier: "en_US_POSIX")
         return df
     }()
@@ -36,7 +36,7 @@ class NewsViewController: UIViewController {
         super.viewDidLoad()
         title = "News"
         view.backgroundColor = .white
-        isoFormatter.formatOptions = [.withDay, .withMonth, .withYear, .withDashSeparatorInDate]
+        isoFormatter.formatOptions = [.withInternetDateTime]
         
         padding.isEditable = false
         padding.isSelectable = false
