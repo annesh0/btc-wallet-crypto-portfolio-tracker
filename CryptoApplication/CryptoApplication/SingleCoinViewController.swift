@@ -21,7 +21,6 @@ class SingleCoinViewController: UIViewController{
     var yearButton = UIButton()
     var fiveYearButton = UIButton()
     var allButtons = [UIButton]()
-    var graphImage = UIImageView()
     weak var parentController: ViewController?
     weak var parentCoin: Coin?
     
@@ -87,8 +86,6 @@ class SingleCoinViewController: UIViewController{
         fiveYearButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(fiveYearButton)
         
-        graphImage.contentMode = .scaleAspectFit
-        graphImage.translatesAutoresizingMaskIntoConstraints = false
         child.view.translatesAutoresizingMaskIntoConstraints = false
         child.view.frame = view.bounds
         view.addSubview(child.view)
@@ -120,7 +117,7 @@ class SingleCoinViewController: UIViewController{
             var allData: [[String:Any]] = []
             allData = data as! [[String:Any]]
             for entry in allData {
-                prices.append(Double(truncating: entry["rate_open"]! as! NSDecimalNumber))
+                prices.append(entry["rate_open"]! as! Double)
             }
             DispatchQueue.main.async {
                 
@@ -174,14 +171,6 @@ class SingleCoinViewController: UIViewController{
             fiveYearButton.leadingAnchor.constraint(equalTo: yearButton.trailingAnchor, constant: 15)
         ])
         
-        NSLayoutConstraint.activate([
-            graphImage.topAnchor.constraint(equalTo: monthButton.bottomAnchor),
-            graphImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            graphImage.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100),
-            graphImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            graphImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50)
-        ])
-        
         buttonPress1()
     }
     
@@ -194,31 +183,25 @@ class SingleCoinViewController: UIViewController{
     @objc func buttonPress1() {
         resetButtons()
         dayButton.backgroundColor = .lightGray
-        graphImage.image = parentCoin!.dayImage
-        graphImage.image = UIImage(named: "anon")
     }
     
     @objc func buttonPress2() {
         resetButtons()
         weekButton.backgroundColor = .lightGray
-        graphImage.image = parentCoin!.weekImage
     }
     
     @objc func buttonPress3() {
         resetButtons()
         monthButton.backgroundColor = .lightGray
-        graphImage.image = parentCoin!.monthImage
     }
     
     @objc func buttonPress4() {
         resetButtons()
         yearButton.backgroundColor = .lightGray
-        graphImage.image = parentCoin!.yearImage
     }
     
     @objc func buttonPress5() {
         resetButtons()
         fiveYearButton.backgroundColor = .lightGray
-        graphImage.image = parentCoin!.fiveYearImage
     }
 }

@@ -196,8 +196,6 @@ class NewsViewController: UIViewController {
                 articles[i - counter].articleTitle = data[i]["title"] as! String?
                 if let publishedAtString = data[i]["publishedAt"] as! String? {
                     if let date = isoFormatter.date(from: publishedAtString){
-                        print("this is date item for article \(i - counter)")
-                        print(date)
                         articles[i - counter].articleDate = realDate.string(from: date)
                     }
                 }

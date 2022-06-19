@@ -285,6 +285,7 @@ class ViewController: UIViewController {
         var oldWorth = 0.0
         for coin in myCoins {
             coin.amountUSD = coin.conversionRate * coin.amountCoin
+            coin.percentChnage = ((coin.conversionRate - coin.previousConversionRate)/coin.conversionRate) * 100.0
             netWorth = netWorth + coin.amountUSD
             oldWorth = oldWorth + coin.amountUSD/(1 + coin.percentChnage)
         }

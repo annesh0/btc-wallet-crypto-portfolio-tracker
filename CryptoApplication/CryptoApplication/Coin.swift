@@ -19,11 +19,6 @@ class Coin {
     var previousConversionRate: Double
     var isChosen: Bool
     var savableCoin: codableCoin
-    var dayImage: UIImage?
-    var weekImage: UIImage?
-    var monthImage: UIImage?
-    var yearImage: UIImage?
-    var fiveYearImage: UIImage?
 
     init(name: String, symbol: String) {
         self.name = name
