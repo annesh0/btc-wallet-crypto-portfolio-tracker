@@ -8,6 +8,7 @@
 import UIKit
 import Foundation
 import StockCharts
+import SwiftUI
 
 class SingleCoinViewController: UIViewController{
     
@@ -88,10 +89,30 @@ class SingleCoinViewController: UIViewController{
         
         graphImage.contentMode = .scaleAspectFit
         graphImage.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(graphImage)
+        child.view.translatesAutoresizingMaskIntoConstraints = false
+        child.view.frame = view.bounds
+        view.addSubview(child.view)
+        //view.addSubview(graphImage)
+        
+        
         
         setupConstraints()
     }
+    
+    struct ContentView : View {
+        var body: some View {
+            let prices = [1.0,2.0]
+            LineChartView(lineChartController: LineChartController(prices: prices))
+            .frame(width: 150)
+            VStack {
+                Text("Test")
+                Text("Test2")
+
+            }
+        }
+    }
+
+    var child = UIHostingController(rootView: ContentView())
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
