@@ -17,6 +17,7 @@
 		B80FF2352851420A0041D4AF /* CoinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80FF2342851420A0041D4AF /* CoinTableViewCell.swift */; };
 		B80FF237285142220041D4AF /* AddCoinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80FF236285142220041D4AF /* AddCoinTableViewCell.swift */; };
 		B80FF2392851F0C10041D4AF /* Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80FF2382851F0C10041D4AF /* Json.swift */; };
+		B80FF23C285ECA650041D4AF /* StockCharts in Frameworks */ = {isa = PBXBuildFile; productRef = B80FF23B285ECA650041D4AF /* StockCharts */; };
 		B812A2762846AD3A004751E8 /* assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812A2752846AD3A004751E8 /* assets.swift */; };
 		B812A2782846AF35004751E8 /* AssetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812A2772846AF35004751E8 /* AssetView.swift */; };
 		B812A27A2846B410004751E8 /* AssetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812A2792846B410004751E8 /* AssetViewCell.swift */; };
@@ -106,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B80FF23C285ECA650041D4AF /* StockCharts in Frameworks */,
 				D343C1D32F018A3B3A595AC0 /* Pods_CryptoApplication.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,6 +244,9 @@
 			dependencies = (
 			);
 			name = CryptoApplication;
+			packageProductDependencies = (
+				B80FF23B285ECA650041D4AF /* StockCharts */,
+			);
 			productName = CryptoApplication;
 			productReference = B8380D5E283C738D00C45FA6 /* CryptoApplication.app */;
 			productType = "com.apple.product-type.application";
@@ -317,6 +322,9 @@
 				Base,
 			);
 			mainGroup = B8380D55283C738C00C45FA6;
+			packageReferences = (
+				B80FF23A285ECA650041D4AF /* XCRemoteSwiftPackageReference "StockCharts" */,
+			);
 			productRefGroup = B8380D5F283C738D00C45FA6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -820,6 +828,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B80FF23A285ECA650041D4AF /* XCRemoteSwiftPackageReference "StockCharts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/denniscm190/StockCharts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B80FF23B285ECA650041D4AF /* StockCharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B80FF23A285ECA650041D4AF /* XCRemoteSwiftPackageReference "StockCharts" */;
+			productName = StockCharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B8380D56283C738C00C45FA6 /* Project object */;
 }
