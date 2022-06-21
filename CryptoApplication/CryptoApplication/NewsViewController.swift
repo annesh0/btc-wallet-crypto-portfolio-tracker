@@ -203,13 +203,25 @@ class NewsViewController: UIViewController {
                 }
                 let articleURL = data[i]["url"] as! String
                 articles[i - counter].url = URL(string: articleURL)
-                let imageURL = data[i]["urlToImage"] as! String?
+                //let imageURL = data[i]["urlToImage"] as! String?
+                if let imageURL = data[i]["urlToImage"] {
+                    if imageURL is NSNull {
+                        
+                    } else {
+                        let data = try? Data(contentsOf: URL(string: imageURL as! String)!)
+                        if let imageData = data{
+                            articles[i - counter].articleImage = UIImage(data: imageData)
+                        }
+                    }
+                }
+                /*
                 if imageURL == nil {  } else{
                     let data = try? Data(contentsOf: URL(string: imageURL!)!)
                     if let imageData = data{
                         articles[i - counter].articleImage = UIImage(data: imageData)
                     }
                 }
+                 */
                 let source = data[i]["source"] as! [String: String]
                 articles[i - counter].publisher = source["name"]
             }
