@@ -33,7 +33,6 @@ class NewsViewController: UIViewController {
     }()
     
     var loadedPortfolioScreen: ViewController?
-    var loadedWalletScreen: WalletViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -153,7 +152,7 @@ class NewsViewController: UIViewController {
     
     
     @objc func walletButtonPress(){
-        self.view.window?.rootViewController = UINavigationController(rootViewController: self.loadedWalletScreen!)
+        self.view.window?.rootViewController = UINavigationController(rootViewController: self.loadedPortfolioScreen!.loadedWalletScreen)
     }
     
     @objc func refresh(){

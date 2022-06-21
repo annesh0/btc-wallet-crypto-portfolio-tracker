@@ -49,8 +49,6 @@ class ViewController: UIViewController {
         
         loadedNewsScreen.loadedPortfolioScreen = self
         loadedWalletScreen.loadedPortfolioScreen = self
-        loadedNewsScreen.loadedWalletScreen = self.loadedWalletScreen
-        loadedWalletScreen.loadedNewsScreen = self.loadedNewsScreen
 
         padding.isEditable = false
         padding.isSelectable = false
