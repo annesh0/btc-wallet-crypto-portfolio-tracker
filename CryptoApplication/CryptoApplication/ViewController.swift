@@ -285,12 +285,12 @@ class ViewController: UIViewController {
         var oldWorth = 0.0
         for coin in myCoins {
             coin.amountUSD = coin.conversionRate * coin.amountCoin
-            coin.percentChnage = ((coin.conversionRate - coin.previousConversionRate)/coin.conversionRate) * 100.0
+            coin.percentChnage = ((coin.conversionRate - coin.previousConversionRate)/coin.previousConversionRate) * 100.0
             netWorth = netWorth + coin.amountUSD
-            oldWorth = oldWorth + coin.amountUSD/(1 + coin.percentChnage)
+            oldWorth = oldWorth + coin.amountUSD/(1 + coin.percentChnage/100)
         }
         netWorthLabel.text = "$\(self.getCurrencyForm(amount: self.netWorth))"
-        netChnage = (netWorth/oldWorth) - 1
+        netChnage = ((netWorth/oldWorth) - 1) * 100
         netChangeLabel.text = self.getRoundedPercentage(amount: netChnage)
         tableView.reloadData()
     }
