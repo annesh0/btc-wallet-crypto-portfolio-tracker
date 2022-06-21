@@ -32,6 +32,9 @@ class NewsViewController: UIViewController {
         return df
     }()
     
+    var loadedPortfolioScreen: ViewController?
+    var loadedWalletScreen: WalletViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "News"
@@ -86,9 +89,7 @@ class NewsViewController: UIViewController {
         refreshControl.attributedTitle = NSAttributedString(string: "")
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.addSubview(refreshControl)
-        
         getArticleData()
-        
         setupConstraints()
     }
 
@@ -147,13 +148,12 @@ class NewsViewController: UIViewController {
     }
     
     @objc func portfolioButtonPress(){
-        let root = ViewController()
-        self.view.window?.rootViewController = UINavigationController(rootViewController: root)
+        self.view.window?.rootViewController = UINavigationController(rootViewController: self.loadedPortfolioScreen!)
     }
     
+    
     @objc func walletButtonPress(){
-        let root = WalletViewController()
-        self.view.window?.rootViewController = UINavigationController(rootViewController: root)
+        self.view.window?.rootViewController = UINavigationController(rootViewController: self.loadedWalletScreen!)
     }
     
     @objc func refresh(){

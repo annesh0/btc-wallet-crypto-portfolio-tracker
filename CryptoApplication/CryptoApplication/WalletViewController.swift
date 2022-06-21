@@ -15,6 +15,12 @@ class WalletViewController: UIViewController {
     var newsButton = UIButton()
     var borderBuffer = UITextView()
     
+    var testButton = UIButton()
+    
+    var alreadyLoaded = false
+    var loadedNewsScreen: NewsViewController?
+    var loadedPortfolioScreen: ViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Wallet"
@@ -39,6 +45,15 @@ class WalletViewController: UIViewController {
         newsButton.addTarget(self, action: #selector(newsButtonPress), for: .touchUpInside)
         newsButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(newsButton)
+        testButton.backgroundColor = .systemGray
+        testButton.setTitle(" test ", for: .normal)
+        testButton.setTitleColor(.white, for: .normal)
+        testButton.layer.borderColor = UIColor.lightGray.cgColor
+        testButton.layer.borderWidth = 0.5
+        testButton.layer.cornerRadius = 15
+        testButton.addTarget(self, action: #selector(testButtonPress), for: .touchUpInside)
+        testButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(testButton)
         borderBuffer.isEditable = false
         borderBuffer.isSelectable = false
         borderBuffer.isScrollEnabled = false
@@ -76,16 +91,22 @@ class WalletViewController: UIViewController {
             borderBuffer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             borderBuffer.heightAnchor.constraint(equalToConstant: 0.5)
         ])
+        
+        NSLayoutConstraint.activate([
+            testButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            testButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
     
     @objc func portfolioButtonPress(){
-        let root = ViewController()
-        self.view.window?.rootViewController = UINavigationController(rootViewController: root)
+        self.view.window?.rootViewController = UINavigationController(rootViewController: self.loadedPortfolioScreen!)
     }
     
     @objc func newsButtonPress(){
-        let root = NewsViewController()
-        self.view.window?.rootViewController = UINavigationController(rootViewController: root)
+        self.view.window?.rootViewController = UINavigationController(rootViewController: self.loadedNewsScreen!)
     }
-
+    
+    @objc func testButtonPress(){
+        self.testButton.backgroundColor = .systemBlue
+    }
 }

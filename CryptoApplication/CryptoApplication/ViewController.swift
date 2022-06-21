@@ -38,11 +38,19 @@ class ViewController: UIViewController {
     var borderBuffer = UITextView()
     
     var allData: AllData?
+    
+    var loadedNewsScreen = NewsViewController()
+    var loadedWalletScreen = WalletViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Portfolio"
         view.backgroundColor = .white
+        
+        loadedNewsScreen.loadedPortfolioScreen = self
+        loadedWalletScreen.loadedPortfolioScreen = self
+        loadedNewsScreen.loadedWalletScreen = self.loadedWalletScreen
+        loadedWalletScreen.loadedNewsScreen = self.loadedNewsScreen
 
         padding.isEditable = false
         padding.isSelectable = false
@@ -237,13 +245,11 @@ class ViewController: UIViewController {
     }
     
     @objc func newsButtonPress(){
-        let root = NewsViewController()
-        self.view.window?.rootViewController = UINavigationController(rootViewController: root)
+        self.view.window?.rootViewController = UINavigationController(rootViewController: self.loadedNewsScreen)
     }
     
     @objc func walletButtonPress(){
-        let root = WalletViewController()
-        self.view.window?.rootViewController = UINavigationController(rootViewController: root)
+        self.view.window?.rootViewController = UINavigationController(rootViewController: self.loadedWalletScreen)
     }
     
     func updateMyCoins(){
