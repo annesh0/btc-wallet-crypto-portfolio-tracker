@@ -9,6 +9,7 @@ class db:
     exchangeRatesResponse = None
     previousExchangeRatesResponses = []
     cryptoArticlesResponse = None
+    timesUpdated = 0
     exchangeRatesTimeBlock = 0
     cryptoArticlesTimeBlock = 0
     firstTime = True
@@ -18,6 +19,7 @@ class db:
             db.exchangeRatesResponse = requests.get("https://rest.coinapi.io/v1/exchangerate/USD?apikey=2538BC37-2458-49AC-82A8-772B98788B29&invert=true")
             db.exchangeRatesTimeBlock = time.time()
             db.updatePreviousRates()
+            db.timesUpdated += 1
 
     def updatePreviousRates():
         if db.firstTime:

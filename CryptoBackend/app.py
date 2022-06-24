@@ -20,7 +20,8 @@ def failure_response(message, code=404):
 @app.route("/")
 def apptest():
     db.updateExchangeRates()
-    return str(db.exchangeRatesTimeBlock <= time.time() - 3600)
+    timesUpdatedString = "The rates have been updated this many times: " + str(db.timesUpdated)
+    return timesUpdatedString
 
 @app.route("/data")
 def getExchangeRates():
