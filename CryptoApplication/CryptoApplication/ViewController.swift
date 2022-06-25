@@ -37,7 +37,6 @@ class ViewController: UIViewController {
     var walletButton = UIButton()
     var portfolioButton = UIButton()
     var newsButton = UIButton()
-    var borderBuffer = UITextView()
     
     var allData: AllData?
     
@@ -114,13 +113,6 @@ class ViewController: UIViewController {
         newsButton.translatesAutoresizingMaskIntoConstraints = false
         newsButton.addTarget(self, action: #selector(newsButtonPress), for: .touchUpInside)
         view.addSubview(newsButton)
-        
-        borderBuffer.isEditable = false
-        borderBuffer.isSelectable = false
-        borderBuffer.isScrollEnabled = false
-        borderBuffer.backgroundColor = .lightGray
-        borderBuffer.translatesAutoresizingMaskIntoConstraints = false
-        //view.addSubview(borderBuffer)
         
         let bitcoin = Coin(name: "Bitcoin", symbol: "BTC")
         let dogecoin = Coin(name: "Dogecoin", symbol: "DOGE")
@@ -231,13 +223,6 @@ class ViewController: UIViewController {
             newsButton.widthAnchor.constraint(equalTo: portfolioButton.widthAnchor, multiplier: 0.8),
             newsButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05625),
         ])
-        /*
-        NSLayoutConstraint.activate([
-            borderBuffer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            borderBuffer.bottomAnchor.constraint(equalTo: portfolioButton.topAnchor),
-            borderBuffer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            borderBuffer.heightAnchor.constraint(equalToConstant: 0.5)
-        ])*/
     }
     
     @objc func pushEditScreen(){

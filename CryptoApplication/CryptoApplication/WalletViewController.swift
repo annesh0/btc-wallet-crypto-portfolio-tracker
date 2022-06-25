@@ -13,7 +13,6 @@ class WalletViewController: UIViewController {
     var walletButton = UIButton()
     var portfolioButton = UIButton()
     var newsButton = UIButton()
-    var borderBuffer = UITextView()
     
     var testButton = UIButton()
     
@@ -24,25 +23,22 @@ class WalletViewController: UIViewController {
         super.viewDidLoad()
         title = "Wallet"
         view.backgroundColor = .white
-        walletButton.backgroundColor = .lightGray
-        walletButton.layer.borderColor = UIColor.lightGray.cgColor
-        walletButton.layer.borderWidth = 0.5
-        walletButton.layer.cornerRadius = 0
+        walletButton.setBackgroundImage(UIImage(named: "wallet2"), for: .normal)
+        walletButton.backgroundColor = .white
         walletButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(walletButton)
+        
+        portfolioButton.setBackgroundImage(UIImage(named: "portfolio1"), for: .normal)
         portfolioButton.backgroundColor = .white
-        portfolioButton.layer.borderColor = UIColor.lightGray.cgColor
-        portfolioButton.layer.borderWidth = 0.5
-        portfolioButton.layer.cornerRadius = 0
-        portfolioButton.addTarget(self, action: #selector(portfolioButtonPress), for: .touchUpInside)
         portfolioButton.translatesAutoresizingMaskIntoConstraints = false
+        portfolioButton.addTarget(self, action: #selector(portfolioButtonPress), for: .touchUpInside)
         view.addSubview(portfolioButton)
+        
+        newsButton.setBackgroundImage(UIImage(named:"news1"), for: .normal)
         newsButton.backgroundColor = .white
-        newsButton.layer.borderColor = UIColor.lightGray.cgColor
-        newsButton.layer.borderWidth = 0.5
-        newsButton.layer.cornerRadius = 0
-        newsButton.addTarget(self, action: #selector(newsButtonPress), for: .touchUpInside)
         newsButton.translatesAutoresizingMaskIntoConstraints = false
+        newsButton.addTarget(self, action: #selector(newsButtonPress), for: .touchUpInside)
+        view.addSubview(newsButton)
         view.addSubview(newsButton)
         testButton.backgroundColor = .systemGray
         testButton.setTitle(" test ", for: .normal)
@@ -53,42 +49,30 @@ class WalletViewController: UIViewController {
         testButton.addTarget(self, action: #selector(testButtonPress), for: .touchUpInside)
         testButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(testButton)
-        borderBuffer.isEditable = false
-        borderBuffer.isSelectable = false
-        borderBuffer.isScrollEnabled = false
-        borderBuffer.backgroundColor = .lightGray
-        borderBuffer.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(borderBuffer)
+        
         setupConstraints()
     }
 
     func setupConstraints(){
         NSLayoutConstraint.activate([
-            walletButton.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            walletButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            walletButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            walletButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             walletButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1),
-            walletButton.trailingAnchor.constraint(equalTo: portfolioButton.leadingAnchor)
+            walletButton.widthAnchor.constraint(equalTo: portfolioButton.widthAnchor, multiplier: 4.0/3.0),
         ])
         
         NSLayoutConstraint.activate([
-            portfolioButton.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            portfolioButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -18),
             portfolioButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            portfolioButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1),
-            portfolioButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1.0/3.0)
+            portfolioButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.06),
+            portfolioButton.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.075)
         ])
         
         NSLayoutConstraint.activate([
-            newsButton.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            newsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            newsButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1),
-            newsButton.leadingAnchor.constraint(equalTo: portfolioButton.trailingAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
-            borderBuffer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            borderBuffer.bottomAnchor.constraint(equalTo: portfolioButton.topAnchor),
-            borderBuffer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            borderBuffer.heightAnchor.constraint(equalToConstant: 0.5)
+            newsButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -18),
+            newsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            newsButton.widthAnchor.constraint(equalTo: portfolioButton.widthAnchor, multiplier: 0.8),
+            newsButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05625),
         ])
         
         NSLayoutConstraint.activate([
