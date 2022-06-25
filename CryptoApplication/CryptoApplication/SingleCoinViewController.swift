@@ -21,8 +21,10 @@ class SingleCoinViewController: UIViewController{
     var yearButton = UIButton()
     var fiveYearButton = UIButton()
     var allButtons = [UIButton]()
+    var prices: [Double] = []
     weak var parentController: ViewController?
     weak var parentCoin: Coin?
+    //var child = UIHostingController(rootView: ContentView())
     
     override func viewDidLoad() {
         title = parentCoin!.name
@@ -86,30 +88,60 @@ class SingleCoinViewController: UIViewController{
         fiveYearButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(fiveYearButton)
         
+        //view.addSubview(graphImage)
+        getMonthlyData()
+        /*
+        let child = UIHostingController(rootView: ContentView())
         child.view.translatesAutoresizingMaskIntoConstraints = false
         child.view.frame = view.bounds
         view.addSubview(child.view)
-        //view.addSubview(graphImage)
-        
-        
-        
+         */
         setupConstraints()
+        
     }
     
     struct ContentView : View {
         var body: some View {
-            LineChartView(lineChartController: LineChartController(prices: SingleCoinViewController.getMonthlyData()))
-            .frame(width: 150)
             VStack {
-                Text("Test")
+                Text("Test1")
                 Text("Test2")
-
-            }
+                let prices = SingleCoinViewController.prices
+                LineChartView(lineChartController: LineChartController(prices: prices))
+                    .frame(width: 150)
+            }/*
+                NavigationView {
+                    List {
+                        HStack(alignment: .top) {
+                            Spacer()
+                            let prices = SingleCoinViewController.prices
+                            LineChartView(lineChartController: LineChartController(prices: prices))
+                            Text("aa")
+                        }
+                    }
+                }*/
         }
     }
+            /*
+            LineChartView(lineChartController: LineChartController(prices: SingleCoinViewController.getMonthlyData()))
+            .frame(width: 150)
+             */
+            /*
+            VStack {
+                
+                Text("Test")
+                Text("Test2")
+                
+                Spacer()
+                let prices = SingleCoinViewController.getMonthlyData()
+                
+                LineChartView(lineChartController: LineChartController(prices: prices)).frame(width: 150)
+
+            }
+             */
     
-    static func getMonthlyData() -> [Double] {
-        var prices: [Double] = []
+    static var prices: [Double] = []
+    func getMonthlyData() {
+        SingleCoinViewController.prices = []
         NetworkManager.getMonthlyBTCPrice { (data,error) in
             //print(data!)
             //print(a["asset_id_base"]!)
@@ -117,16 +149,32 @@ class SingleCoinViewController: UIViewController{
             var allData: [[String:Any]] = []
             allData = data as! [[String:Any]]
             for entry in allData {
-                prices.append(entry["rate_open"]! as! Double)
+                SingleCoinViewController.prices.append(entry["rate_open"]! as! Double)
             }
+            var child = UIHostingController(rootView: ContentView())
+            child.view.translatesAutoresizingMaskIntoConstraints = false
+            child.view.frame = self.view.bounds
+            self.view.addSubview(child.view)
+            
+            /*
             DispatchQueue.main.async {
+                self.child = UIHostingController(rootView: ContentView())
+                self.child.view.translatesAutoresizingMaskIntoConstraints = false
+                self.child.view.frame = self.view.bounds
+                self.view.addSubview(self.child.view)
+                NSLayoutConstraint.activate([
+                    self.child.view.topAnchor.constraint(equalTo: self.dayButton.bottomAnchor, constant: 12)
+                ])
                 
             }
+             */
+            
         }
-        return prices
+        
+
     }
 
-    var child = UIHostingController(rootView: ContentView())
+    
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
