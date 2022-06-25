@@ -23,7 +23,9 @@ class ViewController: UIViewController {
     var persistenceManager = PersistenceManager.shared
     var savedCoins = codableCoins()
     
-    var padding = UITextView()
+    let gradient1 = CAGradientLayer()
+    let gradient2 = CAGradientLayer()
+    
     var netWorthLabel = UILabel()
     var netWorth = 0.0
     var netChangeLabel = UILabel()
@@ -44,22 +46,21 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Portfolio"
         view.backgroundColor = .white
         
         loadedNewsScreen.loadedPortfolioScreen = self
         loadedWalletScreen.loadedPortfolioScreen = self
 
-        padding.isEditable = false
-        padding.isSelectable = false
-        padding.isScrollEnabled = false
-        let gradient = CAGradientLayer()
-        let blueColor = UIColor(red: 169, green: 196, blue: 238, alpha: 1)
-        gradient.frame = CGRect(x: -110, y: -110, width: 1000, height: 200)
-        gradient.colors = [blueColor.self, UIColor.white.cgColor]
-        padding.layer.insertSublayer(gradient, at: 0)
-        padding.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(padding)
+        
+        let blueColor = UIColor(red: 169/255, green: 196/255, blue: 238/255, alpha: 1)
+        let midPointColor = UIColor(red: 169/255, green: 196/255, blue: 238/255, alpha: 0.99)
+        gradient1.frame = CGRect(x:0, y:0, width: 1000, height: 80)
+        gradient1.colors = [blueColor.cgColor, midPointColor.cgColor]
+        view.layer.insertSublayer(gradient1, at: 0)
+        gradient2.frame = CGRect(x:0, y:80, width: 1000, height: 120)
+        gradient2.colors = [midPointColor.cgColor, UIColor.white.cgColor]
+        view.layer.insertSublayer(gradient2, at: 0)
+
         netWorthLabel.text = "$\(self.getCurrencyForm(amount: self.netWorth))"
         netWorthLabel.font = .systemFont(ofSize: 35, weight: .bold)
         netWorthLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -78,6 +79,11 @@ class ViewController: UIViewController {
         editAssestsButton.setTitleColor(.white, for: .normal)
         editAssestsButton.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
         editAssestsButton.layer.cornerRadius = 10
+        editAssestsButton.layer.shadowColor = UIColor.black.cgColor
+        editAssestsButton.layer.masksToBounds = false
+        editAssestsButton.layer.shadowOpacity = 0.5
+        editAssestsButton.layer.shadowRadius = 3
+        editAssestsButton.layer.shadowOffset = CGSize(width: 0, height: 2)
         editAssestsButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(editAssestsButton)
         addAssestsButton.setBackgroundImage(UIImage(named: "plus_button"), for: .normal)
@@ -149,6 +155,7 @@ class ViewController: UIViewController {
         }
         // Initialize tableView
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(CoinTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
@@ -177,14 +184,7 @@ class ViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-            padding.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            padding.topAnchor.constraint(equalTo: view.topAnchor),
-            padding.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            padding.heightAnchor.constraint(equalToConstant: 200)
-        ])
-        
-        NSLayoutConstraint.activate([
-            netWorthLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            netWorthLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -15),
             netWorthLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
@@ -194,7 +194,7 @@ class ViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-            assetsLabel.topAnchor.constraint(equalTo: padding.bottomAnchor, constant: 15),
+            assetsLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
             assetsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10)
         ])
         
@@ -304,7 +304,9 @@ class ViewController: UIViewController {
             oldWorth = oldWorth + coin.amountUSD/(1 + coin.percentChnage/100)
         }
         netWorthLabel.text = "$\(self.getCurrencyForm(amount: self.netWorth))"
-        netChange = ((netWorth/oldWorth) - 1) * 100
+        if oldWorth != 0{
+            netChange = ((netWorth/oldWorth) - 1) * 100
+        }
         netChangeLabel.text = self.getRoundedPercentage(amount: netChange)
         netChangeLabel.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.25)
         if ((round(netChange * 10)/10.0) > 0){
@@ -465,7 +467,7 @@ extension ViewController: UITableViewDataSource {
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 85
+        return 125
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

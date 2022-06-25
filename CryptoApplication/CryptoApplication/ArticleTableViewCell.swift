@@ -29,7 +29,7 @@ class ArticleTableViewCell: UITableViewCell {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(titleLabel)
         
-        publishLabel.font = .systemFont(ofSize: 12, weight: .regular)
+        publishLabel.font = .systemFont(ofSize: 12, weight: .bold)
         publishLabel.isEditable = false
         publishLabel.isSelectable = false
         publishLabel.isScrollEnabled = true
@@ -40,7 +40,7 @@ class ArticleTableViewCell: UITableViewCell {
         publishLabel.textColor = .systemGray
         contentView.addSubview(publishLabel)
         
-        dateLabel.font = .systemFont(ofSize: 12, weight: .regular)
+        dateLabel.font = .systemFont(ofSize: 12, weight: .bold)
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         dateLabel.textColor = .systemGray
         contentView.addSubview(dateLabel)
@@ -64,30 +64,30 @@ class ArticleTableViewCell: UITableViewCell {
         let labelHeight: CGFloat = 25
 
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: articleImage.trailingAnchor, constant: padding),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            titleLabel.trailingAnchor.constraint(equalTo: articleImage.leadingAnchor, constant: -padding),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             titleLabel.heightAnchor.constraint(equalToConstant: 65)
         ])
         
         NSLayoutConstraint.activate([
             publishLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            publishLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 0),
+            publishLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
             publishLabel.trailingAnchor.constraint(equalTo: dateLabel.leadingAnchor, constant: -5),
             publishLabel.heightAnchor.constraint(equalToConstant: labelHeight)
         ])
         
         NSLayoutConstraint.activate([
-            dateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            dateLabel.centerYAnchor.constraint(equalTo: publishLabel.centerYAnchor, constant: 4),
+            dateLabel.trailingAnchor.constraint(equalTo: articleImage.leadingAnchor, constant: -padding),
+            dateLabel.centerYAnchor.constraint(equalTo: publishLabel.centerYAnchor, constant: 3.5),
             dateLabel.heightAnchor.constraint(equalToConstant: labelHeight),
         ])
         
         NSLayoutConstraint.activate([
             articleImage.heightAnchor.constraint(equalToConstant: 100),
-            articleImage.widthAnchor.constraint(equalToConstant: 100),
+            articleImage.widthAnchor.constraint(equalToConstant: 120),
             articleImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            articleImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding)
+            articleImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding)
         ])
     }
 

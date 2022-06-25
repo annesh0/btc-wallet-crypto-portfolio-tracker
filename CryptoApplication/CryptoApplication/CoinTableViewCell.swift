@@ -23,7 +23,7 @@ class CoinTableViewCell: UITableViewCell {
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(nameLabel)
 
-        amountCoinLabel.font = .systemFont(ofSize: 18, weight: .bold)
+        amountCoinLabel.font = .systemFont(ofSize: 20, weight: .bold)
         amountCoinLabel.textColor = .lightGray
         amountCoinLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(amountCoinLabel)
@@ -32,7 +32,7 @@ class CoinTableViewCell: UITableViewCell {
         amountUSDLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(amountUSDLabel)
         
-        changeLabel.font = .systemFont(ofSize: 18, weight: .bold)
+        changeLabel.font = .systemFont(ofSize: 20, weight: .bold)
         changeLabel.translatesAutoresizingMaskIntoConstraints = false
         changeLabel.textColor = .lightGray
         contentView.addSubview(changeLabel)
@@ -65,13 +65,13 @@ class CoinTableViewCell: UITableViewCell {
 
         NSLayoutConstraint.activate([
             nameLabel.leadingAnchor.constraint(equalTo: logoImage.trailingAnchor, constant: padding),
-            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
+            nameLabel.bottomAnchor.constraint(equalTo: contentView.centerYAnchor, constant: -5),
             nameLabel.heightAnchor.constraint(equalToConstant: labelHeight)
         ])
         
         NSLayoutConstraint.activate([
             amountCoinLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-            amountCoinLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
+            amountCoinLabel.topAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 5),
             amountCoinLabel.heightAnchor.constraint(equalToConstant: labelHeight)
         ])
         
@@ -88,8 +88,8 @@ class CoinTableViewCell: UITableViewCell {
         ])
         
         NSLayoutConstraint.activate([
-            logoImage.heightAnchor.constraint(equalToConstant: 75),
-            logoImage.widthAnchor.constraint(equalToConstant: 75),
+            logoImage.heightAnchor.constraint(equalToConstant: 100),
+            logoImage.widthAnchor.constraint(equalToConstant: 100),
             logoImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             logoImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding)
         ])

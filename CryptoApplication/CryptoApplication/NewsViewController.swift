@@ -9,8 +9,9 @@ import Foundation
 import UIKit
 
 class NewsViewController: UIViewController {
-    
-    var padding = UITextView()
+        
+    let gradient1 = CAGradientLayer()
+    let gradient2 = CAGradientLayer()
     
     let refreshControl = UIRefreshControl()
     var tableView = UITableView()
@@ -18,7 +19,6 @@ class NewsViewController: UIViewController {
     var articles: [Article] = []
     
     var titleLabel = UILabel()
-    var newsLabel = UILabel()
     
     var walletButton = UIButton()
     var portfolioButton = UIButton()
@@ -27,7 +27,7 @@ class NewsViewController: UIViewController {
     let isoFormatter = ISO8601DateFormatter()
     let realDate: DateFormatter = {
         let df = DateFormatter()
-        df.dateFormat = "MM/dd/yyyy"
+        df.dateFormat = "MM/dd"
         df.locale = Locale(identifier: "en_US_POSIX")
         return df
     }()
@@ -36,24 +36,22 @@ class NewsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "News"
         view.backgroundColor = .white
         isoFormatter.formatOptions = [.withInternetDateTime]
         
-        padding.isEditable = false
-        padding.isSelectable = false
-        padding.isScrollEnabled = false
-        padding.backgroundColor = .lightGray
-        padding.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(padding)
-        titleLabel.text = "News"
+        let blueColor = UIColor(red: 169/255, green: 196/255, blue: 238/255, alpha: 1)
+        let midPointColor = UIColor(red: 169/255, green: 196/255, blue: 238/255, alpha: 0.99)
+        gradient1.frame = CGRect(x:0, y:0, width: 1000, height: 80)
+        gradient1.colors = [blueColor.cgColor, midPointColor.cgColor]
+        view.layer.insertSublayer(gradient1, at: 0)
+        gradient2.frame = CGRect(x:0, y:80, width: 1000, height: 120)
+        gradient2.colors = [midPointColor.cgColor, UIColor.white.cgColor]
+        view.layer.insertSublayer(gradient2, at: 0)
+        
+        titleLabel.text = "Latest News"
         titleLabel.font = .systemFont(ofSize: 35, weight: .bold)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(titleLabel)
-        newsLabel.text = "Articles:"
-        newsLabel.font = .systemFont(ofSize: 30, weight: .bold)
-        newsLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(newsLabel)
         walletButton.backgroundColor = .white
         walletButton.layer.borderColor = UIColor.lightGray.cgColor
         walletButton.layer.borderWidth = 0.5
@@ -83,6 +81,7 @@ class NewsViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.separatorStyle = .none
         tableView.register(ArticleTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
         refreshControl.attributedTitle = NSAttributedString(string: "")
@@ -93,27 +92,16 @@ class NewsViewController: UIViewController {
     }
 
     func setupConstraints(){
-        NSLayoutConstraint.activate([
-            padding.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            padding.topAnchor.constraint(equalTo: view.topAnchor),
-            padding.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            padding.heightAnchor.constraint(equalToConstant: 200)
-        ])
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -15),
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
-            newsLabel.topAnchor.constraint(equalTo: padding.bottomAnchor, constant: 15),
-            newsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10)
         ])
         
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: newsLabel.bottomAnchor, constant: 15),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -85)
         ])
         
