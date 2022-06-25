@@ -207,8 +207,8 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate([
             addAssestsButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 15),
             addAssestsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            addAssestsButton.heightAnchor.constraint(equalToConstant: 50),
-            addAssestsButton.widthAnchor.constraint(equalToConstant: 50)
+            addAssestsButton.heightAnchor.constraint(equalToConstant: 60),
+            addAssestsButton.widthAnchor.constraint(equalToConstant: 60)
         ])
         
         NSLayoutConstraint.activate([
