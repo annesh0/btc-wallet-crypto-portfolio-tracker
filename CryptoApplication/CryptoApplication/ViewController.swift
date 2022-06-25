@@ -27,7 +27,7 @@ class ViewController: UIViewController {
     var netWorthLabel = UILabel()
     var netWorth = 0.0
     var netChangeLabel = UILabel()
-    var netChnage = 0.0
+    var netChange = 0.0
     var assetsLabel = UILabel()
     var editAssestsButton = UIButton()
     var addAssestsButton = UIButton()
@@ -60,8 +60,8 @@ class ViewController: UIViewController {
         netWorthLabel.font = .systemFont(ofSize: 35, weight: .bold)
         netWorthLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(netWorthLabel)
-        netChangeLabel.text = getRoundedPercentage(amount: netChnage)
-        netChangeLabel.font = .systemFont(ofSize: 15, weight: .regular)
+        netChangeLabel.text = getRoundedPercentage(amount: netChange)
+        netChangeLabel.font = .systemFont(ofSize: 20, weight: .bold)
         netChangeLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(netChangeLabel)
         assetsLabel.text = "Assets"
@@ -294,8 +294,15 @@ class ViewController: UIViewController {
             oldWorth = oldWorth + coin.amountUSD/(1 + coin.percentChnage/100)
         }
         netWorthLabel.text = "$\(self.getCurrencyForm(amount: self.netWorth))"
-        netChnage = ((netWorth/oldWorth) - 1) * 100
-        netChangeLabel.text = self.getRoundedPercentage(amount: netChnage)
+        netChange = ((netWorth/oldWorth) - 1) * 100
+        netChangeLabel.text = self.getRoundedPercentage(amount: netChange)
+        netChangeLabel.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.25)
+        if (netChange > 0){
+            netChangeLabel.textColor = UIColor(red: 142/255, green: 236/255, blue: 127/255, alpha: 1)
+        }
+        if (netChange < 0){
+            netChangeLabel.textColor = UIColor(red: 255/255, green: 138/255, blue: 138/255, alpha: 1)
+        }
         tableView.reloadData()
     }
     
