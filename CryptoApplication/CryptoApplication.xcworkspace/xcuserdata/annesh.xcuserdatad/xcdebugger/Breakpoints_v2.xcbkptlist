@@ -40,7 +40,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "A3CA05CD-0E29-4216-9E53-22341F686495"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../../Library/Developer/Xcode/DerivedData/CryptoApplication-chstobqvknzqrgfbnxcviizxmdgf/SourcePackages/checkouts/StockCharts/Sources/StockCharts/LineChart/LineChartView.swift"
@@ -56,7 +56,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "3371312F-727D-41FD-BFB6-A8BE179E56D6"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../../Library/Developer/Xcode/DerivedData/CryptoApplication-chstobqvknzqrgfbnxcviizxmdgf/SourcePackages/checkouts/StockCharts/Sources/StockCharts/LineChart/LineChartView.swift"
@@ -94,8 +94,8 @@
             filePath = "CryptoApplication/SingleCoinViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
             landmarkName = "getMonthlyData()"
             landmarkType = "7">
          </BreakpointContent>

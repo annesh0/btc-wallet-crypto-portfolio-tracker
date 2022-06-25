@@ -103,11 +103,11 @@ class SingleCoinViewController: UIViewController{
     struct ContentView : View {
         var body: some View {
             VStack {
-                Text("Test1")
-                Text("Test2")
                 let prices = SingleCoinViewController.prices
-                LineChartView(lineChartController: LineChartController(prices: prices))
-                    .frame(width: 150)
+                LineChartView(lineChartController: LineChartController(prices: prices, dragGesture: true))
+                    .frame(width: 300)
+            
+                
             }/*
                 NavigationView {
                     List {
@@ -151,10 +151,15 @@ class SingleCoinViewController: UIViewController{
             for entry in allData {
                 SingleCoinViewController.prices.append(entry["rate_open"]! as! Double)
             }
-            var child = UIHostingController(rootView: ContentView())
+            let child = UIHostingController(rootView: ContentView())
             child.view.translatesAutoresizingMaskIntoConstraints = false
             child.view.frame = self.view.bounds
             self.view.addSubview(child.view)
+            NSLayoutConstraint.activate([
+                child.view.topAnchor.constraint(equalTo: self.monthButton.bottomAnchor, constant: 12),
+                child.view.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+            ])
+            
             
             /*
             DispatchQueue.main.async {
