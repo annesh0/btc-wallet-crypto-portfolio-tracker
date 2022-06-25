@@ -90,7 +90,7 @@ class NetworkManager {
     }
     
     static func getMonthlyBTCPrice(completion: @escaping APIResponse){
-        let endpoint = "https://rest.coinapi.io/v1/exchangerate/BTC/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS&time_start=2022-05-18T00:00:00&time_end=2022-06-17T00:00:00"
+        let endpoint = "https://annesh-dylan-crypto-app.herokuapp.com/monthly/0"
         AF.request(endpoint, method: .get).validate().responseData { response in
             switch(response.result) {
             case .success(let data):
