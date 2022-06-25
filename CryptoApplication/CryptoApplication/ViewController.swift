@@ -53,7 +53,11 @@ class ViewController: UIViewController {
         padding.isEditable = false
         padding.isSelectable = false
         padding.isScrollEnabled = false
-        padding.backgroundColor = .lightGray
+        let gradient = CAGradientLayer()
+        let blueColor = UIColor(red: 169, green: 196, blue: 238, alpha: 1)
+        gradient.frame = CGRect(x: -110, y: -110, width: 1000, height: 200)
+        gradient.colors = [blueColor.self, UIColor.white.cgColor]
+        padding.layer.insertSublayer(gradient, at: 0)
         padding.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(padding)
         netWorthLabel.text = "$\(self.getCurrencyForm(amount: self.netWorth))"
@@ -79,6 +83,11 @@ class ViewController: UIViewController {
         addAssestsButton.setBackgroundImage(UIImage(named: "plus_button"), for: .normal)
         addAssestsButton.addTarget(self, action: #selector(presentAddScreen), for: .touchUpInside)
         addAssestsButton.layer.cornerRadius = 1000
+        addAssestsButton.layer.shadowColor = UIColor.black.cgColor
+        addAssestsButton.layer.masksToBounds = false
+        addAssestsButton.layer.shadowOpacity = 0.5
+        addAssestsButton.layer.shadowRadius = 3
+        addAssestsButton.layer.shadowOffset = CGSize(width: 0, height: 5)
         addAssestsButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(addAssestsButton)
         walletButton.backgroundColor = .white
