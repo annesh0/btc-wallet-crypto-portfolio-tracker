@@ -62,6 +62,7 @@ class ViewController: UIViewController {
         view.addSubview(netWorthLabel)
         netChangeLabel.text = getRoundedPercentage(amount: netChange)
         netChangeLabel.font = .systemFont(ofSize: 20, weight: .bold)
+        netChangeLabel.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.25)
         netChangeLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(netChangeLabel)
         assetsLabel.text = "Assets"
@@ -297,10 +298,10 @@ class ViewController: UIViewController {
         netChange = ((netWorth/oldWorth) - 1) * 100
         netChangeLabel.text = self.getRoundedPercentage(amount: netChange)
         netChangeLabel.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.25)
-        if (netChange > 0){
+        if ((round(netChange * 10)/10.0) > 0){
             netChangeLabel.textColor = UIColor(red: 142/255, green: 236/255, blue: 127/255, alpha: 1)
         }
-        if (netChange < 0){
+        if ((round(netChange * 10)/10.0) < 0){
             netChangeLabel.textColor = UIColor(red: 255/255, green: 138/255, blue: 138/255, alpha: 1)
         }
         tableView.reloadData()

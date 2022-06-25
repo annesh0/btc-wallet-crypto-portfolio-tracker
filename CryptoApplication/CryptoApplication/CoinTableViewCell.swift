@@ -50,10 +50,10 @@ class CoinTableViewCell: UITableViewCell {
         amountUSDLabel.text = "$" + coin.getCurrencyForm(amount: coin.amountUSD)
         changeLabel.text = coin.getRoundedPercentage(amount: coin.percentChnage)
         changeLabel.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.25)
-        if (coin.percentChnage > 0){
+        if ((round(coin.percentChnage * 10)/10.0) > 0){
             changeLabel.textColor = UIColor(red: 142/255, green: 236/255, blue: 127/255, alpha: 1)
         }
-        if (coin.percentChnage < 0){
+        if ((round(coin.percentChnage * 10)/10.0) < 0){
             changeLabel.textColor = UIColor(red: 255/255, green: 138/255, blue: 128/255, alpha: 1)
         }
         logoImage.image = coin.logoImage
