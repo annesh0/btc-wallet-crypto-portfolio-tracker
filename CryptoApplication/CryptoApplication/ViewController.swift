@@ -113,7 +113,7 @@ class ViewController: UIViewController {
         let litecoin = Coin(name:"Litecoin",symbol: "LTC")
         let cardano = Coin(name:"Cardano",symbol: "ADA")
         let tether = Coin(name:"USDTether",symbol: "USDT")
-        let solano = Coin(name:"Solano",symbol: "SOL")
+        let solana = Coin(name:"Solana",symbol: "SOL")
         let binance = Coin(name:"Binance Coin",symbol: "BNB")
         let usdCoin = Coin(name:"USDCoin",symbol: "USDC")
         let algorand = Coin(name:"Algorand",symbol: "ALGO")
@@ -122,7 +122,7 @@ class ViewController: UIViewController {
         let monero = Coin(name:"Monero",symbol: "XMR")
         let uniswap = Coin(name:"Uniswap",symbol: "UNI")
         let shibainu = Coin(name:"Shiba Inu",symbol: "SHIB")
-        allCoins = [bitcoin, dogecoin, ethereum, litecoin, cardano, tether, solano, binance, usdCoin, algorand, polkadot, bitcoinCash, monero, uniswap, shibainu]
+        allCoins = [bitcoin, dogecoin, ethereum, litecoin, cardano, tether, solana, binance, usdCoin, algorand, polkadot, bitcoinCash, monero, uniswap, shibainu]
                 
         if let loaded = persistenceManager.load(){
             savedCoins = loaded

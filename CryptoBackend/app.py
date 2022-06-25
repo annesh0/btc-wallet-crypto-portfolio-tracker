@@ -45,6 +45,20 @@ def callsRemaining():
     call = requests.get(url, headers=headers)
     return success_response(call.json())
 
+@app.route("/monthly/<int:coin>")
+def monthlyData(coin):
+    db.updateMonthlyPriceData()
+    return success_response(db.monthlyPriceResponse[coin].json())
+
+@app.route("/update")
+def updateAll():
+    db.updateExchangeRates()
+    db.updateNewsArticles()
+    db.updateMonthlyPriceData()
+    outputString = "All routes have been updated"
+    return outputString
+
+
 if __name__ == "__main__":
     port = os.environ.get("PORT", 4000)
     app.run(host="0.0.0.0", port= port)
