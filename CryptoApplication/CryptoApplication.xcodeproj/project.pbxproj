@@ -18,9 +18,6 @@
 		B80FF237285142220041D4AF /* AddCoinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80FF236285142220041D4AF /* AddCoinTableViewCell.swift */; };
 		B80FF2392851F0C10041D4AF /* Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80FF2382851F0C10041D4AF /* Json.swift */; };
 		B80FF23C285ECA650041D4AF /* StockCharts in Frameworks */ = {isa = PBXBuildFile; productRef = B80FF23B285ECA650041D4AF /* StockCharts */; };
-		B812A2762846AD3A004751E8 /* assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812A2752846AD3A004751E8 /* assets.swift */; };
-		B812A2782846AF35004751E8 /* AssetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812A2772846AF35004751E8 /* AssetView.swift */; };
-		B812A27A2846B410004751E8 /* AssetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812A2792846B410004751E8 /* AssetViewCell.swift */; };
 		B812A27C284DAA2B004751E8 /* EditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812A27B284DAA2B004751E8 /* EditorController.swift */; };
 		B812A27E284DAECD004751E8 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812A27D284DAECD004751E8 /* ProfileController.swift */; };
 		B8380D62283C738D00C45FA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8380D61283C738D00C45FA6 /* AppDelegate.swift */; };
@@ -73,9 +70,6 @@
 		B80FF2342851420A0041D4AF /* CoinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTableViewCell.swift; sourceTree = "<group>"; };
 		B80FF236285142220041D4AF /* AddCoinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoinTableViewCell.swift; sourceTree = "<group>"; };
 		B80FF2382851F0C10041D4AF /* Json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Json.swift; sourceTree = "<group>"; };
-		B812A2752846AD3A004751E8 /* assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = assets.swift; sourceTree = "<group>"; };
-		B812A2772846AF35004751E8 /* AssetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetView.swift; sourceTree = "<group>"; };
-		B812A2792846B410004751E8 /* AssetViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetViewCell.swift; sourceTree = "<group>"; };
 		B812A27B284DAA2B004751E8 /* EditorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorController.swift; sourceTree = "<group>"; };
 		B812A27D284DAECD004751E8 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		B8380D5E283C738D00C45FA6 /* CryptoApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,9 +151,6 @@
 		B8380D55283C738C00C45FA6 = {
 			isa = PBXGroup;
 			children = (
-				B812A2792846B410004751E8 /* AssetViewCell.swift */,
-				B812A2772846AF35004751E8 /* AssetView.swift */,
-				B812A2752846AD3A004751E8 /* assets.swift */,
 				B8380D60283C738D00C45FA6 /* CryptoApplication */,
 				B8380D77283C738E00C45FA6 /* CryptoApplicationTests */,
 				B8380D81283C738E00C45FA6 /* CryptoApplicationUITests */,
@@ -474,7 +465,6 @@
 				B8A4CEA6284F03F7005BF392 /* NetworkManager.swift in Sources */,
 				B8380D66283C738D00C45FA6 /* ViewController.swift in Sources */,
 				FCDE9CA2285C476100EC8778 /* WalletViewController.swift in Sources */,
-				B812A27A2846B410004751E8 /* AssetViewCell.swift in Sources */,
 				FCDE9CA0285C473900EC8778 /* NewsViewController.swift in Sources */,
 				B80FF231285141D90041D4AF /* Coin.swift in Sources */,
 				B80FF237285142220041D4AF /* AddCoinTableViewCell.swift in Sources */,
@@ -484,11 +474,9 @@
 				B80FF22D285141960041D4AF /* AddCoinController.swift in Sources */,
 				B812A27C284DAA2B004751E8 /* EditorController.swift in Sources */,
 				B80FF2392851F0C10041D4AF /* Json.swift in Sources */,
-				B812A2762846AD3A004751E8 /* assets.swift in Sources */,
 				B8380D64283C738D00C45FA6 /* SceneDelegate.swift in Sources */,
 				B80FF22F285141AB0041D4AF /* SingleCoinViewController.swift in Sources */,
 				FC32832B2858D33D003B23DA /* CodableCoin.swift in Sources */,
-				B812A2782846AF35004751E8 /* AssetView.swift in Sources */,
 				B812A27E284DAECD004751E8 /* ProfileController.swift in Sources */,
 				FC32832D2858D992003B23DA /* PersistenceManager.swift in Sources */,
 				B80FF2352851420A0041D4AF /* CoinTableViewCell.swift in Sources */,

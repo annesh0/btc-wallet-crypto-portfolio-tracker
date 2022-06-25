@@ -88,8 +88,8 @@ class CoinTableViewCell: UITableViewCell {
         ])
         
         NSLayoutConstraint.activate([
-            logoImage.heightAnchor.constraint(equalToConstant: 100),
-            logoImage.widthAnchor.constraint(equalToConstant: 100),
+            logoImage.heightAnchor.constraint(equalToConstant: 80),
+            logoImage.widthAnchor.constraint(equalToConstant: 80),
             logoImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             logoImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding)
         ])
