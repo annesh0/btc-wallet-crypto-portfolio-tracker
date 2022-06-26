@@ -50,6 +50,7 @@ class ViewController: UIViewController {
         loadedNewsScreen.loadedPortfolioScreen = self
         loadedWalletScreen.loadedPortfolioScreen = self
 
+        self.navigationController?.setNeedsUpdateOfHomeIndicatorAutoHidden()
         
         let blueColor = UIColor(red: 169/255, green: 196/255, blue: 238/255, alpha: 1)
         let midPointColor = UIColor(red: 169/255, green: 196/255, blue: 238/255, alpha: 0.99)
@@ -223,6 +224,10 @@ class ViewController: UIViewController {
             newsButton.widthAnchor.constraint(equalTo: portfolioButton.widthAnchor, multiplier: 0.8),
             newsButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05625),
         ])
+    }
+    
+    override var prefersHomeIndicatorAutoHidden: Bool {
+        return true
     }
     
     @objc func pushEditScreen(){

@@ -81,6 +81,10 @@ class WalletViewController: UIViewController {
         ])
     }
     
+    override var prefersHomeIndicatorAutoHidden: Bool {
+        return true
+    }
+    
     @objc func portfolioButtonPress(){
         self.view.window?.rootViewController = UINavigationController(rootViewController: self.loadedPortfolioScreen!)
     }
