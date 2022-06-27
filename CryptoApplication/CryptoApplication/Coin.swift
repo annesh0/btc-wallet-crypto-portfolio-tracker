@@ -18,6 +18,7 @@ class Coin {
     var conversionRate: Double
     var previousConversionRate: Double
     var isChosen: Bool
+    var mainColor = UIColor.darkGray
     var internalAssetID: Int
     var savableCoin: codableCoin
 

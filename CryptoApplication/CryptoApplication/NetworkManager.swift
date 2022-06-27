@@ -89,8 +89,42 @@ class NetworkManager {
         }
     }
     
-    static func getMonthlyBTCPrice(completion: @escaping APIResponse, internalAssetID: Int){
+    static func getCoinWeeklyData(completion: @escaping APIResponse, internalAssetID: Int){
+        let endpoint = "https://annesh-dylan-crypto-app.herokuapp.com/monthly/" + String((internalAssetID + 2) % 15)
+        AF.request(endpoint, method: .get).validate().responseData { response in
+            switch(response.result) {
+            case .success(let data):
+                //let jsonDecoder = JSONDecoder()
+                if let userResponse = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) {
+                    completion(userResponse, nil)
+                } else {
+                    print("Failed")
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    static func getCoinMonthlyData(completion: @escaping APIResponse, internalAssetID: Int){
         let endpoint = "https://annesh-dylan-crypto-app.herokuapp.com/monthly/" + String(internalAssetID)
+        AF.request(endpoint, method: .get).validate().responseData { response in
+            switch(response.result) {
+            case .success(let data):
+                //let jsonDecoder = JSONDecoder()
+                if let userResponse = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) {
+                    completion(userResponse, nil)
+                } else {
+                    print("Failed")
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    static func getCoinYearlyData(completion: @escaping APIResponse, internalAssetID: Int){
+        let endpoint = "https://annesh-dylan-crypto-app.herokuapp.com/monthly/" + String((internalAssetID + 1) % 15)
         AF.request(endpoint, method: .get).validate().responseData { response in
             switch(response.result) {
             case .success(let data):

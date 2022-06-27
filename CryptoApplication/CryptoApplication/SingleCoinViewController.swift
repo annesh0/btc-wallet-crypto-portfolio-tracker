@@ -15,13 +15,14 @@ class SingleCoinViewController: UIViewController{
     var logoImage = UIImageView()
     var amountUSDLabel = UILabel()
     var amountCoinAndChangeLabel = UILabel()
-    var dayButton = UIButton()
     var weekButton = UIButton()
     var monthButton = UIButton()
     var yearButton = UIButton()
-    var fiveYearButton = UIButton()
     var allButtons = [UIButton]()
-    var prices: [Double] = []
+    let gradient = CAGradientLayer()
+    let weeklyChild = UIHostingController(rootView: WeeklyContentView())
+    let monthlyChild = UIHostingController(rootView: MonthlyContentView())
+    let yearlyChild = UIHostingController(rootView: YearlyContentView())
     weak var parentController: ViewController?
     weak var parentCoin: Coin?
     //var child = UIHostingController(rootView: ContentView())
@@ -30,7 +31,13 @@ class SingleCoinViewController: UIViewController{
         title = parentCoin!.name
         view.backgroundColor = .white
         
-        allButtons = [dayButton, weekButton, monthButton, yearButton, fiveYearButton]
+        let gradientColor = parentCoin!.mainColor.cgColor
+        gradientColor.copy(alpha: 0.5)
+        gradient.frame = CGRect(x:0, y:0, width: view.frame.width, height: 200)
+        gradient.colors = [gradientColor, UIColor.white.cgColor]
+        view.layer.insertSublayer(gradient, at: 0)
+        
+        allButtons = [weekButton, monthButton, yearButton]
                 
         logoImage.image = parentCoin!.logoImage
         logoImage.contentMode = .scaleAspectFit
@@ -43,21 +50,13 @@ class SingleCoinViewController: UIViewController{
         amountCoinAndChangeLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(amountCoinAndChangeLabel)
         
-        amountUSDLabel.font = .systemFont(ofSize: 28, weight: .bold)
+        amountUSDLabel.font = .systemFont(ofSize: 35, weight: .bold)
         amountUSDLabel.text = "$\(parentCoin!.getCurrencyForm(amount:parentCoin!.amountUSD))"
         amountUSDLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(amountUSDLabel)
         
-        dayButton.setTitle("  1D  ", for: .normal)
-        dayButton.addTarget(self, action: #selector(buttonPress1), for: .touchUpInside)
-        dayButton.setTitleColor(.darkGray, for: .normal)
-        dayButton.backgroundColor = .white
-        dayButton.layer.cornerRadius = 15
-        dayButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(dayButton)
-        
         weekButton.setTitle("   1W   ", for: .normal)
-        weekButton.addTarget(self, action: #selector(buttonPress2), for: .touchUpInside)
+        weekButton.addTarget(self, action: #selector(buttonPress1), for: .touchUpInside)
         weekButton.setTitleColor(.darkGray, for: .normal)
         weekButton.backgroundColor = .white
         weekButton.layer.cornerRadius = 15
@@ -65,7 +64,7 @@ class SingleCoinViewController: UIViewController{
         view.addSubview(weekButton)
         
         monthButton.setTitle("   1M   ", for: .normal)
-        monthButton.addTarget(self, action: #selector(buttonPress3), for: .touchUpInside)
+        monthButton.addTarget(self, action: #selector(buttonPress2), for: .touchUpInside)
         monthButton.setTitleColor(.darkGray, for: .normal)
         monthButton.backgroundColor = .white
         monthButton.layer.cornerRadius = 15
@@ -73,113 +72,101 @@ class SingleCoinViewController: UIViewController{
         view.addSubview(monthButton)
         
         yearButton.setTitle("   1Y   ", for: .normal)
-        yearButton.addTarget(self, action: #selector(buttonPress4), for: .touchUpInside)
+        yearButton.addTarget(self, action: #selector(buttonPress3), for: .touchUpInside)
         yearButton.setTitleColor(.darkGray, for: .normal)
         yearButton.backgroundColor = .white
         yearButton.layer.cornerRadius = 15
         yearButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(yearButton)
         
-        fiveYearButton.setTitle("   5Y   ", for: .normal)
-        fiveYearButton.addTarget(self, action: #selector(buttonPress5), for: .touchUpInside)
-        fiveYearButton.setTitleColor(.darkGray, for: .normal)
-        fiveYearButton.backgroundColor = .white
-        fiveYearButton.layer.cornerRadius = 15
-        fiveYearButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(fiveYearButton)
-        
-        //view.addSubview(graphImage)
+        getWeeklyData()
         getMonthlyData()
-        /*
-        let child = UIHostingController(rootView: ContentView())
-        child.view.translatesAutoresizingMaskIntoConstraints = false
-        child.view.frame = view.bounds
-        view.addSubview(child.view)
-         */
-        setupConstraints()
+        getYearlyData()
         
+        setupConstraints()
     }
     
-    struct ContentView : View {
+    struct WeeklyContentView : View {
         var body: some View {
             VStack {
-                let prices = SingleCoinViewController.prices
+                let prices = SingleCoinViewController.weeklyPrices
                 LineChartView(lineChartController: LineChartController(prices: prices, dragGesture: true))
                     .frame(width: 300)
-            
-                
-            }/*
-                NavigationView {
-                    List {
-                        HStack(alignment: .top) {
-                            Spacer()
-                            let prices = SingleCoinViewController.prices
-                            LineChartView(lineChartController: LineChartController(prices: prices))
-                            Text("aa")
-                        }
-                    }
-                }*/
+            }
         }
     }
-            /*
-            LineChartView(lineChartController: LineChartController(prices: SingleCoinViewController.getMonthlyData()))
-            .frame(width: 150)
-             */
-            /*
-            VStack {
-                
-                Text("Test")
-                Text("Test2")
-                
-                Spacer()
-                let prices = SingleCoinViewController.getMonthlyData()
-                
-                LineChartView(lineChartController: LineChartController(prices: prices)).frame(width: 150)
-
-            }
-             */
     
-    static var prices: [Double] = []
+    struct MonthlyContentView : View {
+        var body: some View {
+            VStack {
+                let prices = SingleCoinViewController.monthlyPrices
+                LineChartView(lineChartController: LineChartController(prices: prices, dragGesture: true))
+                    .frame(width: 300)
+            }
+        }
+    }
+    
+    struct YearlyContentView : View {
+        var body: some View {
+            VStack {
+                let prices = SingleCoinViewController.yearlyPrices
+                LineChartView(lineChartController: LineChartController(prices: prices, dragGesture: true))
+                    .frame(width: 300)
+            }
+        }
+    }
+    
+    static var weeklyPrices: [Double] = []
+    func getWeeklyData() {
+        SingleCoinViewController.weeklyPrices = []
+        NetworkManager.getCoinWeeklyData(completion: { (data,error) in
+            var allData: [[String:Any]] = []
+            allData = data as! [[String:Any]]
+            for entry in allData {
+                SingleCoinViewController.weeklyPrices.append(entry["rate_open"]! as! Double)
+            }
+            self.weeklyChild.view.translatesAutoresizingMaskIntoConstraints = false
+            self.weeklyChild.view.frame = self.view.bounds
+        }, internalAssetID: parentCoin!.internalAssetID)
+    }
+    
+    static var monthlyPrices: [Double] = []
     func getMonthlyData() {
-        SingleCoinViewController.prices = []
-        NetworkManager.getMonthlyBTCPrice(completion: { (data,error) in
+        SingleCoinViewController.monthlyPrices = []
+        NetworkManager.getCoinMonthlyData(completion: { (data,error) in
             //print(data!)
             //print(a["asset_id_base"]!)
             //var prices: [Double] = []
             var allData: [[String:Any]] = []
             allData = data as! [[String:Any]]
             for entry in allData {
-                SingleCoinViewController.prices.append(entry["rate_open"]! as! Double)
+                SingleCoinViewController.monthlyPrices.append(entry["rate_open"]! as! Double)
             }
-            let child = UIHostingController(rootView: ContentView())
-            child.view.translatesAutoresizingMaskIntoConstraints = false
-            child.view.frame = self.view.bounds
-            self.view.addSubview(child.view)
+            self.monthlyChild.view.translatesAutoresizingMaskIntoConstraints = false
+            self.monthlyChild.view.frame = self.view.bounds
+            self.view.addSubview(self.monthlyChild.view)
             NSLayoutConstraint.activate([
-                child.view.topAnchor.constraint(equalTo: self.monthButton.bottomAnchor, constant: 12),
-                child.view.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+                self.monthlyChild.view.topAnchor.constraint(equalTo: self.monthButton.bottomAnchor, constant: 12),
+                self.monthlyChild.view.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+                self.monthlyChild.view.heightAnchor.constraint(equalToConstant: 200)
             ])
-            
-            
-            /*
-            DispatchQueue.main.async {
-                self.child = UIHostingController(rootView: ContentView())
-                self.child.view.translatesAutoresizingMaskIntoConstraints = false
-                self.child.view.frame = self.view.bounds
-                self.view.addSubview(self.child.view)
-                NSLayoutConstraint.activate([
-                    self.child.view.topAnchor.constraint(equalTo: self.dayButton.bottomAnchor, constant: 12)
-                ])
-                
-            }
-             */
-            
+            self.buttonPress2()
         }, internalAssetID: parentCoin!.internalAssetID)
-        
-
     }
-
     
+    static var yearlyPrices: [Double] = []
+    func getYearlyData() {
+        SingleCoinViewController.yearlyPrices = []
+        NetworkManager.getCoinYearlyData(completion: { (data,error) in
+            var allData: [[String:Any]] = []
+            allData = data as! [[String:Any]]
+            for entry in allData {
+                SingleCoinViewController.yearlyPrices.append(entry["rate_open"]! as! Double)
+            }
+            self.yearlyChild.view.translatesAutoresizingMaskIntoConstraints = false
+            self.yearlyChild.view.frame = self.view.bounds
+        }, internalAssetID: parentCoin!.internalAssetID)
+    }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
@@ -199,10 +186,6 @@ class SingleCoinViewController: UIViewController{
             amountCoinAndChangeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
-        NSLayoutConstraint.activate([
-            dayButton.topAnchor.constraint(equalTo: amountCoinAndChangeLabel.bottomAnchor, constant: 12),
-            dayButton.trailingAnchor.constraint(equalTo: weekButton.leadingAnchor, constant: -15)
-        ])
         
         NSLayoutConstraint.activate([
             weekButton.topAnchor.constraint(equalTo: amountCoinAndChangeLabel.bottomAnchor, constant: 12),
@@ -218,43 +201,51 @@ class SingleCoinViewController: UIViewController{
             yearButton.topAnchor.constraint(equalTo: amountCoinAndChangeLabel.bottomAnchor, constant: 12),
             yearButton.leadingAnchor.constraint(equalTo: monthButton.trailingAnchor, constant: 15)
         ])
-        
-        NSLayoutConstraint.activate([
-            fiveYearButton.topAnchor.constraint(equalTo: amountCoinAndChangeLabel.bottomAnchor, constant: 12),
-            fiveYearButton.leadingAnchor.constraint(equalTo: yearButton.trailingAnchor, constant: 15)
-        ])
-        
-        buttonPress1()
     }
     
     func resetButtons(){
         for button in allButtons{
-            button.backgroundColor = .white
+            button.backgroundColor = .clear
+            button.setTitleColor(.darkGray, for: .normal)
         }
+        weeklyChild.view.removeFromSuperview()
+        monthlyChild.view.removeFromSuperview()
+        yearlyChild.view.removeFromSuperview()
     }
     
     @objc func buttonPress1() {
         resetButtons()
-        dayButton.backgroundColor = .lightGray
+        weekButton.setTitleColor(.white, for: .normal)
+        weekButton.backgroundColor = parentCoin!.mainColor
+        view.addSubview(weeklyChild.view)
+        NSLayoutConstraint.activate([
+            weeklyChild.view.topAnchor.constraint(equalTo: self.monthButton.bottomAnchor, constant: 12),
+            weeklyChild.view.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            weeklyChild.view.heightAnchor.constraint(equalToConstant: 200)
+        ])
     }
     
     @objc func buttonPress2() {
         resetButtons()
-        weekButton.backgroundColor = .lightGray
+        monthButton.setTitleColor(.white, for: .normal)
+        monthButton.backgroundColor = parentCoin!.mainColor
+        view.addSubview(monthlyChild.view)
+        NSLayoutConstraint.activate([
+            monthlyChild.view.topAnchor.constraint(equalTo: self.monthButton.bottomAnchor, constant: 12),
+            monthlyChild.view.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            monthlyChild.view.heightAnchor.constraint(equalToConstant: 200)
+        ])
     }
     
     @objc func buttonPress3() {
         resetButtons()
-        monthButton.backgroundColor = .lightGray
-    }
-    
-    @objc func buttonPress4() {
-        resetButtons()
-        yearButton.backgroundColor = .lightGray
-    }
-    
-    @objc func buttonPress5() {
-        resetButtons()
-        fiveYearButton.backgroundColor = .lightGray
+        yearButton.setTitleColor(.white, for: .normal)
+        yearButton.backgroundColor = parentCoin!.mainColor
+        view.addSubview(yearlyChild.view)
+        NSLayoutConstraint.activate([
+            yearlyChild.view.topAnchor.constraint(equalTo: self.monthButton.bottomAnchor, constant: 12),
+            yearlyChild.view.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            yearlyChild.view.heightAnchor.constraint(equalToConstant: 200)
+        ])
     }
 }

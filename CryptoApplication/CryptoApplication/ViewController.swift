@@ -115,7 +115,8 @@ class ViewController: UIViewController {
         newsButton.addTarget(self, action: #selector(newsButtonPress), for: .touchUpInside)
         view.addSubview(newsButton)
         
-        let bitcoin = Coin(name: "Bitcoin", symbol: "BTC", internalAssetID: 0)
+        let bitcoin = Coin(name: "Bitcoin", symbol: "BTC", internalAssetID: 7)
+        bitcoin.mainColor = UIColor(red: 255/255, green: 153/255, blue: 0/255, alpha: 1)
         let dogecoin = Coin(name: "Dogecoin", symbol: "DOGE", internalAssetID: 1)
         let ethereum = Coin(name: "Ethereum", symbol: "ETH", internalAssetID: 2)
         let litecoin = Coin(name:"Litecoin",symbol: "LTC", internalAssetID: 3)
