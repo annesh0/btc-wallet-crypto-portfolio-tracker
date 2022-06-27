@@ -142,7 +142,7 @@ class SingleCoinViewController: UIViewController{
     static var prices: [Double] = []
     func getMonthlyData() {
         SingleCoinViewController.prices = []
-        NetworkManager.getMonthlyBTCPrice { (data,error) in
+        NetworkManager.getMonthlyBTCPrice(completion: { (data,error) in
             //print(data!)
             //print(a["asset_id_base"]!)
             //var prices: [Double] = []
@@ -174,7 +174,7 @@ class SingleCoinViewController: UIViewController{
             }
              */
             
-        }
+        }, internalAssetID: parentCoin!.internalAssetID)
         
 
     }

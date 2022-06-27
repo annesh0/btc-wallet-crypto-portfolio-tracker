@@ -89,8 +89,8 @@ class NetworkManager {
         }
     }
     
-    static func getMonthlyBTCPrice(completion: @escaping APIResponse){
-        let endpoint = "https://annesh-dylan-crypto-app.herokuapp.com/monthly/0"
+    static func getMonthlyBTCPrice(completion: @escaping APIResponse, internalAssetID: Int){
+        let endpoint = "https://annesh-dylan-crypto-app.herokuapp.com/monthly/" + String(internalAssetID)
         AF.request(endpoint, method: .get).validate().responseData { response in
             switch(response.result) {
             case .success(let data):

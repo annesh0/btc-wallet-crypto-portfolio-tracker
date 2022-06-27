@@ -18,9 +18,10 @@ class Coin {
     var conversionRate: Double
     var previousConversionRate: Double
     var isChosen: Bool
+    var internalAssetID: Int
     var savableCoin: codableCoin
 
-    init(name: String, symbol: String) {
+    init(name: String, symbol: String, internalAssetID: Int) {
         self.name = name
         self.symbol = symbol
         self.logoImage = UIImage(named: name)
@@ -30,6 +31,7 @@ class Coin {
         self.amountCoin = 0.0
         self.percentChnage = 0.0
         self.isChosen = false
+        self.internalAssetID = internalAssetID
         self.savableCoin = codableCoin(amountCoin: amountCoin, isChosen: isChosen)
     }
     
