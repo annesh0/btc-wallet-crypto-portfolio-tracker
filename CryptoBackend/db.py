@@ -41,6 +41,8 @@ class db:
 
     def updateMonthlyPriceData():
         if db.monthlyPriceTimeBlock <= time.time() - 86399:
+            db.monthlyPriceTimeBlock = time.time()
+
             """
                 0: Bitcoin
                 1: Dogecoin
@@ -58,6 +60,9 @@ class db:
                 13: Uniswap
                 14: ShibaInu
             """
+
+            time.sleep(10)
+
             #BTC
             db.monthlyPriceResponse[0] = requests.get("https://rest.coinapi.io/v1/exchangerate/BTC/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS&time_start=2022-05-23T00:00:00&time_end=2022-06-23T00:00:00")
             #DOGE
@@ -65,12 +70,16 @@ class db:
             #ETH
             db.monthlyPriceResponse[2] = requests.get("https://rest.coinapi.io/v1/exchangerate/ETH/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS&time_start=2022-05-23T00:00:00&time_end=2022-06-23T00:00:00")
             
+            time.sleep(10)
+
             #LTC
             db.monthlyPriceResponse[3] = requests.get("https://rest.coinapi.io/v1/exchangerate/LTC/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS&time_start=2022-05-23T00:00:00&time_end=2022-06-23T00:00:00")
             #ADA
             db.monthlyPriceResponse[4] = requests.get("https://rest.coinapi.io/v1/exchangerate/ADA/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS&time_start=2022-05-23T00:00:00&time_end=2022-06-23T00:00:00")
             #USDT
             db.monthlyPriceResponse[5] = requests.get("https://rest.coinapi.io/v1/exchangerate/USDT/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS&time_start=2022-05-23T00:00:00&time_end=2022-06-23T00:00:00")
+            
+            time.sleep(10)
 
             #SOL
             db.monthlyPriceResponse[6] = requests.get("https://rest.coinapi.io/v1/exchangerate/SOL/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS&time_start=2022-05-23T00:00:00&time_end=2022-06-23T00:00:00")
@@ -78,6 +87,8 @@ class db:
             db.monthlyPriceResponse[7] = requests.get("https://rest.coinapi.io/v1/exchangerate/BNB/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS&time_start=2022-05-23T00:00:00&time_end=2022-06-23T00:00:00")
             #USDC
             db.monthlyPriceResponse[8] = requests.get("https://rest.coinapi.io/v1/exchangerate/USDC/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS&time_start=2022-05-23T00:00:00&time_end=2022-06-23T00:00:00")  
+            
+            time.sleep(10)
 
             #ALGO
             db.monthlyPriceResponse[9] = requests.get("https://rest.coinapi.io/v1/exchangerate/ALGO/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS&time_start=2022-05-23T00:00:00&time_end=2022-06-23T00:00:00")
@@ -85,6 +96,8 @@ class db:
             db.monthlyPriceResponse[10] = requests.get("https://rest.coinapi.io/v1/exchangerate/DOT/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS&time_start=2022-05-23T00:00:00&time_end=2022-06-23T00:00:00")
             #BCH
             db.monthlyPriceResponse[11] = requests.get("https://rest.coinapi.io/v1/exchangerate/BCH/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS&time_start=2022-05-23T00:00:00&time_end=2022-06-23T00:00:00") 
+            
+            time.sleep(10)
 
             #XMR
             db.monthlyPriceResponse[12] = requests.get("https://rest.coinapi.io/v1/exchangerate/XMR/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS&time_start=2022-05-23T00:00:00&time_end=2022-06-23T00:00:00")
@@ -92,5 +105,3 @@ class db:
             db.monthlyPriceResponse[13] = requests.get("https://rest.coinapi.io/v1/exchangerate/UNI/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS&time_start=2022-05-23T00:00:00&time_end=2022-06-23T00:00:00")
             #SHIB
             db.monthlyPriceResponse[14] = requests.get("https://rest.coinapi.io/v1/exchangerate/SHIB/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS&time_start=2022-05-23T00:00:00&time_end=2022-06-23T00:00:00") 
-
-            db.monthlyPriceTimeBlock = time.time()

@@ -79,9 +79,9 @@ class SingleCoinViewController: UIViewController{
         yearButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(yearButton)
         
-        getWeeklyData()
-        getMonthlyData()
-        getYearlyData()
+        //getWeeklyData()
+        //getMonthlyData()
+        //getYearlyData()
         
         setupConstraints()
     }

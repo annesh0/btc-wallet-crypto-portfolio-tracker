@@ -20,6 +20,8 @@ def failure_response(message, code=404):
 @app.route("/")
 def apptest():
     db.updateExchangeRates()
+    db.updateNewsArticles()
+    db.updateMonthlyPriceData()
     timesUpdatedString = "The rates have been updated this many times: " + str(db.timesUpdated)
     return timesUpdatedString
 
