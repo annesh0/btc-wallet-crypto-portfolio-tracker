@@ -19,6 +19,7 @@ class EditCoinController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self.parentController!
         tableView.delegate = self
+        tableView.separatorStyle = .none
         tableView.register(CoinTableViewCell.self, forCellReuseIdentifier: parentController!.reuseIdentifier)
         view.addSubview(tableView)
         assetsLabel.text = "Assets"
@@ -76,6 +77,6 @@ extension EditCoinController: UITableViewDelegate {
         let presenter = EditCoinValueController()
         presenter.parentCoinCell = coin
         presenter.ParentController = self
-        present(UINavigationController(rootViewController: presenter), animated: true, completion: nil)
+        navigationController?.pushViewController(presenter, animated: true)
     }
 }

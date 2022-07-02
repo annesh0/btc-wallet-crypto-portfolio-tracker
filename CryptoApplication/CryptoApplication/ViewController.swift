@@ -240,7 +240,9 @@ class ViewController: UIViewController {
     @objc func presentAddScreen(){
         let presenter = AddCoinController()
         presenter.parentController = self
-        present(UINavigationController(rootViewController: presenter), animated: true, completion: nil)
+        //present(UINavigationController(rootViewController: presenter), animated: true, completion: nil)
+        present(presenter, animated: true, completion: nil)
+
     }
     
     @objc func newsButtonPress(){

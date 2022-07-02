@@ -13,6 +13,7 @@ import SwiftUI
 class SingleCoinViewController: UIViewController{
     
     var logoImage = UIImageView()
+    var editButton = UIButton()
     var amountUSDLabel = UILabel()
     var amountCoinAndChangeLabel = UILabel()
     var weekButton = UIButton()
@@ -30,6 +31,20 @@ class SingleCoinViewController: UIViewController{
     override func viewDidLoad() {
         title = parentCoin!.name
         view.backgroundColor = .white
+        
+        editButton.setTitle("   Edit   ", for: .normal)
+        editButton.titleLabel?.font = .systemFont(ofSize: 13, weight: .bold)
+        editButton.addTarget(self, action: #selector(pushEditScreen), for: .touchUpInside)
+        editButton.setTitleColor(.white, for: .normal)
+        editButton.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
+        editButton.layer.cornerRadius = 13
+        editButton.layer.shadowColor = UIColor.black.cgColor
+        editButton.layer.masksToBounds = false
+        editButton.layer.shadowOpacity = 0.5
+        editButton.layer.shadowRadius = 3
+        editButton.layer.shadowOffset = CGSize(width: 0, height: 2)
+        editButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(editButton)
         
         let gradientColor = parentCoin!.mainColor.cgColor
         gradientColor.copy(alpha: 0.5)
@@ -202,6 +217,11 @@ class SingleCoinViewController: UIViewController{
             yearButton.topAnchor.constraint(equalTo: amountCoinAndChangeLabel.bottomAnchor, constant: 12),
             yearButton.leadingAnchor.constraint(equalTo: monthButton.trailingAnchor, constant: 15)
         ])
+        
+        NSLayoutConstraint.activate([
+            editButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            editButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -10)
+        ])
     }
     
     func resetButtons(){
@@ -248,5 +268,15 @@ class SingleCoinViewController: UIViewController{
 //            yearlyChild.view.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
 //            yearlyChild.view.heightAnchor.constraint(equalToConstant: 200)
 //        ])
+    }
+    
+    @objc func pushEditScreen() {
+        let coin = parentCoin!
+        let presenter = EditCoinValueController()
+        presenter.parentCoinCell = coin
+        let instance = EditCoinController()
+        instance.parentController = self.parentController
+        presenter.ParentController = instance
+        navigationController?.pushViewController(presenter, animated: true)
     }
 }

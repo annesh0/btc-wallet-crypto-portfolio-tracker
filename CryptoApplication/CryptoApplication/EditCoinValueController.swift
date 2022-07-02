@@ -11,61 +11,86 @@ import Foundation
 class EditCoinValueController: UIViewController {
     
     var instructionsLabel = UILabel()
-    var symbolLabel = UILabel()
     var inputField = UITextField()
+    var logoImageView = UIImageView()
     var saveButton = UIButton()
+    var cancelButton = UIButton()
+    let gradient = CAGradientLayer()
     weak var parentCoinCell: Coin?
     weak var ParentController: EditCoinController?
     
     override func viewDidLoad() {
+        self.navigationController?.isNavigationBarHidden = true
         title = "Edit Asset: " + parentCoinCell!.name
         view.backgroundColor = .white
-        instructionsLabel.text = "Please enter the amount of \(parentCoinCell!.name) you own:"
-        instructionsLabel.font = .systemFont(ofSize: 15, weight: .bold)
+        instructionsLabel.text = "Edit \(parentCoinCell!.name)"
+        instructionsLabel.font = .systemFont(ofSize: 35, weight: .bold)
         instructionsLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(instructionsLabel)
-        inputField.placeholder = " Enter amount: "
+        inputField.attributedPlaceholder = NSAttributedString(string: "Enter amount \(parentCoinCell!.symbol):", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
         inputField.textColor = .black
-        inputField.font = .systemFont(ofSize: 15, weight: .regular)
-        inputField.backgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1.00)
+        inputField.font = .systemFont(ofSize: 15, weight: .bold)
+        inputField.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.00)
+        inputField.textAlignment = .center
+        inputField.layer.cornerRadius = 20
         inputField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(inputField)
-        symbolLabel.text = parentCoinCell!.symbol
-        symbolLabel.font = .systemFont(ofSize: 15, weight: .bold)
-        symbolLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(symbolLabel)
-        saveButton.setTitle("  Save  ", for: .normal)
+        saveButton.setTitle("  Confirm  ", for: .normal)
         saveButton.addTarget(self, action: #selector(save), for: .touchUpInside)
-        saveButton.setTitleColor(.white, for: .normal)
-        saveButton.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
+        saveButton.setTitleColor(.darkGray, for: .normal)
+        saveButton.backgroundColor = .clear
         saveButton.layer.cornerRadius = 15
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(saveButton)
+        cancelButton.setTitle("  Cancel  ", for: .normal)
+        cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
+        cancelButton.setTitleColor(.darkGray, for: .normal)
+        cancelButton.backgroundColor = .clear
+        cancelButton.layer.cornerRadius = 15
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(cancelButton)
+        logoImageView.image = parentCoinCell!.logoImage
+        logoImageView.contentMode = .scaleAspectFit
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(logoImageView)
+        
+        let gradientColor = parentCoinCell!.mainColor.cgColor
+        gradient.frame = CGRect(x:0, y: view.frame.height * 0.5, width: view.frame.width, height: view.frame.height * 0.5)
+        gradient.colors = [UIColor.white.cgColor, gradientColor.copy(alpha: 0.5)!]
+        view.layer.insertSublayer(gradient, at: 0)
+        
         setupConstraints()
     }
     
     func setupConstraints() {
         
         NSLayoutConstraint.activate([
-            instructionsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            instructionsLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30)
+            instructionsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            instructionsLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 20)
         ])
         
         NSLayoutConstraint.activate([
-            inputField.leadingAnchor.constraint(equalTo: instructionsLabel.leadingAnchor),
-            inputField.topAnchor.constraint(equalTo: instructionsLabel.bottomAnchor, constant: 10),
-            inputField.heightAnchor.constraint(equalToConstant: 40)
+            inputField.centerXAnchor.constraint(equalTo: instructionsLabel.centerXAnchor),
+            inputField.topAnchor.constraint(equalTo: instructionsLabel.bottomAnchor, constant: 15),
+            inputField.heightAnchor.constraint(equalToConstant: 60),
+            inputField.widthAnchor.constraint(equalToConstant: view.frame.width * 0.45)
         ])
         
         NSLayoutConstraint.activate([
-            symbolLabel.leadingAnchor.constraint(equalTo: inputField.trailingAnchor, constant: 5),
-            symbolLabel.topAnchor.constraint(equalTo: instructionsLabel.bottomAnchor, constant: 10),
-            symbolLabel.heightAnchor.constraint(equalToConstant: 40)
+            cancelButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: view.frame.width/20.0),
+            cancelButton.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height/15.0)
         ])
         
         NSLayoutConstraint.activate([
-            saveButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            saveButton.topAnchor.constraint(equalTo: inputField.bottomAnchor, constant: 10)
+            saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -(view.frame.width/20.0)),
+            saveButton.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height/15.0)
+        ])
+        
+        NSLayoutConstraint.activate([
+            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            logoImageView.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 15),
+            logoImageView.heightAnchor.constraint(equalToConstant: 80),
+            logoImageView.widthAnchor.constraint(equalToConstant: 80)
         ])
     }
     
@@ -77,11 +102,17 @@ class EditCoinValueController: UIViewController {
             ParentController!.tableView.reloadData()
             ParentController!.parentController!.tableView.reloadData()
             ParentController!.parentController!.updateNetWorthAndNetChange()
-            dismiss(animated: true, completion: nil)
+            self.navigationController?.isNavigationBarHidden = false
+            navigationController?.popViewController(animated: true)
         }
         else{
             showAlert()
         }
+    }
+    
+    @objc func cancel() {
+        self.navigationController?.isNavigationBarHidden = false
+        navigationController?.popViewController(animated: true)
     }
     
     func showAlert() {

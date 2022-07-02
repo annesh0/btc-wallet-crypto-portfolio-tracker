@@ -14,15 +14,16 @@ class AddCoinController: UIViewController {
     weak var parentController: ViewController?
     
     override func viewDidLoad() {
-        title = "Add/Remove Assets"
+        //title = "Add/Remove Assets"
         view.backgroundColor = .white
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.separatorStyle = .none
         tableView.register(AddCoinTableViewCell.self, forCellReuseIdentifier: parentController!.reuseIdentifier)
         view.addSubview(tableView)
-        assetsLabel.text = "Assets"
-        assetsLabel.font = .systemFont(ofSize: 30, weight: .bold)
+        assetsLabel.text = "Add/Remove Assets"
+        assetsLabel.font = .systemFont(ofSize: 28, weight: .bold)
         assetsLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(assetsLabel)
         setupConstraints()
@@ -37,8 +38,8 @@ class AddCoinController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-            assetsLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            assetsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10)
+            assetsLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
+            assetsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
     
@@ -87,7 +88,7 @@ extension AddCoinController: UITableViewDataSource {
 
 extension AddCoinController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 85
+        return 100
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
