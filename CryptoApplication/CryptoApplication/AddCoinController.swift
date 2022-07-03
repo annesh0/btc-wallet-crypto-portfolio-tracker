@@ -93,7 +93,7 @@ extension AddCoinController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let coin = parentController!.allCoins[indexPath.row]
-        if coin.isChosen{
+        if (coin.isChosen && (coin.amountCoin != 0)) {
             self.showAlert(coin: coin)
         }
         else{
