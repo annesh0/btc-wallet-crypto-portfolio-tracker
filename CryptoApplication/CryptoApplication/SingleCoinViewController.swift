@@ -38,11 +38,11 @@ class SingleCoinViewController: UIViewController{
         editButton.setTitleColor(.white, for: .normal)
         editButton.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.35)
         editButton.layer.cornerRadius = 13
-        editButton.layer.shadowColor = UIColor.black.cgColor
-        editButton.layer.masksToBounds = false
-        editButton.layer.shadowOpacity = 0.5
-        editButton.layer.shadowRadius = 3
-        editButton.layer.shadowOffset = CGSize(width: 0, height: 2)
+//        editButton.layer.shadowColor = UIColor.black.cgColor
+//        editButton.layer.masksToBounds = false
+//        editButton.layer.shadowOpacity = 0.5
+//        editButton.layer.shadowRadius = 3
+//        editButton.layer.shadowOffset = CGSize(width: 0, height: 2)
         editButton.translatesAutoresizingMaskIntoConstraints = false
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: editButton)
         
@@ -94,10 +94,9 @@ class SingleCoinViewController: UIViewController{
         yearButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(yearButton)
         
-        //getWeeklyData()
-        //getMonthlyData()
-        //getYearlyData()
-        buttonPress2()
+        getWeeklyData()
+        getMonthlyData()
+        getYearlyData()
         
         setupConstraints()
     }
@@ -233,36 +232,36 @@ class SingleCoinViewController: UIViewController{
         resetButtons()
         weekButton.setTitleColor(.white, for: .normal)
         weekButton.backgroundColor = parentCoin!.mainColor
-//        view.addSubview(weeklyChild.view)
-//        NSLayoutConstraint.activate([
-//            weeklyChild.view.topAnchor.constraint(equalTo: self.monthButton.bottomAnchor, constant: 12),
-//            weeklyChild.view.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-//            weeklyChild.view.heightAnchor.constraint(equalToConstant: 200)
-//        ])
+        view.addSubview(weeklyChild.view)
+        NSLayoutConstraint.activate([
+            weeklyChild.view.topAnchor.constraint(equalTo: self.monthButton.bottomAnchor, constant: 12),
+            weeklyChild.view.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            weeklyChild.view.heightAnchor.constraint(equalToConstant: 200)
+        ])
     }
     
     @objc func buttonPress2() {
         resetButtons()
         monthButton.setTitleColor(.white, for: .normal)
         monthButton.backgroundColor = parentCoin!.mainColor
-//        view.addSubview(monthlyChild.view)
-//        NSLayoutConstraint.activate([
-//            monthlyChild.view.topAnchor.constraint(equalTo: self.monthButton.bottomAnchor, constant: 12),
-//            monthlyChild.view.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-//            monthlyChild.view.heightAnchor.constraint(equalToConstant: 200)
-//        ])
+        view.addSubview(monthlyChild.view)
+        NSLayoutConstraint.activate([
+            monthlyChild.view.topAnchor.constraint(equalTo: self.monthButton.bottomAnchor, constant: 12),
+            monthlyChild.view.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            monthlyChild.view.heightAnchor.constraint(equalToConstant: 200)
+        ])
     }
     
     @objc func buttonPress3() {
         resetButtons()
         yearButton.setTitleColor(.white, for: .normal)
         yearButton.backgroundColor = parentCoin!.mainColor
-//        view.addSubview(yearlyChild.view)
-//        NSLayoutConstraint.activate([
-//            yearlyChild.view.topAnchor.constraint(equalTo: self.monthButton.bottomAnchor, constant: 12),
-//            yearlyChild.view.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-//            yearlyChild.view.heightAnchor.constraint(equalToConstant: 200)
-//        ])
+        view.addSubview(yearlyChild.view)
+        NSLayoutConstraint.activate([
+            yearlyChild.view.topAnchor.constraint(equalTo: self.monthButton.bottomAnchor, constant: 12),
+            yearlyChild.view.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            yearlyChild.view.heightAnchor.constraint(equalToConstant: 200)
+        ])
     }
     
     @objc func pushEditScreen() {

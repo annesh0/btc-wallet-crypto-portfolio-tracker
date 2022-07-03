@@ -158,7 +158,7 @@ class ViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.addSubview(refreshControl)
                 
-        //getCoinData()
+        getCoinData()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.updateMyCoins()
