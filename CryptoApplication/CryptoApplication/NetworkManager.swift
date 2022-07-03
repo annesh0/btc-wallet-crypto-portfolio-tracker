@@ -35,7 +35,7 @@ class NetworkManager {
      */
     typealias APIResponse = ((_ response: Any?, _ error: Error?) -> Void)
     
-    static func getAllCoinValues(completion: @escaping APIResponse) {
+    static func getAllCoinValues(completion: @escaping APIResponse, finished: @escaping ()->()) {
         let endpoint = "https://annesh-dylan-crypto-app.herokuapp.com/data"
         AF.request(endpoint, method: .get).validate().responseData { response in
             //process response
@@ -44,6 +44,7 @@ class NetworkManager {
                 //let jsonDecoder = JSONDecoder()
                 if let userResponse = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) {
                     completion(userResponse, nil)
+                    finished()
                 } else {
                     print("Failed")
                 }
@@ -53,7 +54,7 @@ class NetworkManager {
         }
     }
     
-    static func getNewsArticles(completion: @escaping APIResponse){
+    static func getNewsArticles(completion: @escaping APIResponse, finished: @escaping ()->()){
         let endpoint = "https://annesh-dylan-crypto-app.herokuapp.com/news"
         AF.request(endpoint, method: .get).validate().responseData { response in
             //process response
@@ -62,6 +63,7 @@ class NetworkManager {
                 //let jsonDecoder = JSONDecoder()
                 if let userResponse = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) {
                     completion(userResponse, nil)
+                    finished()
                 } else {
                     print("Failed")
                 }

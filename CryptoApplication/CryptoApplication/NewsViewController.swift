@@ -137,14 +137,15 @@ class NewsViewController: UIViewController {
     }
     
     func getArticleData() {
-        NetworkManager.getNewsArticles{ (data,error) in
+        NetworkManager.getNewsArticles(completion: { (data,error) in
             var articles: [String:Any] = [:]
             articles = data as! [String : Any]
             self.getArticles(articleDictionary: articles)
+        }, finished: {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
-        }
+        })
     }
     
     func getArticles(articleDictionary: [String:Any]){
@@ -224,7 +225,7 @@ extension NewsViewController: UITableViewDataSource {
 
 extension NewsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 105
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

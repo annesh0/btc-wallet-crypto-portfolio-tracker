@@ -40,7 +40,7 @@ class ViewController: UIViewController {
     var newsButton = UIButton()
     
     var allData: AllData?
-    
+        
     var loadedNewsScreen = NewsViewController()
     var loadedWalletScreen = WalletViewController()
 
@@ -50,7 +50,11 @@ class ViewController: UIViewController {
         
         loadedNewsScreen.loadedPortfolioScreen = self
         loadedWalletScreen.loadedPortfolioScreen = self
-
+        
+        let myBackBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        myBackBarButtonItem.tintColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = myBackBarButtonItem
+        
         self.navigationController?.setNeedsUpdateOfHomeIndicatorAutoHidden()
         
         let blueColor = UIColor(red: 169/255, green: 196/255, blue: 238/255, alpha: 1)
@@ -162,12 +166,8 @@ class ViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.addSubview(refreshControl)
                 
-        getCoinData()
+        getCoinData(finished: firstTimeLoad)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.updateMyCoins()
-            self.updateNetWorthAndNetChange()
-        }
         setupConstraints()
     }
 
@@ -251,9 +251,7 @@ class ViewController: UIViewController {
     @objc func presentAddScreen(){
         let presenter = AddCoinController()
         presenter.parentController = self
-        //present(UINavigationController(rootViewController: presenter), animated: true, completion: nil)
         present(presenter, animated: true, completion: nil)
-
     }
     
     @objc func newsButtonPress(){
@@ -337,14 +335,21 @@ class ViewController: UIViewController {
         persistenceManager.save(coins: savedCoins)
     }
     
+    func firstTimeLoad(){
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.updateMyCoins()
+            self.updateNetWorthAndNetChange()
+        }
+    }
+    
     @objc func refresh(){
-        getCoinData()
+        getCoinData(finished: {})
         updateNetWorthAndNetChange()
         refreshControl.endRefreshing()
     }
     
-    func getCoinData() {
-        NetworkManager.getAllCoinValues { (data,error) in
+    func getCoinData(finished: @escaping ()->()) {
+        NetworkManager.getAllCoinValues(completion: { (data,error) in
             //print(data!)
             var a: [String:Any] = [:]
             a = data as! [String : Any]
@@ -357,8 +362,7 @@ class ViewController: UIViewController {
             //@todo: Call reload changes here
             DispatchQueue.main.async {
                 self.tableView.reloadData()
-            }
-        }
+            } }, finished: finished)
         
         NetworkManager.getOldCoinValues { (data,error) in
             //print(data!)
@@ -371,9 +375,9 @@ class ViewController: UIViewController {
             self.assignOldValues(ratesInfo: ratesArr)
             //print(self.allCoins[0].conversionRate)
             //@todo: Call reload changes here
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
+//            }
         }
     }
     
