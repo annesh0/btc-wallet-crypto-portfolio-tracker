@@ -45,6 +45,9 @@ class Coin {
     }
 
     func getRoundedPercentage(amount: Double) -> String{
+        if amount < 0 {
+            return "\(round(-amount * 10)/10.0)%"
+        }
         return "\(round(amount * 10)/10.0)%"
     }
     

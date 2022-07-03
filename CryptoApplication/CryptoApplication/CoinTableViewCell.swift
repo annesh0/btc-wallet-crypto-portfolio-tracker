@@ -14,6 +14,7 @@ class CoinTableViewCell: UITableViewCell {
     var amountCoinLabel = UILabel()
     var amountUSDLabel = UILabel()
     var changeLabel = UILabel()
+    var changeImage = UIImageView()
     var logoImage = UIImageView()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -41,6 +42,10 @@ class CoinTableViewCell: UITableViewCell {
         logoImage.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(logoImage)
         
+        changeImage.contentMode = .scaleAspectFit
+        changeImage.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(changeImage)
+        
         setupConstraints()
     }
 
@@ -50,11 +55,14 @@ class CoinTableViewCell: UITableViewCell {
         amountUSDLabel.text = "$" + coin.getCurrencyForm(amount: coin.amountUSD)
         changeLabel.text = coin.getRoundedPercentage(amount: coin.percentChnage)
         changeLabel.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.25)
+        changeImage.image = nil
         if ((round(coin.percentChnage * 10)/10.0) > 0){
             changeLabel.textColor = UIColor(red: 142/255, green: 236/255, blue: 127/255, alpha: 1)
+            changeImage.image = UIImage(named: "green_arrow")
         }
         if ((round(coin.percentChnage * 10)/10.0) < 0){
             changeLabel.textColor = UIColor(red: 255/255, green: 138/255, blue: 128/255, alpha: 1)
+            changeImage.image = UIImage(named: "red_arrow")
         }
         logoImage.image = coin.logoImage
     }
@@ -92,6 +100,13 @@ class CoinTableViewCell: UITableViewCell {
             logoImage.widthAnchor.constraint(equalToConstant: 80),
             logoImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             logoImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding)
+        ])
+        
+        NSLayoutConstraint.activate([
+            changeImage.heightAnchor.constraint(equalToConstant: 15),
+            changeImage.widthAnchor.constraint(equalToConstant: 15),
+            changeImage.centerYAnchor.constraint(equalTo: changeLabel.centerYAnchor),
+            changeImage.trailingAnchor.constraint(equalTo: changeLabel.leadingAnchor, constant: -5)
         ])
     }
 

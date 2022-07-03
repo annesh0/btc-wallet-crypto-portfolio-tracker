@@ -29,6 +29,7 @@ class ViewController: UIViewController {
     var netWorthLabel = UILabel()
     var netWorth = 0.0
     var netChangeLabel = UILabel()
+    var netChangeImage = UIImageView()
     var netChange = 0.0
     var assetsLabel = UILabel()
     var editAssestsButton = UIButton()
@@ -70,6 +71,9 @@ class ViewController: UIViewController {
         netChangeLabel.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.25)
         netChangeLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(netChangeLabel)
+        netChangeImage.contentMode = .scaleAspectFit
+        netChangeImage.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(netChangeImage)
         assetsLabel.text = "Assets"
         assetsLabel.font = .systemFont(ofSize: 30, weight: .bold)
         assetsLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -84,7 +88,7 @@ class ViewController: UIViewController {
         editAssestsButton.layer.masksToBounds = false
         editAssestsButton.layer.shadowOpacity = 0.5
         editAssestsButton.layer.shadowRadius = 3
-        editAssestsButton.layer.shadowOffset = CGSize(width: 0, height: 2)
+        editAssestsButton.layer.shadowOffset = CGSize(width: 0, height: 3)
         editAssestsButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(editAssestsButton)
         addAssestsButton.setBackgroundImage(UIImage(named: "plus_button"), for: .normal)
@@ -187,6 +191,13 @@ class ViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
+            netChangeImage.heightAnchor.constraint(equalToConstant: 15),
+            netChangeImage.widthAnchor.constraint(equalToConstant: 15),
+            netChangeImage.centerYAnchor.constraint(equalTo: netChangeLabel.centerYAnchor),
+            netChangeImage.trailingAnchor.constraint(equalTo: netChangeLabel.leadingAnchor, constant: -5)
+        ])
+        
+        NSLayoutConstraint.activate([
             assetsLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
             assetsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15)
         ])
@@ -283,6 +294,9 @@ class ViewController: UIViewController {
     }
     
     func getRoundedPercentage(amount: Double) -> String{
+        if amount < 0 {
+            return "\(round(-amount * 10)/10.0)%"
+        }
         return "\(round(amount * 10)/10.0)%"
     }
     
@@ -302,11 +316,14 @@ class ViewController: UIViewController {
         }
         netChangeLabel.text = self.getRoundedPercentage(amount: netChange)
         netChangeLabel.textColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.25)
+        netChangeImage.image = nil
         if ((round(netChange * 10)/10.0) > 0){
             netChangeLabel.textColor = UIColor(red: 142/255, green: 236/255, blue: 127/255, alpha: 1)
+            netChangeImage.image = UIImage(named: "green_arrow")
         }
         if ((round(netChange * 10)/10.0) < 0){
             netChangeLabel.textColor = UIColor(red: 255/255, green: 138/255, blue: 138/255, alpha: 1)
+            netChangeImage.image = UIImage(named: "red_arrow")
         }
         tableView.reloadData()
     }

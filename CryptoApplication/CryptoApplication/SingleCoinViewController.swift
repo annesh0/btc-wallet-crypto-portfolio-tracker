@@ -15,7 +15,8 @@ class SingleCoinViewController: UIViewController{
     var logoImage = UIImageView()
     var editButton = UIButton()
     var amountUSDLabel = UILabel()
-    var amountCoinAndChangeLabel = UILabel()
+    var amountCoinLabel = UILabel()
+    var conversionLabel = UILabel()
     var weekButton = UIButton()
     var monthButton = UIButton()
     var yearButton = UIButton()
@@ -59,11 +60,17 @@ class SingleCoinViewController: UIViewController{
         logoImage.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(logoImage)
 
-        amountCoinAndChangeLabel.font = .systemFont(ofSize: 18, weight: .bold)
-        amountCoinAndChangeLabel.textColor = .lightGray
-        amountCoinAndChangeLabel.text = "\(parentCoin!.getCurrencyForm(amount: parentCoin!.amountCoin))  \(parentCoin!.symbol)   \(parentCoin!.getRoundedPercentage(amount: parentCoin!.percentChnage))"
-        amountCoinAndChangeLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(amountCoinAndChangeLabel)
+        amountCoinLabel.font = .systemFont(ofSize: 18, weight: .bold)
+        amountCoinLabel.textColor = .gray
+        amountCoinLabel.text = "\(parentCoin!.getCurrencyForm(amount: parentCoin!.amountCoin))  \(parentCoin!.symbol)"
+        amountCoinLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(amountCoinLabel)
+        
+        conversionLabel.font = .systemFont(ofSize: 18, weight: .bold)
+        conversionLabel.textColor = .lightGray
+        conversionLabel.text = "1 \(parentCoin!.symbol) = $\(parentCoin!.getCurrencyForm(amount: parentCoin!.conversionRate))"
+        conversionLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(conversionLabel)
         
         amountUSDLabel.font = .systemFont(ofSize: 35, weight: .bold)
         amountUSDLabel.text = "$\(parentCoin!.getCurrencyForm(amount:parentCoin!.amountUSD))"
@@ -197,23 +204,27 @@ class SingleCoinViewController: UIViewController{
         ])
         
         NSLayoutConstraint.activate([
-            amountCoinAndChangeLabel.topAnchor.constraint(equalTo: amountUSDLabel.bottomAnchor, constant: 10),
-            amountCoinAndChangeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            amountCoinLabel.topAnchor.constraint(equalTo: amountUSDLabel.bottomAnchor, constant: 5),
+            amountCoinLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
+        NSLayoutConstraint.activate([
+            conversionLabel.topAnchor.constraint(equalTo: amountCoinLabel.bottomAnchor, constant: 5),
+            conversionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
         
         NSLayoutConstraint.activate([
-            weekButton.topAnchor.constraint(equalTo: amountCoinAndChangeLabel.bottomAnchor, constant: 12),
+            weekButton.topAnchor.constraint(equalTo: conversionLabel.bottomAnchor, constant: 12),
             weekButton.trailingAnchor.constraint(equalTo: monthButton.leadingAnchor, constant: -15)
         ])
         
         NSLayoutConstraint.activate([
-            monthButton.topAnchor.constraint(equalTo: amountCoinAndChangeLabel.bottomAnchor, constant: 12),
+            monthButton.topAnchor.constraint(equalTo: conversionLabel.bottomAnchor, constant: 12),
             monthButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            yearButton.topAnchor.constraint(equalTo: amountCoinAndChangeLabel.bottomAnchor, constant: 12),
+            yearButton.topAnchor.constraint(equalTo: conversionLabel.bottomAnchor, constant: 12),
             yearButton.leadingAnchor.constraint(equalTo: monthButton.trailingAnchor, constant: 15)
         ])
     }
@@ -274,7 +285,7 @@ class SingleCoinViewController: UIViewController{
     }
     
     func updateData() {
-        amountCoinAndChangeLabel.text = "\(parentCoin!.getCurrencyForm(amount: parentCoin!.amountCoin))  \(parentCoin!.symbol)   \(parentCoin!.getRoundedPercentage(amount: parentCoin!.percentChnage))"
+        amountCoinLabel.text = "\(parentCoin!.getCurrencyForm(amount: parentCoin!.amountCoin))  \(parentCoin!.symbol)"
         amountUSDLabel.text = "$\(parentCoin!.getCurrencyForm(amount:parentCoin!.amountUSD))"
     }
 }

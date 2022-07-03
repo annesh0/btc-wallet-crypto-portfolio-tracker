@@ -102,7 +102,7 @@ class EditCoinValueController: UIViewController {
         
         if fromSignleScreen{
             if let value = Double(inputField.text!){
-                if value <= 0 {
+                if value < 0 {
                     showAlert()
                 }
                 else {
@@ -122,7 +122,7 @@ class EditCoinValueController: UIViewController {
         
         else{
             if let value = Double(inputField.text!){
-                if value <= 0 {
+                if value < 0 {
                     showAlert()
                 }
                 else {
