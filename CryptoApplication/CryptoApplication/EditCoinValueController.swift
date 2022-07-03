@@ -16,6 +16,10 @@ class EditCoinValueController: UIViewController {
     var saveButton = UIButton()
     var cancelButton = UIButton()
     let gradient = CAGradientLayer()
+    
+    var fromSignleScreen = false
+    weak var parentSingleCoinScreen: SingleCoinViewController?
+    
     weak var parentCoinCell: Coin?
     weak var ParentController: EditCoinController?
     
@@ -96,17 +100,44 @@ class EditCoinValueController: UIViewController {
     
     @objc func save() {
         
-        if let value = Double(inputField.text!){
-            parentCoinCell!.amountCoin = value
-            parentCoinCell!.amountUSD = parentCoinCell!.conversionRate * parentCoinCell!.amountCoin
-            ParentController!.tableView.reloadData()
-            ParentController!.parentController!.tableView.reloadData()
-            ParentController!.parentController!.updateNetWorthAndNetChange()
-            self.navigationController?.isNavigationBarHidden = false
-            navigationController?.popViewController(animated: true)
+        if fromSignleScreen{
+            if let value = Double(inputField.text!){
+                if value <= 0 {
+                    showAlert()
+                }
+                else {
+                    parentCoinCell!.amountCoin = value
+                    parentCoinCell!.amountUSD = parentCoinCell!.conversionRate * parentCoinCell!.amountCoin
+                    parentSingleCoinScreen!.parentController!.tableView.reloadData()
+                    parentSingleCoinScreen!.parentController!.updateNetWorthAndNetChange()
+                    parentSingleCoinScreen!.updateData()
+                    self.navigationController?.isNavigationBarHidden = false
+                    navigationController?.popViewController(animated: true)
+                }
+            }
+            else{
+                showAlert()
+            }
         }
+        
         else{
-            showAlert()
+            if let value = Double(inputField.text!){
+                if value <= 0 {
+                    showAlert()
+                }
+                else {
+                    parentCoinCell!.amountCoin = value
+                    parentCoinCell!.amountUSD = parentCoinCell!.conversionRate * parentCoinCell!.amountCoin
+                    ParentController!.tableView.reloadData()
+                    ParentController!.parentController!.tableView.reloadData()
+                    ParentController!.parentController!.updateNetWorthAndNetChange()
+                    self.navigationController?.isNavigationBarHidden = false
+                    navigationController?.popViewController(animated: true)
+                }
+            }
+            else{
+                showAlert()
+            }
         }
     }
     
@@ -116,7 +147,7 @@ class EditCoinValueController: UIViewController {
     }
     
     func showAlert() {
-            let alert = UIAlertController(title: "Number Required!", message: "To continue, you must enter a number.", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Non-Negative Number Required!", message: "To continue, you must enter a valid number.", preferredStyle: .alert)
             alert.addTextField { textField in textField.placeholder = "Enter amount: "}
             alert.addAction(UIAlertAction(title: "Update", style: .default) { _ in
                 guard let newAmount = alert.textFields?[0].text, !newAmount.isEmpty else{
