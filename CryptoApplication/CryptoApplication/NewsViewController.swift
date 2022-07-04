@@ -78,7 +78,12 @@ class NewsViewController: UIViewController {
         refreshControl.attributedTitle = NSAttributedString(string: "")
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.addSubview(refreshControl)
-        getArticleData()
+        
+//        refreshControl.beginRefreshing()
+//        DispatchQueue.main.async {
+//            self.getArticleData()
+//        }
+        
         setupConstraints()
     }
 
@@ -144,6 +149,7 @@ class NewsViewController: UIViewController {
         }, finished: {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                self.refreshControl.endRefreshing()
             }
         })
     }
@@ -152,56 +158,49 @@ class NewsViewController: UIViewController {
         articles = []
         let data = articleDictionary["articles"] as! [[String:Any]]
         var limit = 20
-        if data.count < 20{
+        if data.count < limit{
             limit = data.count
         }
         var counter = 0
-        for i in 0...limit-1{
-            var canContinue = true
-            for article in articles{
-                if article.articleTitle == data[i]["title"] as! String?{
-                    canContinue = false
-                    counter += 1
-                    if limit < data.count{
-                        limit += 1
-                    }
-                }
-            }
-            if canContinue{
-                articles.append(Article())
-                articles[i - counter].articleTitle = data[i]["title"] as! String?
-                if let publishedAtString = data[i]["publishedAt"] as! String? {
-                    if let date = isoFormatter.date(from: publishedAtString){
-                        articles[i - counter].articleDate = realDate.string(from: date)
-                    }
-                }
-                let articleURL = data[i]["url"] as! String
-                articles[i - counter].url = URL(string: articleURL)
-                //let imageURL = data[i]["urlToImage"] as! String?
-                if let imageURL = data[i]["urlToImage"] {
-                    if imageURL is NSNull {
-                        
-                    } else {
-                        let data = try? Data(contentsOf: URL(string: imageURL as! String)!)
-                        if let imageData = data{
-                            articles[i - counter].articleImage = UIImage(data: imageData)
+        if limit > 0
+        {
+            for i in 0...limit-1{
+                var canContinue = true
+                for article in articles{
+                    if article.articleTitle == data[i]["title"] as! String?{
+                        canContinue = false
+                        counter += 1
+                        if limit < data.count{
+                            limit += 1
                         }
                     }
                 }
-                /*
-                if imageURL == nil {  } else{
-                    let data = try? Data(contentsOf: URL(string: imageURL!)!)
-                    if let imageData = data{
-                        articles[i - counter].articleImage = UIImage(data: imageData)
+                if canContinue{
+                    articles.append(Article())
+                    articles[i - counter].articleTitle = data[i]["title"] as! String?
+                    if let publishedAtString = data[i]["publishedAt"] as! String? {
+                        if let date = isoFormatter.date(from: publishedAtString){
+                            articles[i - counter].articleDate = realDate.string(from: date)
+                        }
                     }
+                    let articleURL = data[i]["url"] as! String
+                    articles[i - counter].url = URL(string: articleURL)
+                    if let imageURL = data[i]["urlToImage"] {
+                        if imageURL is NSNull {
+
+                        } else {
+                            let data = try? Data(contentsOf: URL(string: imageURL as! String)!)
+                            if let imageData = data{
+                                articles[i - counter].articleImage = UIImage(data: imageData)
+                            }
+                        }
+                    }
+                    let source = data[i]["source"] as! [String: String]
+                    articles[i - counter].publisher = source["name"]
                 }
-                 */
-                let source = data[i]["source"] as! [String: String]
-                articles[i - counter].publisher = source["name"]
             }
         }
     }
-
 }
 
 extension NewsViewController: UITableViewDataSource {
@@ -217,7 +216,6 @@ extension NewsViewController: UITableViewDataSource {
                 cell.selectionStyle = .none
                 return cell
         } else {
-            print("this happened")
             return UITableViewCell()
         }
     }

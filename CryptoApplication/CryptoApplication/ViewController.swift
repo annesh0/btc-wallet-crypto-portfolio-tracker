@@ -49,6 +49,7 @@ class ViewController: UIViewController {
         view.backgroundColor = .white
         
         loadedNewsScreen.loadedPortfolioScreen = self
+        loadedNewsScreen.getArticleData()
         loadedWalletScreen.loadedPortfolioScreen = self
         
         let myBackBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -165,7 +166,8 @@ class ViewController: UIViewController {
         refreshControl.attributedTitle = NSAttributedString(string: "")
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.addSubview(refreshControl)
-                
+        
+        refreshControl.beginRefreshing()
         getCoinData(finished: firstTimeLoad)
         
         setupConstraints()
@@ -336,9 +338,10 @@ class ViewController: UIViewController {
     }
     
     func firstTimeLoad(){
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.updateMyCoins()
             self.updateNetWorthAndNetChange()
+            self.refreshControl.endRefreshing()
         }
     }
     
@@ -360,9 +363,7 @@ class ViewController: UIViewController {
             self.assignValues(ratesInfo: ratesArr)
             //print(self.allCoins[0].conversionRate)
             //@todo: Call reload changes here
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            } }, finished: finished)
+            }, finished: finished)
         
         NetworkManager.getOldCoinValues { (data,error) in
             //print(data!)
