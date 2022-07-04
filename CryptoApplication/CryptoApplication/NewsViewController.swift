@@ -79,11 +79,6 @@ class NewsViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.addSubview(refreshControl)
         
-//        refreshControl.beginRefreshing()
-//        DispatchQueue.main.async {
-//            self.getArticleData()
-//        }
-        
         setupConstraints()
     }
 

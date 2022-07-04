@@ -21,7 +21,7 @@ def failure_response(message, code=404):
 def apptest():
     db.updateExchangeRates()
     db.updateNewsArticles()
-    db.updateMonthlyPriceData()
+    db.updateGraphData()
     timesUpdatedString = "The rates have been updated this many times: " + str(db.timesUpdated)
     return timesUpdatedString
 
@@ -47,16 +47,26 @@ def callsRemaining():
     call = requests.get(url, headers=headers)
     return success_response(call.json())
 
+@app.route("/weekly/<int:coin>")
+def weeklyData(coin):
+    db.updateGraphData()
+    return success_response(db.weeklyPriceResponse[coin].json())
+
 @app.route("/monthly/<int:coin>")
 def monthlyData(coin):
-    db.updateMonthlyPriceData()
+    db.updateGraphData()
     return success_response(db.monthlyPriceResponse[coin].json())
+
+@app.route("/yearly/<int:coin>")
+def yearlyData(coin):
+    db.updateGraphData()
+    return success_response(db.yearlyPriceResponse[coin].json())
 
 @app.route("/update")
 def updateAll():
     db.updateExchangeRates()
     db.updateNewsArticles()
-    db.updateMonthlyPriceData()
+    db.updateGraphData()
     outputString = "All routes have been updated"
     return outputString
 
