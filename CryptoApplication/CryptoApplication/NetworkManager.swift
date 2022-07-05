@@ -74,7 +74,7 @@ class NetworkManager {
     }
     
     static func getOldCoinValues(completion: @escaping APIResponse) {
-        let endpoint = "https://annesh-dylan-crypto-app.herokuapp.com/previousData"
+        let endpoint = "https://annesh-dylan-crypto-app.herokuapp.com/previous-data"
         AF.request(endpoint, method: .get).validate().responseData { response in
             //process response
             switch(response.result) {
@@ -92,7 +92,7 @@ class NetworkManager {
     }
     
     static func getCoinWeeklyData(completion: @escaping APIResponse, internalAssetID: Int){
-        let endpoint = "https://annesh-dylan-crypto-app.herokuapp.com/monthly/" + String((internalAssetID + 2) % 15)
+        let endpoint = "https://annesh-dylan-crypto-app.herokuapp.com/weekly/" + String(internalAssetID)
         AF.request(endpoint, method: .get).validate().responseData { response in
             switch(response.result) {
             case .success(let data):
@@ -126,7 +126,7 @@ class NetworkManager {
     }
     
     static func getCoinYearlyData(completion: @escaping APIResponse, internalAssetID: Int){
-        let endpoint = "https://annesh-dylan-crypto-app.herokuapp.com/monthly/" + String((internalAssetID + 1) % 15)
+        let endpoint = "https://annesh-dylan-crypto-app.herokuapp.com/yearly/" + String(internalAssetID)
         AF.request(endpoint, method: .get).validate().responseData { response in
             switch(response.result) {
             case .success(let data):

@@ -40,10 +40,10 @@ class NewsViewController: UIViewController {
         
         let blueColor = UIColor(red: 169/255, green: 196/255, blue: 238/255, alpha: 1)
         let midPointColor = UIColor(red: 169/255, green: 196/255, blue: 238/255, alpha: 0.99)
-        gradient1.frame = CGRect(x:0, y:0, width: 1000, height: 80)
+        gradient1.frame = CGRect(x:0, y:0, width: view.frame.width, height: 50)
         gradient1.colors = [blueColor.cgColor, midPointColor.cgColor]
         view.layer.insertSublayer(gradient1, at: 0)
-        gradient2.frame = CGRect(x:0, y:80, width: 1000, height: 120)
+        gradient2.frame = CGRect(x:0, y:50, width: view.frame.width, height: 150)
         gradient2.colors = [midPointColor.cgColor, UIColor.white.cgColor]
         view.layer.insertSublayer(gradient2, at: 0)
         
@@ -78,6 +78,9 @@ class NewsViewController: UIViewController {
         refreshControl.attributedTitle = NSAttributedString(string: "")
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.addSubview(refreshControl)
+        
+        refreshControl.beginRefreshing()
+        self.getArticleData()
         
         setupConstraints()
     }

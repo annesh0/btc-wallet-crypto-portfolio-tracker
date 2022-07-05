@@ -30,7 +30,7 @@ def getExchangeRates():
     db.updateExchangeRates()
     return success_response(db.exchangeRatesResponse.json())
 
-@app.route("/previousData")
+@app.route("/previous-data")
 def getPreviousExchangeRates():
     db.updateExchangeRates()
     return success_response(db.previousExchangeRatesResponses[0].json())

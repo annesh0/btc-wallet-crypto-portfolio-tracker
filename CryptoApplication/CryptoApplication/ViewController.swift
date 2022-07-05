@@ -49,7 +49,7 @@ class ViewController: UIViewController {
         view.backgroundColor = .white
         
         loadedNewsScreen.loadedPortfolioScreen = self
-        loadedNewsScreen.getArticleData()
+        //loadedNewsScreen.getArticleData()
         loadedWalletScreen.loadedPortfolioScreen = self
         
         let myBackBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -60,10 +60,10 @@ class ViewController: UIViewController {
         
         let blueColor = UIColor(red: 169/255, green: 196/255, blue: 238/255, alpha: 1)
         let midPointColor = UIColor(red: 169/255, green: 196/255, blue: 238/255, alpha: 0.99)
-        gradient1.frame = CGRect(x:0, y:0, width: view.frame.width, height: 80)
+        gradient1.frame = CGRect(x:0, y:0, width: view.frame.width, height: 50)
         gradient1.colors = [blueColor.cgColor, midPointColor.cgColor]
         view.layer.insertSublayer(gradient1, at: 0)
-        gradient2.frame = CGRect(x:0, y:80, width: view.frame.width, height: 120)
+        gradient2.frame = CGRect(x:0, y:50, width: view.frame.width, height: 150)
         gradient2.colors = [midPointColor.cgColor, UIColor.white.cgColor]
         view.layer.insertSublayer(gradient2, at: 0)
 
@@ -137,7 +137,8 @@ class ViewController: UIViewController {
         let tether = Coin(name:"USDTether",symbol: "USDT", internalAssetID: 5)
         tether.mainColor = UIColor(red: 38/255, green: 161/255, blue: 123/255, alpha: 1)
         let solana = Coin(name:"Solana",symbol: "SOL", internalAssetID: 6)
-        solana.mainColor = UIColor(red: 220/255, green: 31/255, blue: 255/255, alpha: 1)
+//        solana.mainColor = UIColor(red: 220/255, green: 31/255, blue: 255/255, alpha: 1)
+        solana.mainColor = UIColor(red: 120/255, green: 120/255, blue: 120/255, alpha: 1)
         let binance = Coin(name:"Binance Coin",symbol: "BNB", internalAssetID: 7)
         binance.mainColor = UIColor(red: 243/255, green: 186/255, blue: 47/255, alpha: 1)
         let usdCoin = Coin(name:"USDCoin",symbol: "USDC", internalAssetID: 8)
