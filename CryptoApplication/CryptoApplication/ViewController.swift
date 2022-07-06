@@ -40,6 +40,8 @@ class ViewController: UIViewController {
     var newsButton = UIButton()
     
     var allData: AllData?
+    
+    var firstTimeLoading = true
         
     var loadedNewsScreen = NewsViewController()
     var loadedWalletScreen = WalletViewController()
@@ -353,10 +355,13 @@ class ViewController: UIViewController {
     }
     
     func firstTimeLoad(){
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.updateMyCoins()
-            self.updateNetWorthAndNetChange()
-            self.refreshControl.endRefreshing()
+        if firstTimeLoading {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.updateMyCoins()
+                self.updateNetWorthAndNetChange()
+                self.refreshControl.endRefreshing()
+            }
+            firstTimeLoading = false
         }
     }
     
