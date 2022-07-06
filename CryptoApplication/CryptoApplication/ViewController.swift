@@ -380,7 +380,7 @@ class ViewController: UIViewController {
             //@todo: Call reload changes here
             }, finished: finished)
         
-        NetworkManager.getOldCoinValues { (data,error) in
+        NetworkManager.getOldCoinValues(completion: { (data,error) in
             //print(data!)
             var a: [String:Any] = [:]
             a = data as! [String : Any]
@@ -394,7 +394,7 @@ class ViewController: UIViewController {
 //            DispatchQueue.main.async {
 //                self.tableView.reloadData()
 //            }
-        }
+        }, finished: finished)
     }
     
     func assignValues(ratesInfo: [[String:Any]]) {

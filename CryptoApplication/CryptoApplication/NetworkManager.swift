@@ -73,7 +73,7 @@ class NetworkManager {
         }
     }
     
-    static func getOldCoinValues(completion: @escaping APIResponse) {
+    static func getOldCoinValues(completion: @escaping APIResponse, finished: @escaping ()->()) {
         let endpoint = "https://annesh-dylan-crypto-app.herokuapp.com/previous-data"
         AF.request(endpoint, method: .get).validate().responseData { response in
             //process response
@@ -82,6 +82,7 @@ class NetworkManager {
                 //let jsonDecoder = JSONDecoder()
                 if let userResponse = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) {
                     completion(userResponse, nil)
+                    finished()
                 } else {
                     print("Failed")
                 }
