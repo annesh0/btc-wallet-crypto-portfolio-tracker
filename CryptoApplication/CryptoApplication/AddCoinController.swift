@@ -79,6 +79,18 @@ extension AddCoinController: UITableViewDataSource {
             let coin = parentController!.allCoins[indexPath.row]
                 cell.configure(coin: coin)
                 cell.selectionStyle = .none
+                if !coin.isChosen{
+                    cell.alpha = 0.2
+                    for sub in cell.subviews{
+                        sub.alpha = 0.2
+                    }
+                }
+                else {
+                    cell.alpha = 1
+                    for sub in cell.subviews{
+                        sub.alpha = 1
+                    }
+                }
                 return cell
         } else {
             return UITableViewCell()

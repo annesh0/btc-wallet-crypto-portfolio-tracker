@@ -193,8 +193,12 @@ class NewsViewController: UIViewController {
                             }
                         }
                     }
-                    let source = data[i]["source"] as! [String: String]
-                    articles[i - counter].publisher = source["name"]
+                    if let source = data[i]["source"] as? [String: String] {
+                        articles[i - counter].publisher = source["name"]
+                    }
+                    else {
+                        articles[i - counter].publisher = "Unavailible"
+                    }
                 }
             }
         }

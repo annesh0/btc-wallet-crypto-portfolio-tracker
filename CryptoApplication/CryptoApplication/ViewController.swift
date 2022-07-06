@@ -98,16 +98,6 @@ class ViewController: UIViewController {
         editAssestsButton.layer.shadowOffset = CGSize(width: 0, height: 3)
         editAssestsButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(editAssestsButton)
-        addAssestsButton.setBackgroundImage(UIImage(named: "plus_button"), for: .normal)
-        addAssestsButton.addTarget(self, action: #selector(presentAddScreen), for: .touchUpInside)
-        addAssestsButton.layer.cornerRadius = 1000
-        addAssestsButton.layer.shadowColor = UIColor.black.cgColor
-        addAssestsButton.layer.masksToBounds = false
-        addAssestsButton.layer.shadowOpacity = 0.5
-        addAssestsButton.layer.shadowRadius = 3
-        addAssestsButton.layer.shadowOffset = CGSize(width: 0, height: 5)
-        addAssestsButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(addAssestsButton)
         
         walletButton.setBackgroundImage(UIImage(named: "wallet1"), for: .normal)
         walletButton.backgroundColor = .white
@@ -181,6 +171,17 @@ class ViewController: UIViewController {
         tableView.register(CoinTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
         
+        addAssestsButton.setBackgroundImage(UIImage(named: "plus_button"), for: .normal)
+        addAssestsButton.addTarget(self, action: #selector(presentAddScreen), for: .touchUpInside)
+        addAssestsButton.layer.cornerRadius = 1000
+        addAssestsButton.layer.shadowColor = UIColor.black.cgColor
+        addAssestsButton.layer.masksToBounds = false
+        addAssestsButton.layer.shadowOpacity = 0.5
+        addAssestsButton.layer.shadowRadius = 3
+        addAssestsButton.layer.shadowOffset = CGSize(width: 0, height: 5)
+        addAssestsButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(addAssestsButton)
+        
         refreshControl.attributedTitle = NSAttributedString(string: "")
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.addSubview(refreshControl)
@@ -197,7 +198,7 @@ class ViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.topAnchor.constraint(equalTo: assetsLabel.bottomAnchor, constant: 15),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -150)
+            tableView.bottomAnchor.constraint(equalTo: portfolioButton.topAnchor, constant: -15)
         ])
         
         NSLayoutConstraint.activate([
@@ -230,7 +231,7 @@ class ViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-            addAssestsButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 15),
+            addAssestsButton.bottomAnchor.constraint(equalTo: portfolioButton.topAnchor, constant: -15),
             addAssestsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             addAssestsButton.heightAnchor.constraint(equalToConstant: 60),
             addAssestsButton.widthAnchor.constraint(equalToConstant: 60)
@@ -491,10 +492,10 @@ extension ViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? CoinTableViewCell {
-                let coin = myCoins[indexPath.row]
-                cell.configure(coin: coin)
-                cell.selectionStyle = .none
-                return cell
+            let coin = myCoins[indexPath.row]
+            cell.configure(coin: coin)
+            cell.selectionStyle = .none
+            return cell
         } else {
             return UITableViewCell()
         }
