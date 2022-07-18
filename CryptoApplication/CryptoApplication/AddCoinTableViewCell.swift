@@ -10,15 +10,27 @@ import UIKit
 
 class AddCoinTableViewCell: UITableViewCell {
 
+    var addOrRemoveLabel = UILabel()
+    var symbolLabel = UILabel()
     var nameLabel = UILabel()
     var logoImage = UIImageView()
+    
+    var labelColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25)
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
                 
-        nameLabel.font = .systemFont(ofSize: 22, weight: .bold)
+        addOrRemoveLabel.font = .systemFont(ofSize: 22, weight: .bold)
+        addOrRemoveLabel.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(addOrRemoveLabel)
+        
+        nameLabel.font = .systemFont(ofSize: 20, weight: .bold)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(nameLabel)
+        
+        symbolLabel.font = .systemFont(ofSize: 20, weight: .bold)
+        symbolLabel.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(symbolLabel)
 
         logoImage.contentMode = .scaleAspectFit
         logoImage.translatesAutoresizingMaskIntoConstraints = false
@@ -29,11 +41,15 @@ class AddCoinTableViewCell: UITableViewCell {
 
     func configure(coin: Coin) {
         if coin.isChosen{
-            nameLabel.text = "Remove \(coin.name)?"
+            addOrRemoveLabel.text = "Remove"
         }
         else {
-            nameLabel.text = "Add \(coin.name)?"
+            addOrRemoveLabel.text = "Add"
         }
+        
+        symbolLabel.text = coin.symbol
+        symbolLabel.textColor = labelColor
+        nameLabel.text = coin.name
         logoImage.image = coin.logoImage
     }
 
@@ -42,9 +58,21 @@ class AddCoinTableViewCell: UITableViewCell {
         let labelHeight: CGFloat = 25
 
         NSLayoutConstraint.activate([
+            addOrRemoveLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding * 2),
+            addOrRemoveLabel.centerYAnchor.constraint(equalTo: logoImage.centerYAnchor),
+            addOrRemoveLabel.heightAnchor.constraint(equalToConstant: labelHeight)
+        ])
+        
+        NSLayoutConstraint.activate([
             nameLabel.leadingAnchor.constraint(equalTo: logoImage.trailingAnchor, constant: padding),
-            nameLabel.centerYAnchor.constraint(equalTo: logoImage.centerYAnchor),
+            nameLabel.bottomAnchor.constraint(equalTo: logoImage.centerYAnchor, constant: -4),
             nameLabel.heightAnchor.constraint(equalToConstant: labelHeight)
+        ])
+        
+        NSLayoutConstraint.activate([
+            symbolLabel.leadingAnchor.constraint(equalTo: logoImage.trailingAnchor, constant: padding),
+            symbolLabel.topAnchor.constraint(equalTo: logoImage.centerYAnchor, constant: 4),
+            symbolLabel.heightAnchor.constraint(equalToConstant: labelHeight)
         ])
         
         NSLayoutConstraint.activate([

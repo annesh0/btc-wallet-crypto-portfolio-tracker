@@ -22,7 +22,7 @@ class AddCoinController: UIViewController {
         tableView.separatorStyle = .none
         tableView.register(AddCoinTableViewCell.self, forCellReuseIdentifier: parentController!.reuseIdentifier)
         view.addSubview(tableView)
-        assetsLabel.text = "Add/Remove Assets"
+        assetsLabel.text = "Add Assets"
         assetsLabel.font = .systemFont(ofSize: 28, weight: .bold)
         assetsLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(assetsLabel)
@@ -34,7 +34,7 @@ class AddCoinController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.topAnchor.constraint(equalTo: assetsLabel.bottomAnchor, constant: 15),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50)
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
         NSLayoutConstraint.activate([

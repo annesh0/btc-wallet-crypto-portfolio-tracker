@@ -66,7 +66,22 @@ class WalletViewController: UIViewController {
         btcLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(btcLabel)
         
+        sendButton.setBackgroundImage(UIImage(named: "send1"), for: .normal)
+        sendButton.backgroundColor = .clear
+        sendButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(sendButton)
+        
+        receiveButton.setBackgroundImage(UIImage(named: "receive1"), for: .normal)
+        receiveButton.backgroundColor = .clear
+        receiveButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(receiveButton)
+        
         setupConstraints()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.viewDidLoad()
     }
 
     func setupConstraints(){
@@ -104,6 +119,20 @@ class WalletViewController: UIViewController {
         NSLayoutConstraint.activate([
             btcLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             btcLabel.topAnchor.constraint(equalTo: amountBTCLabel.bottomAnchor, constant: 10)
+        ])
+        
+        NSLayoutConstraint.activate([
+            sendButton.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.65),
+            sendButton.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -(view.frame.width * 0.05)),
+            sendButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
+            sendButton.heightAnchor.constraint(equalTo: receiveButton.widthAnchor),
+        ])
+        
+        NSLayoutConstraint.activate([
+            receiveButton.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.65),
+            receiveButton.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: (view.frame.width * 0.05)),
+            receiveButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
+            receiveButton.heightAnchor.constraint(equalTo: receiveButton.widthAnchor),
         ])
         
     }
