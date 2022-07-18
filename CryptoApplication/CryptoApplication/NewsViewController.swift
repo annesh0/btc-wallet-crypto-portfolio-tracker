@@ -80,7 +80,7 @@ class NewsViewController: UIViewController {
         tableView.addSubview(refreshControl)
         
         refreshControl.beginRefreshing()
-        self.getArticleData()
+        //self.getArticleData()
         
         setupConstraints()
     }

@@ -187,7 +187,8 @@ class ViewController: UIViewController {
         tableView.addSubview(refreshControl)
         
         refreshControl.beginRefreshing()
-        getCoinData(finished: firstTimeLoad)
+        //getCoinData(finished: firstTimeLoad)
+        firstTimeLoad()
         
         setupConstraints()
     }

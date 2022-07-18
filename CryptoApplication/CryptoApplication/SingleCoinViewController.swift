@@ -39,11 +39,6 @@ class SingleCoinViewController: UIViewController{
         editButton.setTitleColor(.white, for: .normal)
         editButton.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.35)
         editButton.layer.cornerRadius = 13
-//        editButton.layer.shadowColor = UIColor.black.cgColor
-//        editButton.layer.masksToBounds = false
-//        editButton.layer.shadowOpacity = 0.5
-//        editButton.layer.shadowRadius = 3
-//        editButton.layer.shadowOffset = CGSize(width: 0, height: 2)
         editButton.translatesAutoresizingMaskIntoConstraints = false
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: editButton)
         
@@ -101,9 +96,9 @@ class SingleCoinViewController: UIViewController{
         yearButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(yearButton)
         
-        getWeeklyData()
-        getMonthlyData()
-        getYearlyData()
+//        getWeeklyData()
+//        getMonthlyData()
+//        getYearlyData()
         
         setupConstraints()
     }
