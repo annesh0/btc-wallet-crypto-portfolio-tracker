@@ -17,7 +17,10 @@ class WalletViewController: UIViewController {
     var amountUSDLabel = UILabel()
     var amountBTCLabel = UILabel()
     var btcLabel = UILabel()
-        
+    
+    var sendButton = UIButton()
+    var receiveButton = UIButton()
+    
     var alreadyLoaded = false
     var loadedPortfolioScreen: ViewController?
     
@@ -25,24 +28,24 @@ class WalletViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 169/255, green: 196/255, blue: 238/255, alpha: 1)
         walletButton.setBackgroundImage(UIImage(named: "wallet3"), for: .normal)
-        walletButton.backgroundColor = .white
+        walletButton.backgroundColor = .clear
         walletButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(walletButton)
         
         portfolioButton.setBackgroundImage(UIImage(named: "portfolio3"), for: .normal)
-        portfolioButton.backgroundColor = .white
+        portfolioButton.backgroundColor = .clear
         portfolioButton.translatesAutoresizingMaskIntoConstraints = false
         portfolioButton.addTarget(self, action: #selector(portfolioButtonPress), for: .touchUpInside)
         view.addSubview(portfolioButton)
         
         newsButton.setBackgroundImage(UIImage(named:"news3"), for: .normal)
-        newsButton.backgroundColor = .white
+        newsButton.backgroundColor = .clear
         newsButton.translatesAutoresizingMaskIntoConstraints = false
         newsButton.addTarget(self, action: #selector(newsButtonPress), for: .touchUpInside)
         view.addSubview(newsButton)
         view.addSubview(newsButton)
         
-        var amountBTC = round(loadedPortfolioScreen!.allCoins[0].amountCoin * 10000) / 10000
+        var amountBTC = round(loadedPortfolioScreen!.allCoins[0].amountCoin * 1000000) / 1000000
         var amountUSD = loadedPortfolioScreen!.allCoins[0].amountUSD
         
         amountUSDLabel.text = "USD \(loadedPortfolioScreen!.getCurrencyForm(amount: amountUSD))"
