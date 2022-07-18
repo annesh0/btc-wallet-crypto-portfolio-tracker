@@ -14,41 +14,54 @@ class WalletViewController: UIViewController {
     var portfolioButton = UIButton()
     var newsButton = UIButton()
     
-    var testButton = UIButton()
-    
+    var amountUSDLabel = UILabel()
+    var amountBTCLabel = UILabel()
+    var btcLabel = UILabel()
+        
     var alreadyLoaded = false
     var loadedPortfolioScreen: ViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Wallet"
-        view.backgroundColor = .white
-        walletButton.setBackgroundImage(UIImage(named: "wallet2"), for: .normal)
+        view.backgroundColor = UIColor(red: 169/255, green: 196/255, blue: 238/255, alpha: 1)
+        walletButton.setBackgroundImage(UIImage(named: "wallet3"), for: .normal)
         walletButton.backgroundColor = .white
         walletButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(walletButton)
         
-        portfolioButton.setBackgroundImage(UIImage(named: "portfolio1"), for: .normal)
+        portfolioButton.setBackgroundImage(UIImage(named: "portfolio3"), for: .normal)
         portfolioButton.backgroundColor = .white
         portfolioButton.translatesAutoresizingMaskIntoConstraints = false
         portfolioButton.addTarget(self, action: #selector(portfolioButtonPress), for: .touchUpInside)
         view.addSubview(portfolioButton)
         
-        newsButton.setBackgroundImage(UIImage(named:"news1"), for: .normal)
+        newsButton.setBackgroundImage(UIImage(named:"news3"), for: .normal)
         newsButton.backgroundColor = .white
         newsButton.translatesAutoresizingMaskIntoConstraints = false
         newsButton.addTarget(self, action: #selector(newsButtonPress), for: .touchUpInside)
         view.addSubview(newsButton)
         view.addSubview(newsButton)
-        testButton.backgroundColor = .systemGray
-        testButton.setTitle(" test ", for: .normal)
-        testButton.setTitleColor(.white, for: .normal)
-        testButton.layer.borderColor = UIColor.lightGray.cgColor
-        testButton.layer.borderWidth = 0.5
-        testButton.layer.cornerRadius = 15
-        testButton.addTarget(self, action: #selector(testButtonPress), for: .touchUpInside)
-        testButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(testButton)
+        
+        var amountBTC = round(loadedPortfolioScreen!.allCoins[0].amountCoin * 10000) / 10000
+        var amountUSD = loadedPortfolioScreen!.allCoins[0].amountUSD
+        
+        amountUSDLabel.text = "USD \(loadedPortfolioScreen!.getCurrencyForm(amount: amountUSD))"
+        amountUSDLabel.textColor = UIColor(red: 190/255, green: 216/255, blue: 255/255, alpha: 1)
+        amountUSDLabel.font = .systemFont(ofSize: 18, weight: .bold)
+        amountUSDLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(amountUSDLabel)
+        
+        amountBTCLabel.text = String(amountBTC)
+        amountBTCLabel.textColor = .white
+        amountBTCLabel.font = .systemFont(ofSize: 40, weight: .bold)
+        amountBTCLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(amountBTCLabel)
+        
+        btcLabel.text = "BTC"
+        btcLabel.textColor = UIColor(red: 190/255, green: 216/255, blue: 255/255, alpha: 1)
+        btcLabel.font = .systemFont(ofSize: 40, weight: .bold)
+        btcLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(btcLabel)
         
         setupConstraints()
     }
@@ -76,9 +89,20 @@ class WalletViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-            testButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            testButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            amountUSDLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            amountUSDLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.35)
         ])
+        
+        NSLayoutConstraint.activate([
+            amountBTCLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            amountBTCLabel.topAnchor.constraint(equalTo: amountUSDLabel.bottomAnchor, constant: 10)
+        ])
+        
+        NSLayoutConstraint.activate([
+            btcLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            btcLabel.topAnchor.constraint(equalTo: amountBTCLabel.bottomAnchor, constant: 10)
+        ])
+        
     }
     
     override var prefersHomeIndicatorAutoHidden: Bool {
@@ -93,7 +117,4 @@ class WalletViewController: UIViewController {
         self.view.window?.rootViewController = UINavigationController(rootViewController: self.loadedPortfolioScreen!.loadedNewsScreen)
     }
     
-    @objc func testButtonPress(){
-        self.testButton.backgroundColor = .systemBlue
-    }
 }
