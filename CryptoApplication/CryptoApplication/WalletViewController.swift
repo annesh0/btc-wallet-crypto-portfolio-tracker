@@ -69,11 +69,13 @@ class WalletViewController: UIViewController {
         sendButton.setBackgroundImage(UIImage(named: "send1"), for: .normal)
         sendButton.backgroundColor = .clear
         sendButton.translatesAutoresizingMaskIntoConstraints = false
+        sendButton.addTarget(self, action: #selector(sendButtonPress), for: .touchUpInside)
         view.addSubview(sendButton)
         
         receiveButton.setBackgroundImage(UIImage(named: "receive1"), for: .normal)
         receiveButton.backgroundColor = .clear
         receiveButton.translatesAutoresizingMaskIntoConstraints = false
+        receiveButton.addTarget(self, action: #selector(receiveButtonPress), for: .touchUpInside)
         view.addSubview(receiveButton)
         
         setupConstraints()
@@ -125,14 +127,14 @@ class WalletViewController: UIViewController {
             sendButton.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.65),
             sendButton.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -(view.frame.width * 0.05)),
             sendButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
-            sendButton.heightAnchor.constraint(equalTo: receiveButton.widthAnchor),
+            sendButton.heightAnchor.constraint(equalTo: receiveButton.widthAnchor, multiplier: 216/199),
         ])
         
         NSLayoutConstraint.activate([
             receiveButton.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.65),
             receiveButton.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: (view.frame.width * 0.05)),
             receiveButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
-            receiveButton.heightAnchor.constraint(equalTo: receiveButton.widthAnchor),
+            receiveButton.heightAnchor.constraint(equalTo: receiveButton.widthAnchor, multiplier: 216/199),
         ])
         
     }
@@ -149,4 +151,15 @@ class WalletViewController: UIViewController {
         self.view.window?.rootViewController = UINavigationController(rootViewController: self.loadedPortfolioScreen!.loadedNewsScreen)
     }
     
+    @objc func sendButtonPress(){
+        let presenter = SendContoller()
+        presenter.parentController = self
+        present(presenter, animated: true, completion: nil)
+    }
+    
+    @objc func receiveButtonPress(){
+        let presenter = ReceiveController()
+        presenter.parentController = self
+        present(presenter, animated: true, completion: nil)
+    }
 }

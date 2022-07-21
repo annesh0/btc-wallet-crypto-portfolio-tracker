@@ -36,6 +36,8 @@
 		FCDE9CA2285C476100EC8778 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDE9CA1285C476100EC8778 /* WalletViewController.swift */; };
 		FCDE9CA4285C655800EC8778 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDE9CA3285C655800EC8778 /* Article.swift */; };
 		FCDE9CA6285C65C700EC8778 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDE9CA5285C65C700EC8778 /* ArticleTableViewCell.swift */; };
+		FCDE9CB92889009F00EC8778 /* SendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDE9CB82889009F00EC8778 /* SendController.swift */; };
+		FCDE9CBB288900DC00EC8778 /* ReceiveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDE9CBA288900DC00EC8778 /* ReceiveController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +95,8 @@
 		FCDE9CA1285C476100EC8778 /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		FCDE9CA3285C655800EC8778 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		FCDE9CA5285C65C700EC8778 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
+		FCDE9CB82889009F00EC8778 /* SendController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendController.swift; sourceTree = "<group>"; };
+		FCDE9CBA288900DC00EC8778 /* ReceiveController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveController.swift; sourceTree = "<group>"; };
 		FEC83EB9EA91B6F3644B56B1 /* Pods_CryptoApplication_CryptoApplicationUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoApplication_CryptoApplicationUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -195,6 +199,8 @@
 				B80FF2342851420A0041D4AF /* CoinTableViewCell.swift */,
 				B80FF236285142220041D4AF /* AddCoinTableViewCell.swift */,
 				FCDE9CA5285C65C700EC8778 /* ArticleTableViewCell.swift */,
+				FCDE9CB82889009F00EC8778 /* SendController.swift */,
+				FCDE9CBA288900DC00EC8778 /* ReceiveController.swift */,
 				B80FF2382851F0C10041D4AF /* Json.swift */,
 			);
 			path = CryptoApplication;
@@ -464,6 +470,7 @@
 				FCDE9CA4285C655800EC8778 /* Article.swift in Sources */,
 				B8A4CEA6284F03F7005BF392 /* NetworkManager.swift in Sources */,
 				B8380D66283C738D00C45FA6 /* ViewController.swift in Sources */,
+				FCDE9CB92889009F00EC8778 /* SendController.swift in Sources */,
 				FCDE9CA2285C476100EC8778 /* WalletViewController.swift in Sources */,
 				FCDE9CA0285C473900EC8778 /* NewsViewController.swift in Sources */,
 				B80FF231285141D90041D4AF /* Coin.swift in Sources */,
@@ -475,6 +482,7 @@
 				B812A27C284DAA2B004751E8 /* EditorController.swift in Sources */,
 				B80FF2392851F0C10041D4AF /* Json.swift in Sources */,
 				B8380D64283C738D00C45FA6 /* SceneDelegate.swift in Sources */,
+				FCDE9CBB288900DC00EC8778 /* ReceiveController.swift in Sources */,
 				B80FF22F285141AB0041D4AF /* SingleCoinViewController.swift in Sources */,
 				FC32832B2858D33D003B23DA /* CodableCoin.swift in Sources */,
 				B812A27E284DAECD004751E8 /* ProfileController.swift in Sources */,
