@@ -14,6 +14,8 @@ class WalletViewController: UIViewController {
     var portfolioButton = UIButton()
     var newsButton = UIButton()
     
+    var bitcoinLogo = UIImageView()
+    
     var amountUSDLabel = UILabel()
     var amountBTCLabel = UILabel()
     var btcLabel = UILabel()
@@ -44,6 +46,11 @@ class WalletViewController: UIViewController {
         newsButton.addTarget(self, action: #selector(newsButtonPress), for: .touchUpInside)
         view.addSubview(newsButton)
         view.addSubview(newsButton)
+        
+        bitcoinLogo.image = UIImage(named: "bitcoinlogo")
+        bitcoinLogo.contentMode = .scaleAspectFit
+        bitcoinLogo.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bitcoinLogo)
         
         var amountBTC = round(loadedPortfolioScreen!.allCoins[0].amountCoin * 1000000) / 1000000
         var amountUSD = loadedPortfolioScreen!.allCoins[0].amountUSD
@@ -109,8 +116,16 @@ class WalletViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
+            bitcoinLogo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            bitcoinLogo.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height/11),
+            bitcoinLogo.heightAnchor.constraint(equalToConstant: view.frame.height * 0.22),
+            bitcoinLogo.widthAnchor.constraint(equalToConstant: view.frame.height * 0.22)
+
+        ])
+        
+        NSLayoutConstraint.activate([
             amountUSDLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            amountUSDLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.35)
+            amountUSDLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.38)
         ])
         
         NSLayoutConstraint.activate([
