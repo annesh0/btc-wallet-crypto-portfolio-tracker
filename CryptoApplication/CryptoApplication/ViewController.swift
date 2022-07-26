@@ -187,7 +187,7 @@ class ViewController: UIViewController {
         tableView.addSubview(refreshControl)
         
         refreshControl.beginRefreshing()
-        //getCoinData(finished: firstTimeLoad)
+        getCoinData(finished: firstTimeLoad)
         firstTimeLoad()
         
         setupConstraints()
@@ -381,7 +381,7 @@ class ViewController: UIViewController {
             a = data as! [String : Any]
             //print(a["asset_id_base"]!)
             var ratesArr: [[String:Any]] = []
-            ratesArr = a["rates"] as! [[String : Any]]
+            ratesArr = a["rates"] as? [[String : Any]] ?? []
             //print(ratesArr[0]["asset_id_quote"]!)
             self.assignValues(ratesInfo: ratesArr)
             //print(self.allCoins[0].conversionRate)
@@ -394,7 +394,7 @@ class ViewController: UIViewController {
             a = data as! [String : Any]
             //print(a["asset_id_base"]!)
             var ratesArr: [[String:Any]] = []
-            ratesArr = a["rates"] as! [[String : Any]]
+            ratesArr = a["rates"] as? [[String : Any]] ?? []
             //print(ratesArr[0]["asset_id_quote"]!)
             self.assignOldValues(ratesInfo: ratesArr)
             //print(self.allCoins[0].conversionRate)
@@ -407,37 +407,67 @@ class ViewController: UIViewController {
     
     func assignValues(ratesInfo: [[String:Any]]) {
         for rateInfo in ratesInfo {
-            switch rateInfo["asset_id_quote"] as! String {
+            switch rateInfo["asset_id_quote"] as? String {
             case self.allCoins[0].symbol:
-                self.allCoins[0].conversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[0].conversionRate = rate
+                }
             case self.allCoins[1].symbol:
-                self.allCoins[1].conversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[1].conversionRate = rate
+                }
             case self.allCoins[2].symbol:
-                self.allCoins[2].conversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[2].conversionRate = rate
+                }
             case self.allCoins[3].symbol:
-                self.allCoins[3].conversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[3].conversionRate = rate
+                }
             case self.allCoins[4].symbol:
-                self.allCoins[4].conversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[4].conversionRate = rate
+                }
             case self.allCoins[5].symbol:
-                self.allCoins[5].conversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[5].conversionRate = rate
+                }
             case self.allCoins[6].symbol:
-                self.allCoins[6].conversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[6].conversionRate = rate
+                }
             case self.allCoins[7].symbol:
-                self.allCoins[7].conversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[7].conversionRate = rate
+                }
             case self.allCoins[8].symbol:
-                self.allCoins[8].conversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[8].conversionRate = rate
+                }
             case self.allCoins[9].symbol:
-                self.allCoins[9].conversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[9].conversionRate = rate
+                }
             case self.allCoins[10].symbol:
-                self.allCoins[10].conversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[10].conversionRate = rate
+                }
             case self.allCoins[11].symbol:
-                self.allCoins[11].conversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[11].conversionRate = rate
+                }
             case self.allCoins[12].symbol:
-                self.allCoins[12].conversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[12].conversionRate = rate
+                }
             case self.allCoins[13].symbol:
-                self.allCoins[13].conversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[13].conversionRate = rate
+                }
             case self.allCoins[14].symbol:
-                self.allCoins[14].conversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[14].conversionRate = rate
+                }
             default:
                 continue
             }
@@ -448,35 +478,65 @@ class ViewController: UIViewController {
         for rateInfo in ratesInfo {
             switch rateInfo["asset_id_quote"] as! String {
             case self.allCoins[0].symbol:
-                self.allCoins[0].previousConversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[0].previousConversionRate = rate
+                }
             case self.allCoins[1].symbol:
-                self.allCoins[1].previousConversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[1].previousConversionRate = rate
+                }
             case self.allCoins[2].symbol:
-                self.allCoins[2].previousConversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[2].previousConversionRate = rate
+                }
             case self.allCoins[3].symbol:
-                self.allCoins[3].previousConversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[3].previousConversionRate = rate
+                }
             case self.allCoins[4].symbol:
-                self.allCoins[4].previousConversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[4].previousConversionRate = rate
+                }
             case self.allCoins[5].symbol:
-                self.allCoins[5].previousConversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[5].previousConversionRate = rate
+                }
             case self.allCoins[6].symbol:
-                self.allCoins[6].previousConversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[6].previousConversionRate = rate
+                }
             case self.allCoins[7].symbol:
-                self.allCoins[7].previousConversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[7].previousConversionRate = rate
+                }
             case self.allCoins[8].symbol:
-                self.allCoins[8].previousConversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[8].previousConversionRate = rate
+                }
             case self.allCoins[9].symbol:
-                self.allCoins[9].previousConversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[9].previousConversionRate = rate
+                }
             case self.allCoins[10].symbol:
-                self.allCoins[10].previousConversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[10].previousConversionRate = rate
+                }
             case self.allCoins[11].symbol:
-                self.allCoins[11].previousConversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[11].previousConversionRate = rate
+                }
             case self.allCoins[12].symbol:
-                self.allCoins[12].previousConversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[12].previousConversionRate = rate
+                }
             case self.allCoins[13].symbol:
-                self.allCoins[13].previousConversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[13].previousConversionRate = rate
+                }
             case self.allCoins[14].symbol:
-                self.allCoins[14].previousConversionRate = rateInfo["rate"] as! Double
+                if let rate = rateInfo["rate"] as? Double {
+                    self.allCoins[14].previousConversionRate = rate
+                }
             default:
                 continue
             }

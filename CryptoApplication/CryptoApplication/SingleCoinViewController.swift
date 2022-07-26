@@ -82,8 +82,8 @@ class SingleCoinViewController: UIViewController{
         
         monthButton.setTitle("   1M   ", for: .normal)
         monthButton.addTarget(self, action: #selector(buttonPress2), for: .touchUpInside)
-        monthButton.setTitleColor(.darkGray, for: .normal)
-        monthButton.backgroundColor = .white
+        monthButton.setTitleColor(.white, for: .normal)
+        monthButton.backgroundColor = parentCoin!.mainColor
         monthButton.layer.cornerRadius = 15
         monthButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(monthButton)
@@ -96,9 +96,9 @@ class SingleCoinViewController: UIViewController{
         yearButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(yearButton)
         
-//        getWeeklyData()
-//        getMonthlyData()
-//        getYearlyData()
+        getWeeklyData()
+        getMonthlyData()
+        getYearlyData()
         
         setupConstraints()
     }

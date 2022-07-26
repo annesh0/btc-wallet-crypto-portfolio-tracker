@@ -39,7 +39,7 @@ class db:
 
     def updateNewsArticles():
         if db.cryptoArticlesTimeBlock <= time.time() - 1799:
-            db.cryptoArticlesResponse = requests.get("https://newsapi.org/v2/top-headlines?q=crypto&apiKey=06871c6b394f4c9198bfc4629a14b9ff")
+            db.cryptoArticlesResponse = requests.get("https://newsapi.org/v2/everything?q=crypto&apiKey=06871c6b394f4c9198bfc4629a14b9ff")
             db.cryptoArticlesTimeBlock = time.time()
 
     def updateGraphData():
@@ -67,31 +67,44 @@ class db:
             oneWeekAgo = datetime.utcfromtimestamp(int(db.graphTimeBlock- 604800)).isoformat() + ""
             oneMonthAgo = datetime.utcfromtimestamp(int(db.graphTimeBlock - 2678400)).isoformat() + ""
             oneYearAgo = datetime.utcfromtimestamp(int(db.graphTimeBlock - 31536000)).isoformat() + ""
+            
             time.sleep(10)
 
             #BTC
             db.weeklyPriceResponse[0] = requests.get("https://rest.coinapi.io/v1/exchangerate/BTC/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=2HRS", params= {"time_start" : oneWeekAgo, "time_end" : today})
             db.monthlyPriceResponse[0] = requests.get("https://rest.coinapi.io/v1/exchangerate/BTC/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS", params= {"time_start" : oneMonthAgo, "time_end" : today})
             db.yearlyPriceResponse[0] = requests.get("https://rest.coinapi.io/v1/exchangerate/BTC/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=5DAY", params= {"time_start" : oneYearAgo, "time_end" : today})
+            
+            time.sleep(10)
+
             #DOGE
             db.weeklyPriceResponse[1] = requests.get("https://rest.coinapi.io/v1/exchangerate/DOGE/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=2HRS", params= {"time_start" : oneWeekAgo, "time_end" : today})
             db.monthlyPriceResponse[1] = requests.get("https://rest.coinapi.io/v1/exchangerate/DOGE/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS", params= {"time_start" : oneMonthAgo, "time_end" : today})
             db.yearlyPriceResponse[1] = requests.get("https://rest.coinapi.io/v1/exchangerate/DOGE/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=5DAY", params= {"time_start" : oneYearAgo, "time_end" : today})
+                        
+            time.sleep(10)
+
             #ETH
             db.weeklyPriceResponse[2] = requests.get("https://rest.coinapi.io/v1/exchangerate/ETH/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=2HRS", params= {"time_start" : oneWeekAgo, "time_end" : today})
             db.monthlyPriceResponse[2] = requests.get("https://rest.coinapi.io/v1/exchangerate/ETH/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS", params= {"time_start" : oneMonthAgo, "time_end" : today})
             db.yearlyPriceResponse[2] = requests.get("https://rest.coinapi.io/v1/exchangerate/ETH/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=5DAY", params= {"time_start" : oneYearAgo, "time_end" : today})
-
+            
             time.sleep(10)
 
             #LTC
             db.weeklyPriceResponse[3] = requests.get("https://rest.coinapi.io/v1/exchangerate/LTC/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=2HRS", params= {"time_start" : oneWeekAgo, "time_end" : today})
             db.monthlyPriceResponse[3] = requests.get("https://rest.coinapi.io/v1/exchangerate/LTC/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS", params= {"time_start" : oneMonthAgo, "time_end" : today})
             db.yearlyPriceResponse[3] = requests.get("https://rest.coinapi.io/v1/exchangerate/LTC/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=5DAY", params= {"time_start" : oneYearAgo, "time_end" : today})
+                        
+            time.sleep(10)
+
             #ADA
             db.weeklyPriceResponse[4] = requests.get("https://rest.coinapi.io/v1/exchangerate/ADA/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=2HRS", params= {"time_start" : oneWeekAgo, "time_end" : today})
             db.monthlyPriceResponse[4] = requests.get("https://rest.coinapi.io/v1/exchangerate/ADA/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS", params= {"time_start" : oneMonthAgo, "time_end" : today})
             db.yearlyPriceResponse[4] = requests.get("https://rest.coinapi.io/v1/exchangerate/ADA/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=5DAY", params= {"time_start" : oneYearAgo, "time_end" : today})
+                        
+            time.sleep(10)
+
             #USDT
             db.weeklyPriceResponse[5] = requests.get("https://rest.coinapi.io/v1/exchangerate/USDT/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=2HRS", params= {"time_start" : oneWeekAgo, "time_end" : today})
             db.monthlyPriceResponse[5] = requests.get("https://rest.coinapi.io/v1/exchangerate/USDT/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS", params= {"time_start" : oneMonthAgo, "time_end" : today})
@@ -103,10 +116,16 @@ class db:
             db.weeklyPriceResponse[6] = requests.get("https://rest.coinapi.io/v1/exchangerate/SOL/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=2HRS", params= {"time_start" : oneWeekAgo, "time_end" : today})
             db.monthlyPriceResponse[6] = requests.get("https://rest.coinapi.io/v1/exchangerate/SOL/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS", params= {"time_start" : oneMonthAgo, "time_end" : today})
             db.yearlyPriceResponse[6] = requests.get("https://rest.coinapi.io/v1/exchangerate/SOL/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=5DAY", params= {"time_start" : oneYearAgo, "time_end" : today})
+                        
+            time.sleep(10)
+
             #BNB
             db.weeklyPriceResponse[7] = requests.get("https://rest.coinapi.io/v1/exchangerate/BNB/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=2HRS", params= {"time_start" : oneWeekAgo, "time_end" : today})
             db.monthlyPriceResponse[7] = requests.get("https://rest.coinapi.io/v1/exchangerate/BNB/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS", params= {"time_start" : oneMonthAgo, "time_end" : today})
             db.yearlyPriceResponse[7] = requests.get("https://rest.coinapi.io/v1/exchangerate/BNB/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=5DAY", params= {"time_start" : oneYearAgo, "time_end" : today})
+                        
+            time.sleep(10)
+
             #USDC
             db.weeklyPriceResponse[8] = requests.get("https://rest.coinapi.io/v1/exchangerate/USDC/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=2HRS", params= {"time_start" : oneWeekAgo, "time_end" : today})
             db.monthlyPriceResponse[8] = requests.get("https://rest.coinapi.io/v1/exchangerate/USDC/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS", params= {"time_start" : oneMonthAgo, "time_end" : today})  
@@ -118,10 +137,16 @@ class db:
             db.weeklyPriceResponse[9] = requests.get("https://rest.coinapi.io/v1/exchangerate/ALGO/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=2HRS", params= {"time_start" : oneWeekAgo, "time_end" : today})
             db.monthlyPriceResponse[9] = requests.get("https://rest.coinapi.io/v1/exchangerate/ALGO/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS", params= {"time_start" : oneMonthAgo, "time_end" : today})
             db.yearlyPriceResponse[9] = requests.get("https://rest.coinapi.io/v1/exchangerate/ALGO/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=5DAY", params= {"time_start" : oneYearAgo, "time_end" : today})
+                        
+            time.sleep(10)
+
             #DOT
             db.weeklyPriceResponse[10] = requests.get("https://rest.coinapi.io/v1/exchangerate/DOT/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=2HRS", params= {"time_start" : oneWeekAgo, "time_end" : today})
             db.monthlyPriceResponse[10] = requests.get("https://rest.coinapi.io/v1/exchangerate/DOT/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS", params= {"time_start" : oneMonthAgo, "time_end" : today})
             db.yearlyPriceResponse[10] = requests.get("https://rest.coinapi.io/v1/exchangerate/DOT/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=5DAY", params= {"time_start" : oneYearAgo, "time_end" : today})
+                        
+            time.sleep(10)
+
             #BCH
             db.weeklyPriceResponse[11] = requests.get("https://rest.coinapi.io/v1/exchangerate/BCH/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=2HRS", params= {"time_start" : oneWeekAgo, "time_end" : today})
             db.monthlyPriceResponse[11] = requests.get("https://rest.coinapi.io/v1/exchangerate/BCH/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS", params= {"time_start" : oneMonthAgo, "time_end" : today}) 
@@ -133,10 +158,16 @@ class db:
             db.weeklyPriceResponse[12] = requests.get("https://rest.coinapi.io/v1/exchangerate/XMR/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=2HRS", params= {"time_start" : oneWeekAgo, "time_end" : today})
             db.monthlyPriceResponse[12] = requests.get("https://rest.coinapi.io/v1/exchangerate/XMR/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS", params= {"time_start" : oneMonthAgo, "time_end" : today})
             db.yearlyPriceResponse[12] = requests.get("https://rest.coinapi.io/v1/exchangerate/XMR/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=5DAY", params= {"time_start" : oneYearAgo, "time_end" : today})
+                        
+            time.sleep(10)
+
             #UNI
             db.weeklyPriceResponse[13] = requests.get("https://rest.coinapi.io/v1/exchangerate/UNI/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=2HRS", params= {"time_start" : oneWeekAgo, "time_end" : today})
             db.monthlyPriceResponse[13] = requests.get("https://rest.coinapi.io/v1/exchangerate/UNI/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS", params= {"time_start" : oneMonthAgo, "time_end" : today})
             db.yearlyPriceResponse[13] = requests.get("https://rest.coinapi.io/v1/exchangerate/UNI/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=5DAY", params= {"time_start" : oneYearAgo, "time_end" : today})
+                        
+            time.sleep(10)
+
             #SHIB
             db.weeklyPriceResponse[14] = requests.get("https://rest.coinapi.io/v1/exchangerate/SHIB/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=2HRS", params= {"time_start" : oneWeekAgo, "time_end" : today})
             db.monthlyPriceResponse[14] = requests.get("https://rest.coinapi.io/v1/exchangerate/SHIB/USD/history?apikey=2538BC37-2458-49AC-82A8-772B98788B29&period_id=12HRS", params= {"time_start" : oneMonthAgo, "time_end" : today}) 
