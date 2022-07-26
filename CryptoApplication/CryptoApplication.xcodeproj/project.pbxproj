@@ -18,6 +18,7 @@
 		B80FF237285142220041D4AF /* AddCoinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80FF236285142220041D4AF /* AddCoinTableViewCell.swift */; };
 		B80FF2392851F0C10041D4AF /* Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80FF2382851F0C10041D4AF /* Json.swift */; };
 		B80FF23C285ECA650041D4AF /* StockCharts in Frameworks */ = {isa = PBXBuildFile; productRef = B80FF23B285ECA650041D4AF /* StockCharts */; };
+		B80FF23E288FBCFA0041D4AF /* ignored.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80FF23D288FBCFA0041D4AF /* ignored.swift */; };
 		B812A27C284DAA2B004751E8 /* EditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812A27B284DAA2B004751E8 /* EditorController.swift */; };
 		B812A27E284DAECD004751E8 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812A27D284DAECD004751E8 /* ProfileController.swift */; };
 		B8380D62283C738D00C45FA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8380D61283C738D00C45FA6 /* AppDelegate.swift */; };
@@ -72,6 +73,7 @@
 		B80FF2342851420A0041D4AF /* CoinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTableViewCell.swift; sourceTree = "<group>"; };
 		B80FF236285142220041D4AF /* AddCoinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoinTableViewCell.swift; sourceTree = "<group>"; };
 		B80FF2382851F0C10041D4AF /* Json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Json.swift; sourceTree = "<group>"; };
+		B80FF23D288FBCFA0041D4AF /* ignored.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ignored.swift; sourceTree = "<group>"; };
 		B812A27B284DAA2B004751E8 /* EditorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorController.swift; sourceTree = "<group>"; };
 		B812A27D284DAECD004751E8 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		B8380D5E283C738D00C45FA6 /* CryptoApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -202,6 +204,7 @@
 				FCDE9CB82889009F00EC8778 /* SendController.swift */,
 				FCDE9CBA288900DC00EC8778 /* ReceiveController.swift */,
 				B80FF2382851F0C10041D4AF /* Json.swift */,
+				B80FF23D288FBCFA0041D4AF /* ignored.swift */,
 			);
 			path = CryptoApplication;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				B80FF22B285141810041D4AF /* EditCoinValueController.swift in Sources */,
 				B80FF22D285141960041D4AF /* AddCoinController.swift in Sources */,
 				B812A27C284DAA2B004751E8 /* EditorController.swift in Sources */,
+				B80FF23E288FBCFA0041D4AF /* ignored.swift in Sources */,
 				B80FF2392851F0C10041D4AF /* Json.swift in Sources */,
 				B8380D64283C738D00C45FA6 /* SceneDelegate.swift in Sources */,
 				FCDE9CBB288900DC00EC8778 /* ReceiveController.swift in Sources */,
