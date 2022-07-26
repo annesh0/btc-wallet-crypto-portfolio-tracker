@@ -8,7 +8,6 @@
 
 import Alamofire
 import Foundation
-import ignored
 
 class NetworkManager {
     /*
@@ -178,8 +177,6 @@ class NetworkManager {
     }
     
     static func sendFromWallet(completion: @escaping APIResponse) {
-        passManager = Pass.init()
-        passManager.guid
         
         //todo
     }
