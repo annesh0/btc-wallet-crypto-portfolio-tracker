@@ -96,7 +96,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "176"
             endingLineNumber = "176"
-            landmarkName = "getMonthlyData()"
+            landmarkName = "getYearlyData()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

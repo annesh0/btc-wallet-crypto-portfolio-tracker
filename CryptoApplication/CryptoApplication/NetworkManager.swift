@@ -8,6 +8,7 @@
 
 import Alamofire
 import Foundation
+import ignored
 
 class NetworkManager {
     /*
@@ -141,6 +142,46 @@ class NetworkManager {
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    static func getWalletBalance(completion: @escaping APIResponse) {
+        let endpoint = "http://localhost:3000/merchant/" + Pass.init().guid + "/balance?password=" + Pass.init().walletPass
+        AF.request(endpoint, method: .get).validate().responseData { response in
+            switch(response.result) {
+            case .success(let data):
+                if let userResponse = try? JSONSerialization.jsonObject(with: data, options:.allowFragments) {
+                    completion(userResponse, nil)
+                } else {
+                    print("Failed")
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        
+        }
+    }
+    
+    static func getWalletAddress(completion: @escaping APIResponse) {
+        let endpoint = ""
+        AF.request(endpoint,  method: .get).validate().responseData { response in
+            switch(response.result) {
+            case .success(let data):
+                if let userResponse = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) {
+                    completion(userResponse, nil)
+                } else {
+                    print("Failed")
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    static func sendFromWallet(completion: @escaping APIResponse) {
+        passManager = Pass.init()
+        passManager.guid
+        
+        //todo
     }
 }
 
