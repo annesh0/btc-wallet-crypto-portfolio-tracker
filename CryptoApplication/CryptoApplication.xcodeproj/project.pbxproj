@@ -18,7 +18,6 @@
 		B80FF237285142220041D4AF /* AddCoinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80FF236285142220041D4AF /* AddCoinTableViewCell.swift */; };
 		B80FF2392851F0C10041D4AF /* Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80FF2382851F0C10041D4AF /* Json.swift */; };
 		B80FF23C285ECA650041D4AF /* StockCharts in Frameworks */ = {isa = PBXBuildFile; productRef = B80FF23B285ECA650041D4AF /* StockCharts */; };
-		B80FF23E288FBCFA0041D4AF /* ignored.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80FF23D288FBCFA0041D4AF /* ignored.swift */; };
 		B812A27C284DAA2B004751E8 /* EditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812A27B284DAA2B004751E8 /* EditorController.swift */; };
 		B812A27E284DAECD004751E8 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812A27D284DAECD004751E8 /* ProfileController.swift */; };
 		B8380D62283C738D00C45FA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8380D61283C738D00C45FA6 /* AppDelegate.swift */; };
@@ -33,6 +32,7 @@
 		D343C1D32F018A3B3A595AC0 /* Pods_CryptoApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 543412E35F3F278CD8BC2CF1 /* Pods_CryptoApplication.framework */; };
 		FC32832B2858D33D003B23DA /* CodableCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC32832A2858D33D003B23DA /* CodableCoin.swift */; };
 		FC32832D2858D992003B23DA /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC32832C2858D992003B23DA /* PersistenceManager.swift */; };
+		FCC79B95288FCF66008BE6E2 /* ignored.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC79B94288FCF66008BE6E2 /* ignored.swift */; };
 		FCDE9CA0285C473900EC8778 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDE9C9F285C473900EC8778 /* NewsViewController.swift */; };
 		FCDE9CA2285C476100EC8778 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDE9CA1285C476100EC8778 /* WalletViewController.swift */; };
 		FCDE9CA4285C655800EC8778 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDE9CA3285C655800EC8778 /* Article.swift */; };
@@ -73,7 +73,6 @@
 		B80FF2342851420A0041D4AF /* CoinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTableViewCell.swift; sourceTree = "<group>"; };
 		B80FF236285142220041D4AF /* AddCoinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoinTableViewCell.swift; sourceTree = "<group>"; };
 		B80FF2382851F0C10041D4AF /* Json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Json.swift; sourceTree = "<group>"; };
-		B80FF23D288FBCFA0041D4AF /* ignored.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ignored.swift; sourceTree = "<group>"; };
 		B812A27B284DAA2B004751E8 /* EditorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorController.swift; sourceTree = "<group>"; };
 		B812A27D284DAECD004751E8 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		B8380D5E283C738D00C45FA6 /* CryptoApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +92,7 @@
 		EFFCA93CF910FF4EAB935904 /* Pods-CryptoApplication.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoApplication.debug.xcconfig"; path = "Target Support Files/Pods-CryptoApplication/Pods-CryptoApplication.debug.xcconfig"; sourceTree = "<group>"; };
 		FC32832A2858D33D003B23DA /* CodableCoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableCoin.swift; sourceTree = "<group>"; };
 		FC32832C2858D992003B23DA /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		FCC79B94288FCF66008BE6E2 /* ignored.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ignored.swift; sourceTree = "<group>"; };
 		FCDE9C9F285C473900EC8778 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		FCDE9CA1285C476100EC8778 /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		FCDE9CA3285C655800EC8778 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
@@ -203,8 +203,8 @@
 				FCDE9CA5285C65C700EC8778 /* ArticleTableViewCell.swift */,
 				FCDE9CB82889009F00EC8778 /* SendController.swift */,
 				FCDE9CBA288900DC00EC8778 /* ReceiveController.swift */,
+				FCC79B94288FCF66008BE6E2 /* ignored.swift */,
 				B80FF2382851F0C10041D4AF /* Json.swift */,
-				B80FF23D288FBCFA0041D4AF /* ignored.swift */,
 			);
 			path = CryptoApplication;
 			sourceTree = "<group>";
@@ -483,7 +483,7 @@
 				B80FF22B285141810041D4AF /* EditCoinValueController.swift in Sources */,
 				B80FF22D285141960041D4AF /* AddCoinController.swift in Sources */,
 				B812A27C284DAA2B004751E8 /* EditorController.swift in Sources */,
-				B80FF23E288FBCFA0041D4AF /* ignored.swift in Sources */,
+				FCC79B95288FCF66008BE6E2 /* ignored.swift in Sources */,
 				B80FF2392851F0C10041D4AF /* Json.swift in Sources */,
 				B8380D64283C738D00C45FA6 /* SceneDelegate.swift in Sources */,
 				FCDE9CBB288900DC00EC8778 /* ReceiveController.swift in Sources */,

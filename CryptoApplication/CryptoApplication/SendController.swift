@@ -15,7 +15,7 @@ class SendContoller: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 169/255, green: 196/255, blue: 238/255, alpha: 1)
-        
+        self.preferredContentSize = CGSize(width: view.frame.width, height: 100)
         setupConstraints()
     }
 
