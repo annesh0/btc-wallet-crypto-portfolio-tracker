@@ -37,6 +37,7 @@ class EditCoinValueController: UIViewController {
         inputField.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.00)
         inputField.textAlignment = .center
         inputField.layer.cornerRadius = 20
+        inputField.keyboardType = .decimalPad
         inputField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(inputField)
         saveButton.setTitle("  Confirm  ", for: .normal)

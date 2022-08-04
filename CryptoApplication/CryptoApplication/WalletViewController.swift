@@ -169,8 +169,7 @@ class WalletViewController: UIViewController {
     @objc func sendButtonPress(){
         let presenter = SendContoller()
         presenter.parentController = self
-        self.preferredContentSize = CGSize(width: view.frame.width, height: 100)
-        presenter.modalPresentationStyle = .formSheet
+        presenter.sheetPresentationController?.detents = [.medium()]
         present(presenter, animated: true, completion: nil)
     }
     
