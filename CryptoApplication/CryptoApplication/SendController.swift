@@ -12,6 +12,11 @@ class SendContoller: UIViewController {
     
     weak var parentController: WalletViewController?
     
+    var amountBTC: Double? = 0.0
+    var amountUSD: Double? = 0.0
+    
+    var exchangeRate: Double = 2.0
+    
     var sendLabel = UILabel()
     
     var addressLabel = UILabel()
@@ -41,7 +46,7 @@ class SendContoller: UIViewController {
         
         addressField.attributedPlaceholder = NSAttributedString(string: "Address", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)])
         addressField.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
-        addressField.font = .systemFont(ofSize: 18, weight: .regular)
+        addressField.font = .systemFont(ofSize: 18, weight: .bold)
         addressField.backgroundColor = .clear
         addressField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(addressField)
@@ -60,17 +65,19 @@ class SendContoller: UIViewController {
         
         btcField.attributedPlaceholder = NSAttributedString(string: "0.0000", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)])
         btcField.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
-        btcField.font = .systemFont(ofSize: 18, weight: .regular)
+        btcField.font = .systemFont(ofSize: 18, weight: .bold)
         btcField.backgroundColor = .clear
         btcField.keyboardType = .decimalPad
+        btcField.addTarget(self, action: #selector(btcUpdated), for: .editingChanged)
         btcField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(btcField)
         
         usdField.attributedPlaceholder = NSAttributedString(string: "00.00", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)])
         usdField.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
-        usdField.font = .systemFont(ofSize: 18, weight: .regular)
+        usdField.font = .systemFont(ofSize: 18, weight: .bold)
         usdField.backgroundColor = .clear
         usdField.keyboardType = .decimalPad
+        usdField.addTarget(self, action: #selector(usdUpdated), for: .editingChanged)
         usdField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(usdField)
         
@@ -180,6 +187,36 @@ class SendContoller: UIViewController {
     
     @objc func qrButtonPress(){
         
+    }
+    
+    @objc func btcUpdated(){
+        if let text = btcField.text {
+            amountBTC = Double(text)
+            if let amount = amountBTC{
+                amountUSD = amount * exchangeRate
+                usdField.text = "\(amountUSD!)"
+            }
+            else{
+                amountUSD = 0.0
+                amountBTC = 0.0
+                usdField.text = nil
+            }
+        }
+    }
+    
+    @objc func usdUpdated(){
+        if let text = usdField.text {
+            amountUSD = Double(text)
+            if let amount = amountUSD{
+                amountBTC = amount/exchangeRate
+                btcField.text = "\(amountBTC!)"
+            }
+            else{
+                amountUSD = 0.0
+                amountBTC = 0.0
+                btcField.text = nil
+            }
+        }
     }
     
 }
