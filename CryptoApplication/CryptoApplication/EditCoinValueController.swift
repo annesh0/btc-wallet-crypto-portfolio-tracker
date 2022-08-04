@@ -148,7 +148,7 @@ class EditCoinValueController: UIViewController {
     }
     
     func showAlert() {
-            let alert = UIAlertController(title: "Non-Negative Number Required!", message: "To continue, you must enter a valid number.", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Valid Number Required!", message: "To continue, you must enter a valid number.", preferredStyle: .alert)
             alert.addTextField { textField in textField.placeholder = "Enter amount: "}
             alert.addAction(UIAlertAction(title: "Update", style: .default) { _ in
                 guard let newAmount = alert.textFields?[0].text, !newAmount.isEmpty else{

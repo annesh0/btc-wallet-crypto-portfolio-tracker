@@ -32,6 +32,7 @@ class SendContoller: UIViewController {
     var padding3 = UILabel()
     
     var sendButton = UIButton()
+    var canSend = false
     var qrButton = UIButton()
     
     override func viewDidLoad() {
@@ -48,6 +49,7 @@ class SendContoller: UIViewController {
         addressField.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
         addressField.font = .systemFont(ofSize: 18, weight: .bold)
         addressField.backgroundColor = .clear
+        addressField.addTarget(self, action: #selector(checkButton), for: .editingChanged)
         addressField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(addressField)
         
@@ -69,6 +71,7 @@ class SendContoller: UIViewController {
         btcField.backgroundColor = .clear
         btcField.keyboardType = .decimalPad
         btcField.addTarget(self, action: #selector(btcUpdated), for: .editingChanged)
+        btcField.addTarget(self, action: #selector(checkButton), for: .editingChanged)
         btcField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(btcField)
         
@@ -78,6 +81,7 @@ class SendContoller: UIViewController {
         usdField.backgroundColor = .clear
         usdField.keyboardType = .decimalPad
         usdField.addTarget(self, action: #selector(usdUpdated), for: .editingChanged)
+        usdField.addTarget(self, action: #selector(checkButton), for: .editingChanged)
         usdField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(usdField)
         
@@ -181,8 +185,18 @@ class SendContoller: UIViewController {
         ])
     }
     
+    func getCurrencyForm(amount: Double) -> String {
+        let formatter = NumberFormatter()
+        formatter.locale = Locale.current
+        formatter.currencySymbol = ""
+        formatter.numberStyle = .currency
+        return formatter.string(from: amount as NSNumber)!
+    }
+    
     @objc func sendButtonPress(){
-        
+        if canSend{
+            
+        }
     }
     
     @objc func qrButtonPress(){
@@ -194,7 +208,7 @@ class SendContoller: UIViewController {
             amountBTC = Double(text)
             if let amount = amountBTC{
                 amountUSD = amount * exchangeRate
-                usdField.text = "\(amountUSD!)"
+                usdField.text = "\(getCurrencyForm(amount: amountUSD!))"
             }
             else{
                 amountUSD = 0.0
@@ -216,6 +230,17 @@ class SendContoller: UIViewController {
                 amountBTC = 0.0
                 btcField.text = nil
             }
+        }
+    }
+    
+    @objc func checkButton(){
+        if amountBTC! > 0 && amountUSD! > 0 && addressField.text != "" {
+            sendButton.backgroundColor = UIColor(red: 190/255, green: 216/255, blue: 255/255, alpha: 1)
+            canSend = true
+        }
+        else{
+            sendButton.backgroundColor = UIColor(red: 190/255, green: 216/255, blue: 255/255, alpha: 0.4)
+            canSend = false
         }
     }
     
