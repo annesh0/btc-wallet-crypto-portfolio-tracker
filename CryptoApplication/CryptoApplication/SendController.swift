@@ -205,30 +205,40 @@ class SendContoller: UIViewController {
     
     @objc func btcUpdated(){
         if let text = btcField.text {
-            amountBTC = Double(text)
-            if let amount = amountBTC{
+            if let amount = Double(text){
+                amountBTC = amount
                 amountUSD = amount * exchangeRate
                 usdField.text = "\(getCurrencyForm(amount: amountUSD!))"
             }
             else{
-                amountUSD = 0.0
-                amountBTC = 0.0
-                usdField.text = nil
+                if btcField.text == "" {
+                    amountUSD = 0
+                    amountBTC = 0
+                    usdField.text = ""
+                }
+                else{
+                    btcField.text = "\(amountBTC!)"
+                }
             }
         }
     }
     
     @objc func usdUpdated(){
         if let text = usdField.text {
-            amountUSD = Double(text)
-            if let amount = amountUSD{
+            if let amount = Double(text){
+                amountUSD = amount
                 amountBTC = amount/exchangeRate
                 btcField.text = "\(amountBTC!)"
             }
             else{
-                amountUSD = 0.0
-                amountBTC = 0.0
-                btcField.text = nil
+                if usdField.text == "" {
+                    amountUSD = 0
+                    amountBTC = 0
+                    btcField.text = ""
+                }
+                else {
+                    usdField.text = "\(getCurrencyForm(amount: amountUSD!))"
+                }
             }
         }
     }
