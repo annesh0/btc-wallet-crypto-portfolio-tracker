@@ -216,8 +216,18 @@ class SendContoller: UIViewController {
                     amountBTC = 0
                     usdField.text = ""
                 }
+                else if btcField.text == "." {
+                    amountUSD = 0
+                    amountBTC = 0
+                    usdField.text = ""
+                }
                 else{
-                    btcField.text = "\(amountBTC!)"
+                    if amountBTC! > 0 {
+                        btcField.text = "\(amountBTC!)"
+                    }
+                    else {
+                        btcField.text = ""
+                    }
                 }
             }
         }
@@ -236,8 +246,18 @@ class SendContoller: UIViewController {
                     amountBTC = 0
                     btcField.text = ""
                 }
+                else if usdField.text == "." {
+                    amountUSD = 0
+                    amountBTC = 0
+                    btcField.text = ""
+                }
                 else {
-                    usdField.text = "\(getCurrencyForm(amount: amountUSD!))"
+                    if amountUSD! > 0 {
+                        usdField.text = "\(getCurrencyForm(amount: amountUSD!))"
+                    }
+                    else{
+                        usdField.text = ""
+                    }
                 }
             }
         }

@@ -20,6 +20,8 @@ class EditCoinValueController: UIViewController {
     var fromSignleScreen = false
     weak var parentSingleCoinScreen: SingleCoinViewController?
     
+    var lastKnownValue = 0.0
+    
     weak var parentCoinCell: Coin?
     weak var ParentController: EditCoinController?
     
@@ -38,6 +40,7 @@ class EditCoinValueController: UIViewController {
         inputField.textAlignment = .center
         inputField.layer.cornerRadius = 20
         inputField.keyboardType = .decimalPad
+        inputField.addTarget(self, action: #selector(numberOnly), for: .editingChanged)
         inputField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(inputField)
         saveButton.setTitle("  Confirm  ", for: .normal)
@@ -117,7 +120,12 @@ class EditCoinValueController: UIViewController {
                 }
             }
             else{
-                showAlert()
+                if inputField.text == ""{
+                    cancel()
+                }
+                else{
+                    showAlert()
+                }
             }
         }
         
@@ -137,8 +145,12 @@ class EditCoinValueController: UIViewController {
                 }
             }
             else{
-                showAlert()
-            }
+                if inputField.text == ""{
+                    cancel()
+                }
+                else{
+                    showAlert()
+                }            }
         }
     }
     
@@ -162,4 +174,14 @@ class EditCoinValueController: UIViewController {
             present(alert, animated: true, completion: nil)
     }
 
+    @objc func numberOnly(){
+        if let text = inputField.text {
+            if let amount = Double(text){
+                lastKnownValue = amount
+            }
+            else if inputField.text != "" {
+                inputField.text = "\(lastKnownValue)"
+            }
+        }
+    }
 }
