@@ -29,6 +29,10 @@ class EditCoinValueController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
         title = "Edit Asset: " + parentCoinCell!.name
         view.backgroundColor = .white
+        
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
+        
         instructionsLabel.text = "Edit \(parentCoinCell!.name)"
         instructionsLabel.font = .systemFont(ofSize: 35, weight: .bold)
         instructionsLabel.translatesAutoresizingMaskIntoConstraints = false

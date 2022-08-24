@@ -39,6 +39,9 @@ class SendContoller: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 169/255, green: 196/255, blue: 238/255, alpha: 1)
         
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
+        
         sendLabel.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         sendLabel.text = "Send"
         sendLabel.font = .systemFont(ofSize: 22, weight: .bold)
